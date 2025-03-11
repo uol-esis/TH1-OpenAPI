@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.0.1
+  version: 1.0.2
 
 servers:
   - url: 'http://localhost:{port}/v1'
@@ -237,6 +237,14 @@ paths:
     post:
       summary: Convert a table and return a preview of the result
       operationId: previewConvertTable
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 10
       requestBody:
         content:
           multipart/form-data:
