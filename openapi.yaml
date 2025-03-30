@@ -175,7 +175,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tableStructure'
+                type: integer
+                format: int64
+                minimum: 1
         '400':
           description: Bad request
         '401':
