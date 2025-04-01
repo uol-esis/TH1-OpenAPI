@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.0.3
+  version: 1.1.0
 
 servers:
   - url: 'http://localhost:{port}/v1'
@@ -302,6 +302,31 @@ paths:
               schema:
                 type: string
                 format: binary
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /table-structures/generate:
+    post:
+      summary: Generate a tableStructure and return the result as a json
+      operationId: generateTableStructure
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [ file ]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tableStructure'
         '400':
           description: Bad request
         '401':
