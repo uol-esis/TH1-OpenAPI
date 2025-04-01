@@ -306,3 +306,28 @@ paths:
           description: Bad request
         '401':
           description: Unauthorized
+  /table-structures/generate:
+    post:
+      summary: Generate a tableStructure and return the result as a json
+      operationId: generateTableStructure
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [ file ]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tableStructure'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
