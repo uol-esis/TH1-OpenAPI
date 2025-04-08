@@ -7,9 +7,7 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    container:
-      image: openapitools/openapi-generator-cli:v7.12.0
     steps:
       - uses: actions/checkout@v2
       - name: Validate
-        run: openapi-generator-cli validate -i openapi.yaml
+        run: ./validate.sh
