@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.4.0
+  version: 1.5.0
 
 servers:
   - url: 'http://localhost:{port}/v1'
@@ -209,6 +209,18 @@ components:
         - REMOVE_ROW_BY_INDEX
         - ADD_HEADER_NAME
 
+    errorMessage:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int64
+          minimum: 0
+
 paths:
   /table-structures:
     get:
@@ -225,6 +237,10 @@ paths:
                   $ref: '#/components/schemas/tableStructureSummary'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
     post:
       summary: Create a new table structure
       operationId: createTableStructure
@@ -245,8 +261,16 @@ paths:
                 minimum: 1
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
     delete:
       summary: Delete table structure by id
       operationId: deleteTableStructure
@@ -263,10 +287,22 @@ paths:
           description: OK
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '404':
           description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
   /table-structures/{id}:
     get:
       summary: Get a table structure by id
@@ -288,10 +324,22 @@ paths:
                 $ref: '#/components/schemas/tableStructure'
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '404':
           description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
 
   /converter/{tableStructureId}:
     post:
@@ -320,10 +368,22 @@ paths:
           description: OK
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '404':
           description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
   /converter/preview:
     post:
       summary: Convert a table and return a preview of the result
@@ -361,8 +421,16 @@ paths:
                     type: string
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
   /converter/file:
     post:
       summary: Convert a table and return the result as a file
@@ -389,8 +457,16 @@ paths:
                 format: binary
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
   /table-structures/generate:
     post:
       summary: Generate a tableStructure and return the result as a json
@@ -414,5 +490,13 @@ paths:
                 $ref: '#/components/schemas/tableStructure'
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorMessage'
