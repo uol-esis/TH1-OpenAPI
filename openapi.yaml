@@ -82,7 +82,7 @@ components:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
-    
+
     removeRowByIndexStructure:
       type: object
       required:
@@ -247,6 +247,26 @@ paths:
           description: Bad request
         '401':
           description: Unauthorized
+    delete:
+      summary: Delete table structure by id
+      operationId: deleteTableStructure
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
   /table-structures/{id}:
     get:
       summary: Get a table structure by id
