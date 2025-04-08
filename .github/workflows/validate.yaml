@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate
-        run: validate -i openapi.yaml
+        run: openapi-generator-cli validate -i openapi.yaml
