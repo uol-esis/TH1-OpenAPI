@@ -79,6 +79,9 @@ components:
           REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
     
     removeRowByIndexStructure:
       type: object
