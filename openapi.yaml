@@ -69,7 +69,7 @@ components:
         - $ref: '#/components/schemas/removeRowByIndexStructure'
         - $ref: '#/components/schemas/removeColumnByIndexStructure'
         - $ref: '#/components/schemas/removeGroupedHeaderStructure'
-        - $ref: '#/components/schemas/fillEmptyRowsStructure'
+        - $ref: '#/components/schemas/fillEmptyRowStructure'
         - $ref: '#/components/schemas/addHeaderNameStructure'
       discriminator:
         propertyName: converterType
@@ -155,7 +155,7 @@ components:
             type: string
             minLength: 1
 
-    fillEmptyRowsStructure:
+    fillEmptyRowStructure:
       type: object
       required:
         - converterType
