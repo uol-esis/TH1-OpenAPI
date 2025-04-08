@@ -119,8 +119,6 @@ components:
         - converterType
         - rowIndex
         - columnIndex
-        - startRow
-        - startColumn
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
