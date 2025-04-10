@@ -2,24 +2,24 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.4.0
+  version: 1.5.0
 
 servers:
-  - url: 'http://localhost:{port}/v1'
+  - url: 'http://localhost:{port}/api/v1'
     description: Local server
     variables: {
       port: {
         default: '8080'
       }
     }
-  - url: 'http://pg-doener-dev.virt.uni-oldenburg.de:{port}/v1'
+  - url: 'http://pg-doener-dev.virt.uni-oldenburg.de:{port}/api/v1'
     description: Dev server
     variables: {
       port: {
         default: '8080'
       }
     }
-  - url: 'http://pg-doener-prod.virt.uni-oldenburg.de:{port}/v1'
+  - url: 'http://pg-doener-prod.virt.uni-oldenburg.de:{port}/api/v1'
     description: Prod server
     variables: {
       port: {
