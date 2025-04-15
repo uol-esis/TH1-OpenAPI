@@ -177,6 +177,8 @@ components:
 
     removeHeaderStructure:
       type: object
+      required:
+        - converterType
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
