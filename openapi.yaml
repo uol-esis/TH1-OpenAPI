@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.6.0
+  version: 1.7.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -173,6 +173,12 @@ components:
             type: integer
             minimum: 0
 
+    removeHeaderStructure:
+      type: object
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+
     removeFooterStructure:
       type: object
       required:
@@ -227,6 +233,7 @@ components:
         - REMOVE_COLUMN_BY_INDEX
         - REMOVE_ROW_BY_INDEX
         - ADD_HEADER_NAME
+        - REMOVE_HEADER
         - REMOVE_FOOTER
 
 paths:
