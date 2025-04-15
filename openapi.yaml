@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.5.0
+  version: 1.6.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -71,6 +71,7 @@ components:
         - $ref: '#/components/schemas/removeGroupedHeaderStructure'
         - $ref: '#/components/schemas/fillEmptyRowStructure'
         - $ref: '#/components/schemas/addHeaderNameStructure'
+        - $ref: '#/components/schemas/replaceEntriesStructure'
       discriminator:
         propertyName: converterType
         mapping:
@@ -79,6 +80,7 @@ components:
           REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
+          REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -171,6 +173,35 @@ components:
             type: integer
             minimum: 0
 
+    replaceEntriesStructure:
+      type: object
+      required:
+        - converterType
+        - replacement
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        search:
+          type: string
+          minLength: 1
+        regexSearch:
+          type: string
+          minLength: 1
+        replacement:
+          type: string
+        startRow:
+          type: integer
+          minimum: 0
+        startColumn:
+          type: integer
+          minimum: 0
+        endRow:
+          type: integer
+          minimum: 0
+        endColumn:
+          type: integer
+          minimum: 0
+
     tableStructureSummary:
       type: object
       required:
@@ -208,6 +239,7 @@ components:
         - REMOVE_COLUMN_BY_INDEX
         - REMOVE_ROW_BY_INDEX
         - ADD_HEADER_NAME
+        - REPLACE_ENTRIES
 
 paths:
   /table-structures:
