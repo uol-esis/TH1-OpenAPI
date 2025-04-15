@@ -72,6 +72,7 @@ components:
         - $ref: '#/components/schemas/fillEmptyRowStructure'
         - $ref: '#/components/schemas/addHeaderNameStructure'
         - $ref: '#/components/schemas/removeFooterStructure'
+        - $ref: '#/components/schemas/removeHeaderStructure'
       discriminator:
         propertyName: converterType
         mapping:
@@ -81,6 +82,7 @@ components:
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
+          REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -233,8 +235,8 @@ components:
         - REMOVE_COLUMN_BY_INDEX
         - REMOVE_ROW_BY_INDEX
         - ADD_HEADER_NAME
-        - REMOVE_HEADER
         - REMOVE_FOOTER
+        - REMOVE_HEADER
 
 paths:
   /table-structures:
