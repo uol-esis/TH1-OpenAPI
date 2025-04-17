@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.5.0
+  version: 1.6.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -225,6 +225,7 @@ components:
         - REMOVE_COLUMN_BY_INDEX
         - REMOVE_ROW_BY_INDEX
         - ADD_HEADER_NAME
+        - REMOVE_FOOTER
 
 paths:
   /table-structures:
