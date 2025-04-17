@@ -80,7 +80,7 @@ components:
           REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
-          REMOVE_HEADER: '#/components/schemas/removeFooterStructure'
+          REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
