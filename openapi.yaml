@@ -71,8 +71,8 @@ components:
         - $ref: '#/components/schemas/removeGroupedHeaderStructure'
         - $ref: '#/components/schemas/fillEmptyRowStructure'
         - $ref: '#/components/schemas/addHeaderNameStructure'
-        - $ref: '#/components/schemas/removeFooterStructure'
         - $ref: '#/components/schemas/removeHeaderStructure'
+        - $ref: '#/components/schemas/removeFooterStructure'
       discriminator:
         propertyName: converterType
         mapping:
@@ -81,8 +81,8 @@ components:
           REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
-          REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
           REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
+          REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
