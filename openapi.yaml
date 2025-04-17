@@ -185,7 +185,7 @@ components:
         threshold:
           type: integer
           minimum: 0
-        validElements:
+        blackList:
           type: array
           minItems: 0
           items:
