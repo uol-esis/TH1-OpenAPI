@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.6.0
+  version: 1.7.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -71,6 +71,7 @@ components:
         - $ref: '#/components/schemas/removeGroupedHeaderStructure'
         - $ref: '#/components/schemas/fillEmptyRowStructure'
         - $ref: '#/components/schemas/addHeaderNameStructure'
+        - $ref: '#/components/schemas/removeHeaderStructure'
         - $ref: '#/components/schemas/removeFooterStructure'
       discriminator:
         propertyName: converterType
@@ -80,6 +81,7 @@ components:
           REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
+          REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
       properties:
         converterType:
@@ -173,6 +175,23 @@ components:
             type: integer
             minimum: 0
 
+    removeHeaderStructure:
+      type: object
+      required:
+        - converterType
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        threshold:
+          type: integer
+          minimum: 0
+        blackList:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            minimum: 0
+
     removeFooterStructure:
       type: object
       required:
@@ -228,6 +247,7 @@ components:
         - REMOVE_ROW_BY_INDEX
         - ADD_HEADER_NAME
         - REMOVE_FOOTER
+        - REMOVE_HEADER
 
 paths:
   /table-structures:
