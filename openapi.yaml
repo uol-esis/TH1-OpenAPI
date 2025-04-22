@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.7.0
+  version: 1.8.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -73,6 +73,7 @@ components:
         - $ref: '#/components/schemas/addHeaderNameStructure'
         - $ref: '#/components/schemas/removeHeaderStructure'
         - $ref: '#/components/schemas/removeFooterStructure'
+        - $ref: '#/components/schemas/replaceEntriesStructure'
       discriminator:
         propertyName: converterType
         mapping:
@@ -83,6 +84,7 @@ components:
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
           REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
+          REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -209,6 +211,35 @@ components:
             type: string
             minimum: 0
 
+    replaceEntriesStructure:
+      type: object
+      required:
+        - converterType
+        - replacement
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        search:
+          type: string
+          minLength: 1
+        regexSearch:
+          type: string
+          minLength: 1
+        replacement:
+          type: string
+        startRow:
+          type: integer
+          minimum: 0
+        startColumn:
+          type: integer
+          minimum: 0
+        endRow:
+          type: integer
+          minimum: 0
+        endColumn:
+          type: integer
+          minimum: 0
+
     tableStructureSummary:
       type: object
       required:
@@ -248,6 +279,7 @@ components:
         - ADD_HEADER_NAME
         - REMOVE_FOOTER
         - REMOVE_HEADER
+        - REPLACE_ENTRIES
 
 paths:
   /table-structures:
