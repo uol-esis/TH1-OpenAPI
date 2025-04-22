@@ -73,6 +73,7 @@ components:
         - $ref: '#/components/schemas/addHeaderNameStructure'
         - $ref: '#/components/schemas/removeHeaderStructure'
         - $ref: '#/components/schemas/removeFooterStructure'
+        - $ref: '#/components/schemas/replaceEntriesStructure'
         - $ref: '#/components/schemas/splitRowStructure'
       discriminator:
         propertyName: converterType
@@ -84,6 +85,7 @@ components:
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
           REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
+          REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
       properties:
         converterType:
@@ -230,6 +232,35 @@ components:
           minLength: 1
           default: "\n"
 
+    replaceEntriesStructure:
+      type: object
+      required:
+        - converterType
+        - replacement
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        search:
+          type: string
+          minLength: 1
+        regexSearch:
+          type: string
+          minLength: 1
+        replacement:
+          type: string
+        startRow:
+          type: integer
+          minimum: 0
+        startColumn:
+          type: integer
+          minimum: 0
+        endRow:
+          type: integer
+          minimum: 0
+        endColumn:
+          type: integer
+          minimum: 0
+
     tableStructureSummary:
       type: object
       required:
@@ -269,6 +300,7 @@ components:
         - ADD_HEADER_NAME
         - REMOVE_FOOTER
         - REMOVE_HEADER
+        - REPLACE_ENTRIES
         - SPLIT_ROW
 
 paths:
