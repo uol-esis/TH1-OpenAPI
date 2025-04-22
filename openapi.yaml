@@ -217,11 +217,11 @@ components:
       type: object
       required:
         - converterType
-        - rowIndex
+        - columnIndex
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
-        rowIndex:
+        columnIndex:
           type: array
           minItems: 1
           items:
