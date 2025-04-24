@@ -73,6 +73,7 @@ components:
         - $ref: '#/components/schemas/addHeaderNameStructure'
         - $ref: '#/components/schemas/removeHeaderStructure'
         - $ref: '#/components/schemas/removeFooterStructure'
+        - $ref: '#/components/schemas/removeTrailingColumnStructure'
         - $ref: '#/components/schemas/replaceEntriesStructure'
         - $ref: '#/components/schemas/splitRowStructure'
       discriminator:
@@ -85,6 +86,7 @@ components:
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
           REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
+          REMOVE_TRAILING_COLUMN: '#/components/schemas/removeTrailingColumnStructure'
           REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
       properties:
@@ -235,6 +237,23 @@ components:
           type: integer
           minimum: 0
 
+    removeTrailingColumnStructure:
+      type: object
+      required:
+        - converterType
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        threshold:
+          type: integer
+          minimum: 0
+        blackList:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            minimum: 0
+
     replaceEntriesStructure:
       type: object
       required:
@@ -303,6 +322,7 @@ components:
         - ADD_HEADER_NAME
         - REMOVE_FOOTER
         - REMOVE_HEADER
+        - REMOVE_TRAILING_COLUMN
         - REPLACE_ENTRIES
         - SPLIT_ROW
 
