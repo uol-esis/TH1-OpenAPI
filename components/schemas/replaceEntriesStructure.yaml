@@ -1,0 +1,28 @@
+#replaceEntriesStructure:
+type: object
+required:
+  - converterType
+  - replacement
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  search:
+    type: string
+    minLength: 1
+  regexSearch:
+    type: string
+    minLength: 1
+  replacement:
+    type: string
+  startRow:
+    type: integer
+    minimum: 0
+  startColumn:
+    type: integer
+    minimum: 0
+  endRow:
+    type: integer
+    minimum: 0
+  endColumn:
+    type: integer
+    minimum: 0

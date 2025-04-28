@@ -1,0 +1,16 @@
+#removeFooterStructure:
+type: object
+required:
+  - converterType
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  threshold:
+    type: integer
+    minimum: 0
+  blackList:
+    type: array
+    minItems: 0
+    items:
+      type: string
+      minimum: 0

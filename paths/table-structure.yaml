@@ -1,0 +1,58 @@
+get:
+  summary: Get all table structures
+  operationId: getTableStructures
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../components/schemas/tableStructure.yaml'
+    '401':
+      description: Unauthorized
+
+post:
+  summary: Create a new table structure
+  operationId: createTableStructure
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/tableStructure.yaml'
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+    '400':
+      description: Bad request
+    '401':
+      description: Unauthorized
+
+delete:
+  summary: Delete table structure by id
+  operationId: deleteTableStructure
+  parameters:
+    - name: id
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: Bad request
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not found

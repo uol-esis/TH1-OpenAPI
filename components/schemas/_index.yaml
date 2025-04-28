@@ -1,0 +1,20 @@
+tableStructure:
+  $ref: './tableStructure.yaml'
+structure:
+  $ref: './structure.yaml'
+removeRowByIndexStructure:
+  $ref: './removeRowByIndexStructure.yaml'
+removeColumnByIndexStructure:
+  $ref: './removeColumnByIndexStructure.yaml'
+removeGroupedHeaderStructure:
+  $ref: './removeGroupedHeaderStructure.yaml'
+addHeaderNameStructure:
+  $ref: './addHeaderNameStructure.yaml'
+fillEmptyRowStructure:
+  $ref: './fillEmptyRowStructure.yaml'
+tableStructureSummary:
+  $ref: './tableStructureSummary.yaml'
+structureSummary:
+  $ref: './structureSummary.yaml'
+converterType:
+  $ref: './converterType.yaml'

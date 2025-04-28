@@ -1,0 +1,27 @@
+#removeGroupedHeaderStructure:
+type: object
+required:
+  - converterType
+  - rowIndex
+  - columnIndex
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  rowIndex:
+    type: array
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0
+  columnIndex:
+    type: array
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0
+  startRow:
+    type: integer
+    minimum: 0
+  startColumn:
+    type: integer
+    minimum: 0

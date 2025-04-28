@@ -1,0 +1,21 @@
+#splitRowStructure:
+type: object
+required:
+  - converterType
+  - columnIndex
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  columnIndex:
+    type: integer
+    minimum: 0
+  delimiter:
+    type: string
+    minLength: 1
+    default: "\n"
+  startRow:
+    type: integer
+    minimum: 0
+  endRow:
+    type: integer
+    minimum: 0

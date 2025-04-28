@@ -1,0 +1,26 @@
+#structure:
+type: object
+oneOf:
+  - $ref: './removeRowByIndexStructure.yaml'
+  - $ref: './removeColumnByIndexStructure.yaml'
+  - $ref: './removeGroupedHeaderStructure.yaml'
+  - $ref: './fillEmptyRowStructure.yaml'
+  - $ref: './addHeaderNameStructure.yaml'
+  - $ref: './removeHeaderStructure.yaml'
+  - $ref: './removeFooterStructure.yaml'
+  - $ref: './replaceEntriesStructure.yaml'
+  - $ref: './splitRowStructure.yaml'
+discriminator:
+  propertyName: converterType
+  mapping:
+    REMOVE_GROUPED_HEADER: './removeGroupedHeaderStructure.yaml'
+    FILL_EMPTY_ROW: './fillEmptyRowStructure.yaml'
+    REMOVE_COLUMN_BY_INDEX: './removeColumnByIndexStructure.yaml'
+    REMOVE_ROW_BY_INDEX: './removeRowByIndexStructure.yaml'
+    ADD_HEADER_NAME: './addHeaderNameStructure.yaml'
+    REMOVE_HEADER: './removeHeaderStructure.yaml'
+    REMOVE_FOOTER: './removeFooterStructure.yaml'
+    SPLIT_ROW: './splitRowStructure.yaml'
+properties:
+  converterType:
+    $ref: './converterType.yaml'
