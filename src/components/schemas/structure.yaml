@@ -13,14 +13,15 @@ oneOf:
 discriminator:
   propertyName: converterType
   mapping:
-    REMOVE_GROUPED_HEADER: './removeGroupedHeaderStructure.yaml'
-    FILL_EMPTY_ROW: './fillEmptyRowStructure.yaml'
-    REMOVE_COLUMN_BY_INDEX: './removeColumnByIndexStructure.yaml'
-    REMOVE_ROW_BY_INDEX: './removeRowByIndexStructure.yaml'
-    ADD_HEADER_NAME: './addHeaderNameStructure.yaml'
-    REMOVE_HEADER: './removeHeaderStructure.yaml'
-    REMOVE_FOOTER: './removeFooterStructure.yaml'
-    SPLIT_ROW: './splitRowStructure.yaml'
+    REMOVE_GROUPED_HEADER: '#/components/schemas/removeGroupedHeaderStructure'
+    FILL_EMPTY_ROW: '#/components/schemas/fillEmptyRowStructure'
+    REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
+    REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
+    ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
+    REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
+    REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
+    REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
+    SPLIT_ROW: '#/components/schemas/splitRowStructure'
 properties:
   converterType:
     $ref: './converterType.yaml'
