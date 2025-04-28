@@ -30,14 +30,6 @@ servers:
 security:
   - BasicAuth: [ ]
 
-components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-  schemas:
-    $ref: './components/schemas/_index.yaml'
-
 paths:
   /table-structures:
     $ref: './paths/table-structure.yaml'
@@ -56,3 +48,11 @@ paths:
 
   /table-structures/generate:
     $ref: './paths/table-structure-generate.yaml'
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    $ref: './components/schemas/_index.yaml'

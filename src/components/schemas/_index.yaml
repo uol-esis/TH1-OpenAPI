@@ -2,6 +2,13 @@ tableStructure:
   $ref: './tableStructure.yaml'
 structure:
   $ref: './structure.yaml'
+tableStructureSummary:
+  $ref: './tableStructureSummary.yaml'
+structureSummary:
+  $ref: './structureSummary.yaml'
+converterType:
+  $ref: './converterType.yaml'
+
 removeRowByIndexStructure:
   $ref: './removeRowByIndexStructure.yaml'
 removeColumnByIndexStructure:
@@ -12,9 +19,12 @@ addHeaderNameStructure:
   $ref: './addHeaderNameStructure.yaml'
 fillEmptyRowStructure:
   $ref: './fillEmptyRowStructure.yaml'
-tableStructureSummary:
-  $ref: './tableStructureSummary.yaml'
-structureSummary:
-  $ref: './structureSummary.yaml'
-converterType:
-  $ref: './converterType.yaml'
+removeHeaderStructure:
+  $ref: './removeHeaderStructure.yaml'
+removeFooterStructure:
+  $ref: './removeFooterStructure.yaml'
+replaceEntriesStructure:
+  $ref: './replaceEntriesStructure.yaml'
+splitRowStructure:
+  $ref: './splitRowStructure.yaml'
+

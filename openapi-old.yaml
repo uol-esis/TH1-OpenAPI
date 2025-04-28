@@ -3,24 +3,33 @@ info:
   title: TH1
   description: TH1
   version: 1.9.0
+
 servers:
   - url: 'http://localhost:{port}/api/v1'
     description: Local server
-    variables:
-      port:
+    variables: {
+      port: {
         default: '8080'
+      }
+    }
   - url: 'http://pg-doener-dev.virt.uni-oldenburg.de:{port}/api/v1'
     description: Dev server
-    variables:
-      port:
+    variables: {
+      port: {
         default: '8080'
+      }
+    }
   - url: 'http://pg-doener-prod.virt.uni-oldenburg.de:{port}/api/v1'
     description: Prod server
-    variables:
-      port:
+    variables: {
+      port: {
         default: '8080'
+      }
+    }
+
 security:
-  - BasicAuth: []
+  - BasicAuth: [ ]
+
 components:
   securitySchemes:
     BasicAuth:
@@ -41,7 +50,7 @@ components:
         name:
           type: string
           minLength: 1
-          example: Table structure 1
+          example: 'Table structure 1'
         structures:
           type: array
           minItems: 0
@@ -53,6 +62,7 @@ components:
         endColumn:
           type: integer
           minimum: 1
+
     structure:
       type: object
       oneOf:
@@ -80,6 +90,7 @@ components:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
+
     removeRowByIndexStructure:
       type: object
       required:
@@ -94,6 +105,7 @@ components:
           items:
             type: integer
             minimum: 0
+
     removeColumnByIndexStructure:
       type: object
       required:
@@ -108,6 +120,7 @@ components:
           items:
             type: integer
             minimum: 0
+
     removeGroupedHeaderStructure:
       type: object
       required:
@@ -135,6 +148,7 @@ components:
         startColumn:
           type: integer
           minimum: 0
+
     addHeaderNameStructure:
       type: object
       required:
@@ -149,6 +163,7 @@ components:
           items:
             type: string
             minLength: 1
+
     fillEmptyRowStructure:
       type: object
       required:
@@ -163,6 +178,7 @@ components:
           items:
             type: integer
             minimum: 0
+
     removeHeaderStructure:
       type: object
       required:
@@ -179,6 +195,7 @@ components:
           items:
             type: string
             minimum: 0
+
     removeFooterStructure:
       type: object
       required:
@@ -195,6 +212,7 @@ components:
           items:
             type: string
             minimum: 0
+
     splitRowStructure:
       type: object
       required:
@@ -209,14 +227,14 @@ components:
         delimiter:
           type: string
           minLength: 1
-          default: |+
-
+          default: "\n"
         startRow:
           type: integer
           minimum: 0
         endRow:
           type: integer
           minimum: 0
+
     replaceEntriesStructure:
       type: object
       required:
@@ -245,6 +263,7 @@ components:
         endColumn:
           type: integer
           minimum: 0
+
     tableStructureSummary:
       type: object
       required:
@@ -264,6 +283,7 @@ components:
           minItems: 0
           items:
             $ref: '#/components/schemas/structureSummary'
+
     structureSummary:
       type: object
       required:
@@ -271,9 +291,10 @@ components:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
+
     converterType:
       type: string
-      x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
+      x-field-extra-annotation: "@de.uol.pgdoener.th1.api.validation.ValidConverterType"
       enum:
         - REMOVE_GROUPED_HEADER
         - FILL_EMPTY_ROW
@@ -284,6 +305,7 @@ components:
         - REMOVE_HEADER
         - REPLACE_ENTRIES
         - SPLIT_ROW
+
 paths:
   /table-structures:
     get:
@@ -342,7 +364,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not found
-  '/table-structures/{id}':
+  /table-structures/{id}:
     get:
       summary: Get a table structure by id
       operationId: getTableStructure
@@ -367,7 +389,8 @@ paths:
           description: Unauthorized
         '404':
           description: Not found
-  '/converter/{tableStructureId}':
+
+  /converter/{tableStructureId}:
     post:
       summary: Convert a table and save it to the database
       operationId: convertTable
@@ -384,8 +407,7 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required:
-                - file
+              required: [ file ]
               properties:
                 file:
                   type: string
@@ -416,9 +438,7 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required:
-                - file
-                - tableStructure
+              required: [ file, tableStructure ]
               properties:
                 file:
                   type: string
@@ -449,9 +469,7 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required:
-                - file
-                - tableStructure
+              required: [ file, tableStructure ]
               properties:
                 file:
                   type: string
@@ -479,8 +497,7 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required:
-                - file
+              required: [ file ]
               properties:
                 file:
                   type: string

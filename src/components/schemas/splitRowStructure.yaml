@@ -12,7 +12,7 @@ properties:
   delimiter:
     type: string
     minLength: 1
-    default: "\n"
+    default: "\\n"
   startRow:
     type: integer
     minimum: 0

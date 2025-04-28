@@ -3,309 +3,24 @@ info:
   title: TH1
   description: TH1
   version: 1.9.0
-
 servers:
   - url: 'http://localhost:{port}/api/v1'
     description: Local server
-    variables: {
-      port: {
+    variables:
+      port:
         default: '8080'
-      }
-    }
   - url: 'http://pg-doener-dev.virt.uni-oldenburg.de:{port}/api/v1'
     description: Dev server
-    variables: {
-      port: {
+    variables:
+      port:
         default: '8080'
-      }
-    }
   - url: 'http://pg-doener-prod.virt.uni-oldenburg.de:{port}/api/v1'
     description: Prod server
-    variables: {
-      port: {
+    variables:
+      port:
         default: '8080'
-      }
-    }
-
 security:
-  - BasicAuth: [ ]
-
-components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-  schemas:
-    tableStructure:
-      type: object
-      required:
-        - name
-        - delimiter
-        - structures
-      properties:
-        id:
-          type: integer
-          format: int64
-          minimum: 1
-        name:
-          type: string
-          minLength: 1
-          example: 'Table structure 1'
-        structures:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/structure'
-        endRow:
-          type: integer
-          minimum: 1
-        endColumn:
-          type: integer
-          minimum: 1
-
-    structure:
-      type: object
-      oneOf:
-        - $ref: '#/components/schemas/removeRowByIndexStructure'
-        - $ref: '#/components/schemas/removeColumnByIndexStructure'
-        - $ref: '#/components/schemas/removeGroupedHeaderStructure'
-        - $ref: '#/components/schemas/fillEmptyRowStructure'
-        - $ref: '#/components/schemas/addHeaderNameStructure'
-        - $ref: '#/components/schemas/removeHeaderStructure'
-        - $ref: '#/components/schemas/removeFooterStructure'
-        - $ref: '#/components/schemas/replaceEntriesStructure'
-        - $ref: '#/components/schemas/splitRowStructure'
-      discriminator:
-        propertyName: converterType
-        mapping:
-          REMOVE_GROUPED_HEADER: '#/components/schemas/removeGroupedHeaderStructure'
-          FILL_EMPTY_ROW: '#/components/schemas/fillEmptyRowStructure'
-          REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
-          REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
-          ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
-          REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
-          REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
-          REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
-          SPLIT_ROW: '#/components/schemas/splitRowStructure'
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-
-    removeRowByIndexStructure:
-      type: object
-      required:
-        - converterType
-        - rowIndex
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        rowIndex:
-          type: array
-          minItems: 0
-          items:
-            type: integer
-            minimum: 0
-
-    removeColumnByIndexStructure:
-      type: object
-      required:
-        - converterType
-        - columnIndex
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        columnIndex:
-          type: array
-          minItems: 0
-          items:
-            type: integer
-            minimum: 0
-
-    removeGroupedHeaderStructure:
-      type: object
-      required:
-        - converterType
-        - rowIndex
-        - columnIndex
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        rowIndex:
-          type: array
-          minItems: 0
-          items:
-            type: integer
-            minimum: 0
-        columnIndex:
-          type: array
-          minItems: 0
-          items:
-            type: integer
-            minimum: 0
-        startRow:
-          type: integer
-          minimum: 0
-        startColumn:
-          type: integer
-          minimum: 0
-
-    addHeaderNameStructure:
-      type: object
-      required:
-        - converterType
-        - headerNames
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        headerNames:
-          type: array
-          minItems: 0
-          items:
-            type: string
-            minLength: 1
-
-    fillEmptyRowStructure:
-      type: object
-      required:
-        - converterType
-        - rowIndex
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        rowIndex:
-          type: array
-          minItems: 0
-          items:
-            type: integer
-            minimum: 0
-
-    removeHeaderStructure:
-      type: object
-      required:
-        - converterType
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        threshold:
-          type: integer
-          minimum: 0
-        blackList:
-          type: array
-          minItems: 0
-          items:
-            type: string
-            minimum: 0
-
-    removeFooterStructure:
-      type: object
-      required:
-        - converterType
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        threshold:
-          type: integer
-          minimum: 0
-        blackList:
-          type: array
-          minItems: 0
-          items:
-            type: string
-            minimum: 0
-
-    splitRowStructure:
-      type: object
-      required:
-        - converterType
-        - columnIndex
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        columnIndex:
-          type: integer
-          minimum: 0
-        delimiter:
-          type: string
-          minLength: 1
-          default: "\n"
-        startRow:
-          type: integer
-          minimum: 0
-        endRow:
-          type: integer
-          minimum: 0
-
-    replaceEntriesStructure:
-      type: object
-      required:
-        - converterType
-        - replacement
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        search:
-          type: string
-          minLength: 1
-        regexSearch:
-          type: string
-          minLength: 1
-        replacement:
-          type: string
-        startRow:
-          type: integer
-          minimum: 0
-        startColumn:
-          type: integer
-          minimum: 0
-        endRow:
-          type: integer
-          minimum: 0
-        endColumn:
-          type: integer
-          minimum: 0
-
-    tableStructureSummary:
-      type: object
-      required:
-        - id
-        - name
-        - structures
-      properties:
-        id:
-          type: integer
-          format: int64
-          minimum: 1
-        name:
-          type: string
-          minLength: 1
-        structures:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/structureSummary'
-
-    structureSummary:
-      type: object
-      required:
-        - converterType
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-
-    converterType:
-      type: string
-      x-field-extra-annotation: "@de.uol.pgdoener.th1.api.validation.ValidConverterType"
-      enum:
-        - REMOVE_GROUPED_HEADER
-        - FILL_EMPTY_ROW
-        - REMOVE_COLUMN_BY_INDEX
-        - REMOVE_ROW_BY_INDEX
-        - ADD_HEADER_NAME
-        - REMOVE_FOOTER
-        - REMOVE_HEADER
-        - REPLACE_ENTRIES
-        - SPLIT_ROW
-
+  - BasicAuth: []
 paths:
   /table-structures:
     get:
@@ -319,7 +34,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/tableStructureSummary'
+                  $ref: '#/components/schemas/tableStructure'
         '401':
           description: Unauthorized
     post:
@@ -364,7 +79,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not found
-  /table-structures/{id}:
+  '/table-structures/{id}':
     get:
       summary: Get a table structure by id
       operationId: getTableStructure
@@ -389,8 +104,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not found
-
-  /converter/{tableStructureId}:
+  '/converter/{tableStructureId}':
     post:
       summary: Convert a table and save it to the database
       operationId: convertTable
@@ -407,7 +121,8 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required: [ file ]
+              required:
+                - file
               properties:
                 file:
                   type: string
@@ -438,7 +153,9 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required: [ file, tableStructure ]
+              required:
+                - file
+                - tableStructure
               properties:
                 file:
                   type: string
@@ -469,7 +186,9 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required: [ file, tableStructure ]
+              required:
+                - file
+                - tableStructure
               properties:
                 file:
                   type: string
@@ -497,7 +216,8 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required: [ file ]
+              required:
+                - file
               properties:
                 file:
                   type: string
@@ -513,3 +233,264 @@ paths:
           description: Bad request
         '401':
           description: Unauthorized
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    tableStructure:
+      type: object
+      required:
+        - name
+        - delimiter
+        - structures
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        name:
+          type: string
+          minLength: 1
+          example: Table structure 1
+        structures:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/structure'
+        endRow:
+          type: integer
+          minimum: 1
+        endColumn:
+          type: integer
+          minimum: 1
+    structure:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/removeRowByIndexStructure'
+        - $ref: '#/components/schemas/removeColumnByIndexStructure'
+        - $ref: '#/components/schemas/removeGroupedHeaderStructure'
+        - $ref: '#/components/schemas/fillEmptyRowStructure'
+        - $ref: '#/components/schemas/addHeaderNameStructure'
+        - $ref: '#/components/schemas/removeHeaderStructure'
+        - $ref: '#/components/schemas/removeFooterStructure'
+        - $ref: '#/components/schemas/replaceEntriesStructure'
+        - $ref: '#/components/schemas/splitRowStructure'
+      discriminator:
+        propertyName: converterType
+        mapping:
+          REMOVE_GROUPED_HEADER: ./removeGroupedHeaderStructure.yaml
+          FILL_EMPTY_ROW: ./fillEmptyRowStructure.yaml
+          REMOVE_COLUMN_BY_INDEX: ./removeColumnByIndexStructure.yaml
+          REMOVE_ROW_BY_INDEX: ./removeRowByIndexStructure.yaml
+          ADD_HEADER_NAME: ./addHeaderNameStructure.yaml
+          REMOVE_HEADER: ./removeHeaderStructure.yaml
+          REMOVE_FOOTER: ./removeFooterStructure.yaml
+          SPLIT_ROW: ./splitRowStructure.yaml
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+    tableStructureSummary:
+      type: object
+      required:
+        - id
+        - name
+        - structures
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        name:
+          type: string
+          minLength: 1
+        structures:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/structureSummary'
+    structureSummary:
+      type: object
+      required:
+        - converterType
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+    converterType:
+      type: string
+      x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
+      enum:
+        - REMOVE_GROUPED_HEADER
+        - FILL_EMPTY_ROW
+        - REMOVE_COLUMN_BY_INDEX
+        - REMOVE_ROW_BY_INDEX
+        - ADD_HEADER_NAME
+        - REMOVE_FOOTER
+        - REMOVE_HEADER
+        - REPLACE_ENTRIES
+        - SPLIT_ROW
+    removeRowByIndexStructure:
+      type: object
+      required:
+        - converterType
+        - rowIndex
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        rowIndex:
+          type: array
+          minItems: 0
+          items:
+            type: integer
+            minimum: 0
+    removeColumnByIndexStructure:
+      type: object
+      required:
+        - converterType
+        - columnIndex
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        columnIndex:
+          type: array
+          minItems: 0
+          items:
+            type: integer
+            minimum: 0
+    removeGroupedHeaderStructure:
+      type: object
+      required:
+        - converterType
+        - rowIndex
+        - columnIndex
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        rowIndex:
+          type: array
+          minItems: 0
+          items:
+            type: integer
+            minimum: 0
+        columnIndex:
+          type: array
+          minItems: 0
+          items:
+            type: integer
+            minimum: 0
+        startRow:
+          type: integer
+          minimum: 0
+        startColumn:
+          type: integer
+          minimum: 0
+    addHeaderNameStructure:
+      type: object
+      required:
+        - converterType
+        - headerNames
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        headerNames:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            minLength: 1
+    fillEmptyRowStructure:
+      type: object
+      required:
+        - converterType
+        - rowIndex
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        rowIndex:
+          type: array
+          minItems: 0
+          items:
+            type: integer
+            minimum: 0
+    removeHeaderStructure:
+      type: object
+      required:
+        - converterType
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        threshold:
+          type: integer
+          minimum: 0
+        blackList:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            minimum: 0
+    removeFooterStructure:
+      type: object
+      required:
+        - converterType
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        threshold:
+          type: integer
+          minimum: 0
+        blackList:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            minimum: 0
+    replaceEntriesStructure:
+      type: object
+      required:
+        - converterType
+        - replacement
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        search:
+          type: string
+          minLength: 1
+        regexSearch:
+          type: string
+          minLength: 1
+        replacement:
+          type: string
+        startRow:
+          type: integer
+          minimum: 0
+        startColumn:
+          type: integer
+          minimum: 0
+        endRow:
+          type: integer
+          minimum: 0
+        endColumn:
+          type: integer
+          minimum: 0
+    splitRowStructure:
+      type: object
+      required:
+        - converterType
+        - columnIndex
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        columnIndex:
+          type: integer
+          minimum: 0
+        delimiter:
+          type: string
+          minLength: 1
+          default: \n
+        startRow:
+          type: integer
+          minimum: 0
+        endRow:
+          type: integer
+          minimum: 0
