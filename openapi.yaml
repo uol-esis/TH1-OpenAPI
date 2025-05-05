@@ -1,284 +1,246 @@
 openapi: 3.0.3
 info:
-  title: TH1
   description: TH1
+  title: TH1
   version: 1.9.0
 servers:
-  - url: 'http://localhost:{port}/api/v1'
-    description: Local server
-    variables:
-      port:
-        default: '8080'
-  - url: 'http://pg-doener-dev.virt.uni-oldenburg.de:{port}/api/v1'
-    description: Dev server
-    variables:
-      port:
-        default: '8080'
-  - url: 'http://pg-doener-prod.virt.uni-oldenburg.de:{port}/api/v1'
-    description: Prod server
-    variables:
-      port:
-        default: '8080'
+- description: Local server
+  url: "http://localhost:{port}/api/v1"
+  variables:
+    port:
+      default: "8080"
+- description: Dev server
+  url: "http://pg-doener-dev.virt.uni-oldenburg.de:{port}/api/v1"
+  variables:
+    port:
+      default: "8080"
+- description: Prod server
+  url: "http://pg-doener-prod.virt.uni-oldenburg.de:{port}/api/v1"
+  variables:
+    port:
+      default: "8080"
 security:
-  - BasicAuth: []
+- BasicAuth: []
 paths:
   /table-structures:
+    delete:
+      operationId: deleteTableStructure
+      parameters:
+      - in: query
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not found
+      summary: Delete table structure by id
     get:
-      summary: Get all table structures
       operationId: getTableStructures
       responses:
-        '200':
-          description: OK
+        "200":
           content:
             application/json:
               schema:
-                type: array
                 items:
                   $ref: '#/components/schemas/tableStructure'
-        '401':
+                type: array
+          description: OK
+        "401":
           description: Unauthorized
+      summary: Get all table structures
     post:
-      summary: Create a new table structure
       operationId: createTableStructure
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/tableStructure'
+        required: true
       responses:
-        '201':
-          description: Created
+        "201":
           content:
             application/json:
               schema:
-                type: integer
                 format: int64
                 minimum: 1
-        '400':
+                type: integer
+          description: Created
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-    delete:
-      summary: Delete table structure by id
-      operationId: deleteTableStructure
-      parameters:
-        - name: id
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad request
-        '401':
-          description: Unauthorized
-        '404':
-          description: Not found
-  '/table-structures/{id}':
+      summary: Create a new table structure
+  /table-structures/{id}:
     get:
-      summary: Get a table structure by id
       operationId: getTableStructure
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
       responses:
-        '200':
-          description: OK
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/tableStructure'
-        '400':
+          description: OK
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Not found
-  '/converter/{tableStructureId}':
+      summary: Get a table structure by id
+  /converter/{tableStructureId}:
     post:
-      summary: Convert a table and save it to the database
       operationId: convertTable
       parameters:
-        - name: tableStructureId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
+      - in: path
+        name: tableStructureId
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
       requestBody:
         content:
           multipart/form-data:
             schema:
-              type: object
-              required:
-                - file
-              properties:
-                file:
-                  type: string
-                  format: binary
+              $ref: '#/components/schemas/convertTable_request'
       responses:
-        '200':
+        "200":
           description: OK
-        '400':
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Not found
+      summary: Convert a table and save it to the database
   /converter/preview:
     post:
-      summary: Convert a table and return a preview of the result
       operationId: previewConvertTable
       parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            default: 10
+      - in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          minimum: 1
+          type: integer
       requestBody:
         content:
           multipart/form-data:
             schema:
-              type: object
-              required:
-                - file
-                - tableStructure
-              properties:
-                file:
-                  type: string
-                  format: binary
-                tableStructure:
-                  $ref: '#/components/schemas/tableStructure'
+              $ref: '#/components/schemas/previewConvertTable_request'
       responses:
-        '200':
-          description: OK
+        "200":
           content:
             application/json:
               schema:
-                type: array
                 items:
-                  type: array
                   items:
                     type: string
-        '400':
+                  type: array
+                type: array
+          description: OK
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
+      summary: Convert a table and return a preview of the result
   /converter/file:
     post:
-      summary: Convert a table and return the result as a file
       operationId: fileConvertTable
       requestBody:
         content:
           multipart/form-data:
             schema:
-              type: object
-              required:
-                - file
-                - tableStructure
-              properties:
-                file:
-                  type: string
-                  format: binary
-                tableStructure:
-                  $ref: '#/components/schemas/tableStructure'
+              $ref: '#/components/schemas/previewConvertTable_request'
       responses:
-        '200':
-          description: OK
+        "200":
           content:
             application/octet-stream:
               schema:
-                type: string
                 format: binary
-        '400':
+                type: string
+          description: OK
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
+      summary: Convert a table and return the result as a file
   /table-structures/generate:
     post:
-      summary: Generate a tableStructure and return the result as a json
       operationId: generateTableStructure
       requestBody:
         content:
           multipart/form-data:
             schema:
-              type: object
-              required:
-                - file
-              properties:
-                file:
-                  type: string
-                  format: binary
+              $ref: '#/components/schemas/convertTable_request'
       responses:
-        '200':
-          description: OK
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/tableStructure'
-        '400':
+          description: OK
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
+      summary: Generate a tableStructure and return the result as a json
 components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
   schemas:
     tableStructure:
-      type: object
-      required:
-        - name
-        - delimiter
-        - structures
+      example:
+        endColumn: 1
+        name: Table structure 1
+        structures:
+        - converterType: REMOVE_GROUPED_HEADER
+        - converterType: REMOVE_GROUPED_HEADER
+        endRow: 1
+        id: 1
       properties:
         id:
-          type: integer
           format: int64
           minimum: 1
+          type: integer
         name:
-          type: string
-          minLength: 1
           example: Table structure 1
+          minLength: 1
+          type: string
         structures:
-          type: array
-          minItems: 0
           items:
             $ref: '#/components/schemas/structure'
+          minItems: 0
+          type: array
         endRow:
-          type: integer
           minimum: 1
+          type: integer
         endColumn:
-          type: integer
           minimum: 1
-    structure:
+          type: integer
+      required:
+      - delimiter
+      - name
+      - structures
       type: object
-      oneOf:
-        - $ref: '#/components/schemas/removeRowByIndexStructure'
-        - $ref: '#/components/schemas/removeColumnByIndexStructure'
-        - $ref: '#/components/schemas/removeGroupedHeaderStructure'
-        - $ref: '#/components/schemas/fillEmptyRowStructure'
-        - $ref: '#/components/schemas/addHeaderNameStructure'
-        - $ref: '#/components/schemas/removeHeaderStructure'
-        - $ref: '#/components/schemas/removeFooterStructure'
-        - $ref: '#/components/schemas/replaceEntriesStructure'
-        - $ref: '#/components/schemas/splitRowStructure'
+    structure:
       discriminator:
-        propertyName: converterType
         mapping:
           REMOVE_GROUPED_HEADER: '#/components/schemas/removeGroupedHeaderStructure'
           FILL_EMPTY_ROW: '#/components/schemas/fillEmptyRowStructure'
@@ -289,209 +251,220 @@ components:
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
           REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
+        propertyName: converterType
+      example:
+        converterType: REMOVE_GROUPED_HEADER
+      oneOf:
+      - $ref: '#/components/schemas/removeRowByIndexStructure'
+      - $ref: '#/components/schemas/removeColumnByIndexStructure'
+      - $ref: '#/components/schemas/removeGroupedHeaderStructure'
+      - $ref: '#/components/schemas/fillEmptyRowStructure'
+      - $ref: '#/components/schemas/addHeaderNameStructure'
+      - $ref: '#/components/schemas/removeHeaderStructure'
+      - $ref: '#/components/schemas/removeFooterStructure'
+      - $ref: '#/components/schemas/replaceEntriesStructure'
+      - $ref: '#/components/schemas/splitRowStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
-    tableStructureSummary:
       type: object
-      required:
-        - id
-        - name
-        - structures
-      properties:
-        id:
-          type: integer
-          format: int64
-          minimum: 1
-        name:
-          type: string
-          minLength: 1
-        structures:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/structureSummary'
-    structureSummary:
-      type: object
-      required:
-        - converterType
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-    converterType:
-      type: string
-      x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
-      enum:
-        - REMOVE_GROUPED_HEADER
-        - FILL_EMPTY_ROW
-        - REMOVE_COLUMN_BY_INDEX
-        - REMOVE_ROW_BY_INDEX
-        - ADD_HEADER_NAME
-        - REMOVE_FOOTER
-        - REMOVE_HEADER
-        - REPLACE_ENTRIES
-        - SPLIT_ROW
     removeRowByIndexStructure:
-      type: object
-      required:
-        - converterType
-        - rowIndex
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         rowIndex:
-          type: array
-          minItems: 0
           items:
-            type: integer
             minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+      required:
+      - converterType
+      - rowIndex
+      type: object
     removeColumnByIndexStructure:
-      type: object
-      required:
-        - converterType
-        - columnIndex
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         columnIndex:
-          type: array
-          minItems: 0
           items:
-            type: integer
             minimum: 0
-    removeGroupedHeaderStructure:
-      type: object
+            type: integer
+          minItems: 0
+          type: array
       required:
-        - converterType
-        - rowIndex
-        - columnIndex
+      - columnIndex
+      - converterType
+      type: object
+    removeGroupedHeaderStructure:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         rowIndex:
-          type: array
-          minItems: 0
           items:
-            type: integer
             minimum: 0
+            type: integer
+          minItems: 0
+          type: array
         columnIndex:
-          type: array
-          minItems: 0
           items:
-            type: integer
             minimum: 0
+            type: integer
+          minItems: 0
+          type: array
         startRow:
-          type: integer
           minimum: 0
+          type: integer
         startColumn:
-          type: integer
           minimum: 0
-    addHeaderNameStructure:
-      type: object
+          type: integer
       required:
-        - converterType
-        - headerNames
+      - columnIndex
+      - converterType
+      - rowIndex
+      type: object
+    fillEmptyRowStructure:
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+      required:
+      - converterType
+      - rowIndex
+      type: object
+    addHeaderNameStructure:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         headerNames:
-          type: array
-          minItems: 0
           items:
-            type: string
             minLength: 1
-    fillEmptyRowStructure:
-      type: object
-      required:
-        - converterType
-        - rowIndex
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        rowIndex:
-          type: array
+            type: string
           minItems: 0
-          items:
-            type: integer
-            minimum: 0
+          type: array
+      required:
+      - converterType
+      - headerNames
+      type: object
     removeHeaderStructure:
-      type: object
-      required:
-        - converterType
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          type: integer
           minimum: 0
+          type: integer
         blackList:
-          type: array
-          minItems: 0
           items:
-            type: string
             minimum: 0
+            type: string
+          minItems: 0
+          type: array
+      required:
+      - converterType
+      type: object
     removeFooterStructure:
-      type: object
-      required:
-        - converterType
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          type: integer
           minimum: 0
+          type: integer
         blackList:
-          type: array
-          minItems: 0
           items:
-            type: string
             minimum: 0
-    replaceEntriesStructure:
-      type: object
+            type: string
+          minItems: 0
+          type: array
       required:
-        - converterType
-        - replacement
+      - converterType
+      type: object
+    replaceEntriesStructure:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         search:
-          type: string
           minLength: 1
+          type: string
         regexSearch:
-          type: string
           minLength: 1
+          type: string
         replacement:
           type: string
         startRow:
-          type: integer
           minimum: 0
+          type: integer
         startColumn:
-          type: integer
           minimum: 0
+          type: integer
         endRow:
-          type: integer
           minimum: 0
+          type: integer
         endColumn:
-          type: integer
           minimum: 0
-    splitRowStructure:
-      type: object
+          type: integer
       required:
-        - converterType
-        - columnIndex
+      - converterType
+      - replacement
+      type: object
+    splitRowStructure:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         columnIndex:
-          type: integer
           minimum: 0
+          type: integer
         delimiter:
-          type: string
-          minLength: 1
           default: \n
+          minLength: 1
+          type: string
         startRow:
-          type: integer
           minimum: 0
+          type: integer
         endRow:
-          type: integer
           minimum: 0
+          type: integer
+      required:
+      - columnIndex
+      - converterType
+      type: object
+    converterType:
+      enum:
+      - REMOVE_GROUPED_HEADER
+      - FILL_EMPTY_ROW
+      - REMOVE_COLUMN_BY_INDEX
+      - REMOVE_ROW_BY_INDEX
+      - ADD_HEADER_NAME
+      - REMOVE_FOOTER
+      - REMOVE_HEADER
+      - REPLACE_ENTRIES
+      - SPLIT_ROW
+      type: string
+      x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
+    convertTable_request:
+      properties:
+        file:
+          format: binary
+          type: string
+      required:
+      - file
+      type: object
+    previewConvertTable_request:
+      properties:
+        file:
+          format: binary
+          type: string
+        tableStructure:
+          $ref: '#/components/schemas/tableStructure'
+      required:
+      - file
+      - tableStructure
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
