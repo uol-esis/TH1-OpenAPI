@@ -51,7 +51,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/tableStructure'
+                  $ref: '#/components/schemas/tableStructureSummary'
                 type: array
           description: OK
         "401":
@@ -104,6 +104,26 @@ paths:
         "404":
           description: Not found
       summary: Get a table structure by id
+  /table-structures/generate:
+    post:
+      operationId: generateTableStructure
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/generateTableStructure_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tableStructure'
+          description: OK
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+      summary: Generate a tableStructure and return the result as a json
   /converter/{tableStructureId}:
     post:
       operationId: convertTable
@@ -119,7 +139,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/convertTable_request'
+              $ref: '#/components/schemas/generateTableStructure_request'
       responses:
         "200":
           description: OK
@@ -183,26 +203,6 @@ paths:
         "401":
           description: Unauthorized
       summary: Convert a table and return the result as a file
-  /table-structures/generate:
-    post:
-      operationId: generateTableStructure
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/convertTable_request'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tableStructure'
-          description: OK
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-      summary: Generate a tableStructure and return the result as a json
 components:
   schemas:
     tableStructure:
@@ -210,8 +210,14 @@ components:
         endColumn: 1
         name: Table structure 1
         structures:
-        - converterType: REMOVE_GROUPED_HEADER
-        - converterType: REMOVE_GROUPED_HEADER
+        - rowIndex:
+          - 0
+          - 0
+          converterType: REMOVE_GROUPED_HEADER
+        - rowIndex:
+          - 0
+          - 0
+          converterType: REMOVE_GROUPED_HEADER
         endRow: 1
         id: 1
       properties:
@@ -252,8 +258,6 @@ components:
           REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
         propertyName: converterType
-      example:
-        converterType: REMOVE_GROUPED_HEADER
       oneOf:
       - $ref: '#/components/schemas/removeRowByIndexStructure'
       - $ref: '#/components/schemas/removeColumnByIndexStructure'
@@ -264,11 +268,60 @@ components:
       - $ref: '#/components/schemas/removeFooterStructure'
       - $ref: '#/components/schemas/replaceEntriesStructure'
       - $ref: '#/components/schemas/splitRowStructure'
+      type: object
+    tableStructureSummary:
+      example:
+        name: name
+        structures:
+        - converterType: REMOVE_GROUPED_HEADER
+        - converterType: REMOVE_GROUPED_HEADER
+        id: 1
+      properties:
+        id:
+          format: int64
+          minimum: 1
+          type: integer
+        name:
+          minLength: 1
+          type: string
+        structures:
+          items:
+            $ref: '#/components/schemas/structureSummary'
+          minItems: 0
+          type: array
+      required:
+      - id
+      - name
+      - structures
+      type: object
+    structureSummary:
+      example:
+        converterType: REMOVE_GROUPED_HEADER
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
+      required:
+      - converterType
       type: object
+    converterType:
+      enum:
+      - REMOVE_GROUPED_HEADER
+      - FILL_EMPTY_ROW
+      - REMOVE_COLUMN_BY_INDEX
+      - REMOVE_ROW_BY_INDEX
+      - ADD_HEADER_NAME
+      - REMOVE_FOOTER
+      - REMOVE_HEADER
+      - REPLACE_ENTRIES
+      - SPLIT_ROW
+      type: string
+      x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
+      example:
+        rowIndex:
+        - 0
+        - 0
+        converterType: REMOVE_GROUPED_HEADER
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -323,20 +376,6 @@ components:
       - converterType
       - rowIndex
       type: object
-    fillEmptyRowStructure:
-      properties:
-        converterType:
-          $ref: '#/components/schemas/converterType'
-        rowIndex:
-          items:
-            minimum: 0
-            type: integer
-          minItems: 0
-          type: array
-      required:
-      - converterType
-      - rowIndex
-      type: object
     addHeaderNameStructure:
       properties:
         converterType:
@@ -351,6 +390,20 @@ components:
       - converterType
       - headerNames
       type: object
+    fillEmptyRowStructure:
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+      required:
+      - converterType
+      - rowIndex
+      type: object
     removeHeaderStructure:
       properties:
         converterType:
@@ -360,7 +413,7 @@ components:
           type: integer
         blackList:
           items:
-            minimum: 0
+            minLength: 0
             type: string
           minItems: 0
           type: array
@@ -376,7 +429,7 @@ components:
           type: integer
         blackList:
           items:
-            minimum: 0
+            minLength: 0
             type: string
           minItems: 0
           type: array
@@ -394,6 +447,7 @@ components:
           minLength: 1
           type: string
         replacement:
+          minLength: 0
           type: string
         startRow:
           minimum: 0
@@ -432,20 +486,7 @@ components:
       - columnIndex
       - converterType
       type: object
-    converterType:
-      enum:
-      - REMOVE_GROUPED_HEADER
-      - FILL_EMPTY_ROW
-      - REMOVE_COLUMN_BY_INDEX
-      - REMOVE_ROW_BY_INDEX
-      - ADD_HEADER_NAME
-      - REMOVE_FOOTER
-      - REMOVE_HEADER
-      - REPLACE_ENTRIES
-      - SPLIT_ROW
-      type: string
-      x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
-    convertTable_request:
+    generateTableStructure_request:
       properties:
         file:
           format: binary
