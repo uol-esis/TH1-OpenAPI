@@ -467,7 +467,6 @@ components:
           minimum: 0
           type: integer
         delimiter:
-          default: \n
           minLength: 1
           type: string
         startRow:
