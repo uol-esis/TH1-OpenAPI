@@ -2,19 +2,21 @@
 
 This repository contains the OpenAPI specification for the TH1 API.
 
-- [TH1 Server](https://github.com/uol-esis/TH1)
-- [JavaScript Client](https://github.com/uol-esis/TH1-JS-Client)
+- Backend: [TH1 Server](https://github.com/uol-esis/TH1)
+- Frontend:
+    - [JavaScript Client](https://github.com/uol-esis/TH1-JS-Client)
 
 ---
 
-# 📚 OpenAPI Bundling with `swagger-cli`
+# 📚 OpenAPI Bundling with `openapi-generator-cli`
 
 This project uses a **modular structure** for the OpenAPI specification:  
 The OpenAPI definition is **split across multiple files** to improve **readability**, **maintainability**, and **team
 collaboration**.
 
-To generate a complete OpenAPI document from these modular files, we use [
-`swagger-cli`](https://github.com/APIDevTools/swagger-cli) to **bundle** them together into a single file.
+To generate a complete OpenAPI document from these modular files, we use
+[`openapi-generator-cli`](https://openapi-generator.tech/docs/generators/openapi-yaml) to **bundle**
+them together into a single file.
 
 ---
 
@@ -29,15 +31,16 @@ To generate a complete OpenAPI document from these modular files, we use [
 
 ```plaintext
 openapi/
-├── src/                  # Quelle (wird nicht direkt deployed)
+├── src/
 │   ├── openapi.yaml       # Main entry-point file, references other files
 │   ├── paths/
 │   │   ├── table-structures.yaml
 │   │   └── converter.yaml
 │   └── components/
-│       ├── schemas.yaml
-│       └── responses.yaml
-├── openapi.yaml           # → Generated bundled OpenAPI file
+│       └── schemas/
+│           ├── table-structure.yaml
+│           └── converter.yaml
+└── openapi.yaml           # → Generated bundled OpenAPI file
 ```
 
 - `src/openapi.yaml` contains `$ref` references to the modular files.
@@ -47,12 +50,7 @@ openapi/
 
 ## 🔧 Prerequisites
 
-- **Node.js** installed (version 12+ recommended)
-- **swagger-cli** installed globally:
-
-```bash
-  npm install -g swagger-cli
-```
+- **Docker**
 
 ---
 
@@ -71,15 +69,8 @@ Edit or extend the OpenAPI files inside `src/`, e.g., in `paths/` or `components
 Bundle the modular files into a single OpenAPI document:
 
 ```bash
-  swagger-cli bundle src/openapi.yaml --outfile openapi.yaml --type yaml
+./bundle.sh
 ```
-
-| Part                     | Description                                               |
-|:-------------------------|:----------------------------------------------------------|
-| `swagger-cli bundle`     | Starts the bundling process                               |
-| `src/openapi.yaml`       | Entry point referencing the modular files                 |
-| `--outfile openapi.yaml` | Output location for the bundled file                      |
-| `--type yaml`            | Output format (`yaml`; alternatively, `json` is possible) |
 
 ---
 
@@ -88,7 +79,7 @@ Bundle the modular files into a single OpenAPI document:
 Validate the generated `openapi.yaml` to ensure compliance with the OpenAPI standard:
 
 ```bash
-  swagger-cli validate openapi.yaml
+./validate.sh
 ```
 
 ---
@@ -102,11 +93,3 @@ Validate the generated `openapi.yaml` to ensure compliance with the OpenAPI stan
     - Make sure that all `$ref` links use **correct relative paths** across your files.
 
 ---
-
-### ➡️ Example Quick Command
-
-If you just want to quickly bundle and validate:
-
-```bash
-  swagger-cli bundle src/openapi.yaml --outfile openapi.yaml --type yaml && swagger-cli validate openapi.yaml
-```
