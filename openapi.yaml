@@ -210,14 +210,8 @@ components:
         endColumn: 1
         name: Table structure 1
         structures:
-        - rowIndex:
-          - 0
-          - 0
-          converterType: REMOVE_GROUPED_HEADER
-        - rowIndex:
-          - 0
-          - 0
-          converterType: REMOVE_GROUPED_HEADER
+        - converterType: REMOVE_GROUPED_HEADER
+        - converterType: REMOVE_GROUPED_HEADER
         endRow: 1
         id: 1
       properties:
@@ -258,6 +252,8 @@ components:
           REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
         propertyName: converterType
+      example:
+        converterType: REMOVE_GROUPED_HEADER
       oneOf:
       - $ref: '#/components/schemas/removeRowByIndexStructure'
       - $ref: '#/components/schemas/removeColumnByIndexStructure'
@@ -268,6 +264,9 @@ components:
       - $ref: '#/components/schemas/removeFooterStructure'
       - $ref: '#/components/schemas/replaceEntriesStructure'
       - $ref: '#/components/schemas/splitRowStructure'
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
       type: object
     tableStructureSummary:
       example:
@@ -317,11 +316,6 @@ components:
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
-      example:
-        rowIndex:
-        - 0
-        - 0
-        converterType: REMOVE_GROUPED_HEADER
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
