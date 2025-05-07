@@ -22,3 +22,6 @@ discriminator:
     REMOVE_FOOTER: './removeFooterStructure.yaml'
     REPLACE_ENTRIES: './replaceEntriesStructure.yaml'
     SPLIT_ROW: './splitRowStructure.yaml'
+properties:
+  converterType:
+    $ref: './converterType.yaml'
