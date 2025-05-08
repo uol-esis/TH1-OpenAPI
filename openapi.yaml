@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.9.1
+  version: 1.9.2
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -76,6 +76,7 @@ components:
         - $ref: '#/components/schemas/removeTrailingColumnStructure'
         - $ref: '#/components/schemas/replaceEntriesStructure'
         - $ref: '#/components/schemas/splitRowStructure'
+        - $ref: '#/components/schemas/removeInvalidRowsStructure'
       discriminator:
         propertyName: converterType
         mapping:
@@ -89,6 +90,7 @@ components:
           REMOVE_TRAILING_COLUMN: '#/components/schemas/removeTrailingColumnStructure'
           REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
+          REMOVE_INVALID_ROWS: '#/components/schemas/removeInvalidRowsStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -283,6 +285,23 @@ components:
           type: integer
           minimum: 0
 
+    removeInvalidRowsStructure:
+      type: object
+      required:
+        - converterType
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        threshold:
+          type: integer
+          minimum: 0
+        blackList:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            minimum: 0
+
     tableStructureSummary:
       type: object
       required:
@@ -325,6 +344,7 @@ components:
         - REMOVE_TRAILING_COLUMN
         - REPLACE_ENTRIES
         - SPLIT_ROW
+        - REMOVE_INVALID_ROWS
 
 paths:
   /table-structures:
