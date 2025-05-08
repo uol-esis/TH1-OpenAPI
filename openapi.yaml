@@ -329,6 +329,8 @@ components:
       - REMOVE_HEADER
       - REPLACE_ENTRIES
       - SPLIT_ROW
+      - REMOVE_INVALID_ROWS
+      - REMOVE_TRAILING_COLUMN
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
