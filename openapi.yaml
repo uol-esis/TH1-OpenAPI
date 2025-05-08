@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.9.2
+  version: 1.9.3
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -94,6 +94,12 @@ components:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
+        name:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
 
     removeRowByIndexStructure:
       type: object
