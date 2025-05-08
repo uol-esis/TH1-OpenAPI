@@ -88,4 +88,6 @@ components:
       $ref: './components/schemas/removeInvalidRowsStructure.yaml'
     removeTrailingColumnStructure:
       $ref: './components/schemas/removeTrailingColumnStructure.yaml'
+    mergeColumnsStructure:
+      $ref: './components/schemas/mergeColumnsStructure.yaml'
     

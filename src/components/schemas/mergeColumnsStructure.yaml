@@ -1,0 +1,25 @@
+#mergeColumnsStructure:
+type: object
+required:
+  - converterType
+  - columnIndex
+  - headerName
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  columnIndex:
+    type: array
+    minItems: 2
+    items:
+      type: integer
+      minimum: 0
+  headerName:
+    type: string
+    minLength: 1
+  precedenceOrder:
+    type: array
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0
+

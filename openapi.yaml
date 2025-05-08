@@ -257,6 +257,7 @@ components:
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
           REMOVE_INVALID_ROWS: '#/components/schemas/removeInvalidRowsStructure'
           REMOVE_TRAILING_COLUMN: '#/components/schemas/removeTrailingColumnStructure'
+          MERGE_COLUMNS: '#/components/schemas/mergeColumnsStructure'
         propertyName: converterType
       example:
         name: name
@@ -274,6 +275,7 @@ components:
       - $ref: '#/components/schemas/splitRowStructure'
       - $ref: '#/components/schemas/removeInvalidRowsStructure'
       - $ref: '#/components/schemas/removeTrailingColumnStructure'
+      - $ref: '#/components/schemas/mergeColumnsStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -331,6 +333,7 @@ components:
       - SPLIT_ROW
       - REMOVE_INVALID_ROWS
       - REMOVE_TRAILING_COLUMN
+      - MERGE_COLUMNS
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
@@ -528,6 +531,30 @@ components:
           type: array
       required:
       - converterType
+      type: object
+    mergeColumnsStructure:
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 2
+          type: array
+        headerName:
+          minLength: 1
+          type: string
+        precedenceOrder:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+      required:
+      - columnIndex
+      - converterType
+      - headerName
       type: object
     generateTableStructure_request:
       properties:
