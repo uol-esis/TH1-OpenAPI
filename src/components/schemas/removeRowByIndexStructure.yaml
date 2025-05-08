@@ -1,0 +1,14 @@
+#removeRowByIndexStructure:
+type: object
+required:
+  - converterType
+  - rowIndex
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  rowIndex:
+    type: array
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0

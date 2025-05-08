@@ -1,0 +1,19 @@
+#tableStructureSummary:
+type: object
+required:
+  - id
+  - name
+  - structures
+properties:
+  id:
+    type: integer
+    format: int64
+    minimum: 1
+  name:
+    type: string
+    minLength: 1
+  structures:
+    type: array
+    minItems: 0
+    items:
+      $ref: './structureSummary.yaml'

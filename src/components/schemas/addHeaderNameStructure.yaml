@@ -1,0 +1,14 @@
+#addHeaderNameStructure:
+type: object
+required:
+  - converterType
+  - headerNames
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  headerNames:
+    type: array
+    minItems: 0
+    items:
+      type: string
+      minLength: 1

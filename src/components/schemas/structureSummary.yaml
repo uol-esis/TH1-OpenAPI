@@ -1,0 +1,7 @@
+#structureSummary:
+type: object
+required:
+  - converterType
+properties:
+  converterType:
+    $ref: './converterType.yaml'

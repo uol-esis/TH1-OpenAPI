@@ -3,7 +3,7 @@ GID=$(id -g)
 
 docker run --rm \
   -u "${UID}":"${GID}" \
-  -v "${PWD}":/local openapitools/openapi-generator-cli:v7.12.0 generate \
+  -v "${PWD}":/local openapitools/openapi-generator-cli:v7.13.0 generate \
   -i /local/openapi.yaml \
   -g spring \
   --api-package de.uol.pgdoener.th1.api \

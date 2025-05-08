@@ -10,4 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate
-        run: ./validate.sh
+        run: |
+          ./bundle.sh
+          git diff --exit-code --name-only
+          ./validate.sh

@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: TH1
+  description: TH1
+  version: 1.10.0
+
+servers:
+  - url: 'http://localhost:{port}/api/v1'
+    description: Local server
+    variables: {
+      port: {
+        default: '8080'
+      }
+    }
+  - url: 'http://pg-doener-dev.virt.uni-oldenburg.de:{port}/api/v1'
+    description: Dev server
+    variables: {
+      port: {
+        default: '8080'
+      }
+    }
+  - url: 'http://pg-doener-prod.virt.uni-oldenburg.de:{port}/api/v1'
+    description: Prod server
+    variables: {
+      port: {
+        default: '8080'
+      }
+    }
+
+security:
+  - BasicAuth: [ ]
+
+paths:
+  /table-structures:
+    $ref: './paths/table-structures.yaml#/root'
+
+  /table-structures/{id}:
+    $ref: './paths/table-structures.yaml#/by-id'
+
+  /table-structures/generate:
+    $ref: './paths/table-structures.yaml#/generate'
+
+  /converter/{tableStructureId}:
+    $ref: './paths/converter.yaml#/table-structure-id'
+
+  /converter/preview:
+    $ref: './paths/converter.yaml#/preview'
+
+  /converter/file:
+    $ref: './paths/converter.yaml#/file'
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    tableStructure:
+      $ref: './components/schemas/tableStructure.yaml'
+    structure:
+      $ref: './components/schemas/structure.yaml'
+    tableStructureSummary:
+      $ref: './components/schemas/tableStructureSummary.yaml'
+    structureSummary:
+      $ref: './components/schemas/structureSummary.yaml'
+    converterType:
+      $ref: './components/schemas/converterType.yaml'
+
+    removeRowByIndexStructure:
+      $ref: './components/schemas/removeRowByIndexStructure.yaml'
+    removeColumnByIndexStructure:
+      $ref: './components/schemas/removeColumnByIndexStructure.yaml'
+    removeGroupedHeaderStructure:
+      $ref: './components/schemas/removeGroupedHeaderStructure.yaml'
+    addHeaderNameStructure:
+      $ref: './components/schemas/addHeaderNameStructure.yaml'
+    fillEmptyRowStructure:
+      $ref: './components/schemas/fillEmptyRowStructure.yaml'
+    removeHeaderStructure:
+      $ref: './components/schemas/removeHeaderStructure.yaml'
+    removeFooterStructure:
+      $ref: './components/schemas/removeFooterStructure.yaml'
+    replaceEntriesStructure:
+      $ref: './components/schemas/replaceEntriesStructure.yaml'
+    splitRowStructure:
+      $ref: './components/schemas/splitRowStructure.yaml'
+    removeInvalidRowsStructure:
+      $ref: './components/schemas/removeInvalidRowsStructure.yaml'
+    removeTrailingColumnStructure:
+      $ref: './components/schemas/removeTrailingColumnStructure.yaml'
+    
