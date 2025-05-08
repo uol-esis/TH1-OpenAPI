@@ -210,8 +210,12 @@ components:
         endColumn: 1
         name: Table structure 1
         structures:
-        - converterType: REMOVE_GROUPED_HEADER
-        - converterType: REMOVE_GROUPED_HEADER
+        - name: name
+          description: description
+          converterType: REMOVE_GROUPED_HEADER
+        - name: name
+          description: description
+          converterType: REMOVE_GROUPED_HEADER
         endRow: 1
         id: 1
       properties:
@@ -251,8 +255,12 @@ components:
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
           REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
+          REMOVE_INVALID_ROWS: '#/components/schemas/removeInvalidRowsStructure'
+          REMOVE_TRAILING_COLUMN: '#/components/schemas/removeTrailingColumnStructure'
         propertyName: converterType
       example:
+        name: name
+        description: description
         converterType: REMOVE_GROUPED_HEADER
       oneOf:
       - $ref: '#/components/schemas/removeRowByIndexStructure'
@@ -264,9 +272,17 @@ components:
       - $ref: '#/components/schemas/removeFooterStructure'
       - $ref: '#/components/schemas/replaceEntriesStructure'
       - $ref: '#/components/schemas/splitRowStructure'
+      - $ref: '#/components/schemas/removeInvalidRowsStructure'
+      - $ref: '#/components/schemas/removeTrailingColumnStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
+        name:
+          minLength: 1
+          type: string
+        description:
+          minLength: 1
+          type: string
       type: object
     tableStructureSummary:
       example:
@@ -477,6 +493,38 @@ components:
           type: integer
       required:
       - columnIndex
+      - converterType
+      type: object
+    removeInvalidRowsStructure:
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        threshold:
+          minimum: 0
+          type: integer
+        blackList:
+          items:
+            minimum: 0
+            type: string
+          minItems: 0
+          type: array
+      required:
+      - converterType
+      type: object
+    removeTrailingColumnStructure:
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        threshold:
+          minimum: 0
+          type: integer
+        blackList:
+          items:
+            minimum: 0
+            type: string
+          minItems: 0
+          type: array
+      required:
       - converterType
       type: object
     generateTableStructure_request:

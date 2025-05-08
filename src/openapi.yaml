@@ -84,4 +84,8 @@ components:
       $ref: './components/schemas/replaceEntriesStructure.yaml'
     splitRowStructure:
       $ref: './components/schemas/splitRowStructure.yaml'
+    removeInvalidRowsStructure:
+      $ref: './components/schemas/removeInvalidRowsStructure.yaml'
+    removeTrailingColumnStructure:
+      $ref: './components/schemas/removeTrailingColumnStructure.yaml'
     

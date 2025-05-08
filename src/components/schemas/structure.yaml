@@ -10,6 +10,8 @@ oneOf:
   - $ref: './removeFooterStructure.yaml'
   - $ref: './replaceEntriesStructure.yaml'
   - $ref: './splitRowStructure.yaml'
+  - $ref: './removeInvalidRowsStructure.yaml'
+  - $ref: './removeTrailingColumnStructure.yaml'
 discriminator:
   propertyName: converterType
   mapping:
@@ -22,6 +24,14 @@ discriminator:
     REMOVE_FOOTER: './removeFooterStructure.yaml'
     REPLACE_ENTRIES: './replaceEntriesStructure.yaml'
     SPLIT_ROW: './splitRowStructure.yaml'
+    REMOVE_INVALID_ROWS: './removeInvalidRowsStructure.yaml'
+    REMOVE_TRAILING_COLUMN: './removeTrailingColumnStructure.yaml'
 properties:
   converterType:
     $ref: './converterType.yaml'
+  name:
+    type: string
+    minLength: 1
+  description:
+    type: string
+    minLength: 1
