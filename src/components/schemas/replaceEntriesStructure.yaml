@@ -14,6 +14,7 @@ properties:
     minLength: 1
   replacement:
     type: string
+    minLength: 0
   startRow:
     type: integer
     minimum: 0

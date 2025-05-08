@@ -13,4 +13,4 @@ properties:
     minItems: 0
     items:
       type: string
-      minimum: 0
+      minLength: 0

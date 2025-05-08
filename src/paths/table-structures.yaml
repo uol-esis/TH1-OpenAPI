@@ -1,0 +1,109 @@
+root:
+  get:
+    summary: Get all table structures
+    operationId: getTableStructures
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../components/schemas/tableStructureSummary.yaml'
+      '401':
+        description: Unauthorized
+  post:
+    summary: Create a new table structure
+    operationId: createTableStructure
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tableStructure.yaml'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+              minimum: 1
+      '400':
+        description: Bad request
+      '401':
+        description: Unauthorized
+  delete:
+    summary: Delete table structure by id
+    operationId: deleteTableStructure
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Bad request
+      '401':
+        description: Unauthorized
+      '404':
+        description: Not found
+
+by-id:
+  get:
+    summary: Get a table structure by id
+    operationId: getTableStructure
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tableStructure.yaml'
+      '400':
+        description: Bad request
+      '401':
+        description: Unauthorized
+      '404':
+        description: Not found
+
+generate:
+  post:
+    summary: Generate a tableStructure and return the result as a json
+    operationId: generateTableStructure
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            required: [ file ]
+            properties:
+              file:
+                type: string
+                format: binary
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/tableStructure.yaml'
+      '400':
+        description: Bad request
+      '401':
+        description: Unauthorized
