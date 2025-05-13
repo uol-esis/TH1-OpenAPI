@@ -49,6 +49,9 @@ paths:
   /converter/file:
     $ref: './paths/converter.yaml#/file'
 
+  /feedback:
+    $ref: './paths/feedback.yaml'
+
 components:
   securitySchemes:
     BasicAuth:
@@ -90,4 +93,6 @@ components:
       $ref: './components/schemas/removeTrailingColumnStructure.yaml'
     mergeColumnsStructure:
       $ref: './components/schemas/mergeColumnsStructure.yaml'
-    
+
+    feedback:
+      $ref: './components/schemas/feedback.yaml'
