@@ -555,14 +555,6 @@ components:
       required:
       - converterType
       type: object
-    feedback:
-      properties:
-        content:
-          minLength: 1
-          type: string
-      required:
-      - content
-      type: object
     mergeColumnsStructure:
       properties:
         converterType:
@@ -586,6 +578,14 @@ components:
       - columnIndex
       - converterType
       - headerName
+      type: object
+    feedback:
+      properties:
+        content:
+          minLength: 1
+          type: string
+      required:
+      - content
       type: object
     generateTableStructure_request:
       properties:
