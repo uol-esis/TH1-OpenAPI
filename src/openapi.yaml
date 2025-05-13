@@ -91,4 +91,7 @@ components:
       $ref: './components/schemas/removeInvalidRowsStructure.yaml'
     removeTrailingColumnStructure:
       $ref: './components/schemas/removeTrailingColumnStructure.yaml'
+
+    feedback:
+      $ref: './components/schemas/feedback.yaml'
     

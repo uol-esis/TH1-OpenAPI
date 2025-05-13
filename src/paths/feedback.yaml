@@ -17,9 +17,7 @@ post:
       content:
         application/json:
           schema:
-            type: integer
-            format: int64
-            minimum: 1
+            $ref: '../components/schemas/feedback.yaml'
     '400':
       description: Bad request
     '401':

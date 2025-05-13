@@ -217,9 +217,7 @@ paths:
           content:
             application/json:
               schema:
-                format: int64
-                minimum: 1
-                type: integer
+                $ref: '#/components/schemas/feedback'
           description: Created
         "400":
           description: Bad request
@@ -551,6 +549,16 @@ components:
           type: array
       required:
       - converterType
+      type: object
+    feedback:
+      example:
+        content: content
+      properties:
+        content:
+          minLength: 1
+          type: string
+      required:
+      - content
       type: object
     generateTableStructure_request:
       properties:
