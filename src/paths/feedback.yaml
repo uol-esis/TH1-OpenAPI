@@ -2,6 +2,7 @@ post:
   summary: Submit feedback
   operationId: submitFeedback
   requestBody:
+    required: true
     content:
       application/json:
         schema:
