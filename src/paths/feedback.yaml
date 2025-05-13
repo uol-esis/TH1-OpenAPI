@@ -12,8 +12,14 @@ post:
             content:
               type: string
   responses:
-    '200':
-      description: Feedback submitted successfully
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
     '400':
       description: Bad request
     '401':

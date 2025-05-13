@@ -211,9 +211,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/submitFeedback_request'
+        required: true
       responses:
-        "200":
-          description: Feedback submitted successfully
+        "201":
+          content:
+            application/json:
+              schema:
+                format: int64
+                minimum: 1
+                type: integer
+          description: Created
         "400":
           description: Bad request
         "401":
