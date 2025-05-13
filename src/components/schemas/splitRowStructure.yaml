@@ -10,6 +10,7 @@ description: |
   If the specified startRow is out of bounds, an error will be thrown.
   If the specified endRow is out of bounds, an error will be thrown.
 
+    The converterType MUST be SPLIT_ROW.
 type: object
 required:
   - converterType
