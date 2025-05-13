@@ -12,6 +12,7 @@ oneOf:
   - $ref: './splitRowStructure.yaml'
   - $ref: './removeInvalidRowsStructure.yaml'
   - $ref: './removeTrailingColumnStructure.yaml'
+  - $ref: './mergeColumnsStructure.yaml'
 discriminator:
   propertyName: converterType
   mapping:
@@ -26,6 +27,7 @@ discriminator:
     SPLIT_ROW: './splitRowStructure.yaml'
     REMOVE_INVALID_ROWS: './removeInvalidRowsStructure.yaml'
     REMOVE_TRAILING_COLUMN: './removeTrailingColumnStructure.yaml'
+    MERGE_COLUMNS: './mergeColumnsStructure.yaml'
 properties:
   converterType:
     $ref: './converterType.yaml'

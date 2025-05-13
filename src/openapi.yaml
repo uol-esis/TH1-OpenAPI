@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.11.0
+  version: 1.12.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -91,7 +91,8 @@ components:
       $ref: './components/schemas/removeInvalidRowsStructure.yaml'
     removeTrailingColumnStructure:
       $ref: './components/schemas/removeTrailingColumnStructure.yaml'
+    mergeColumnsStructure:
+      $ref: './components/schemas/mergeColumnsStructure.yaml'
 
     feedback:
       $ref: './components/schemas/feedback.yaml'
-    
