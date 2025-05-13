@@ -1,0 +1,22 @@
+post:
+  summary: Submit feedback
+  operationId: submitFeedback
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/feedback.yaml'
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+    '400':
+      description: Bad request
+    '401':
+      description: Unauthorized
