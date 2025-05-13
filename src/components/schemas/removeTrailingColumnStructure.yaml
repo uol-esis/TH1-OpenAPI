@@ -1,4 +1,10 @@
 #removeTrailingColumnStructure:
+description: |
+  This converter removes invalid columns from the end of the table.
+  Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
+  The invalid values are empty cells by default but can be extended using the blacklist properties.
+  
+  The converterType MUST be REMOVE_TRAILING_COLUMN.
 type: object
 required:
   - converterType
@@ -6,9 +12,11 @@ properties:
   converterType:
     $ref: './converterType.yaml'
   threshold:
+    description: CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of invalid values in a column to be considered invalid.
     type: integer
     minimum: 0
   blackList:
+    description: The list of values to be considered invalid.
     type: array
     minItems: 0
     items:

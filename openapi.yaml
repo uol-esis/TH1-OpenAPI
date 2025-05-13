@@ -360,28 +360,40 @@ components:
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
+      description: |
+        This converter removes the specified rows from the table.
+        If the specified row index is out of bounds, an error will be thrown.
+
+        The converterType MUST be REMOVE_ROW_BY_INDEX.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         rowIndex:
+          description: The indices of the rows to remove
           items:
             minimum: 0
             type: integer
-          minItems: 0
+          minItems: 1
           type: array
       required:
       - converterType
       - rowIndex
       type: object
     removeColumnByIndexStructure:
+      description: |
+        This converter removes the specified columns from the table.
+        If the specified column index is out of bounds, an error will be thrown.
+
+        The converterType MUST be REMOVE_COLUMN_BY_INDEX.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         columnIndex:
+          description: The indices of the columns to remove
           items:
             minimum: 0
             type: integer
-          minItems: 0
+          minItems: 1
           type: array
       required:
       - columnIndex
@@ -415,57 +427,95 @@ components:
       - rowIndex
       type: object
     addHeaderNameStructure:
+      description: |
+        This converter replaces the first row of the table with the specified header names.
+        If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
+        If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
+
+        The converterType MUST be ADD_HEADER_NAME.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         headerNames:
+          description: The header names
+          example:
+          - Name
+          - Date of Birth
           items:
             minLength: 1
             type: string
-          minItems: 0
+          minItems: 1
           type: array
       required:
       - converterType
       - headerNames
       type: object
     fillEmptyRowStructure:
+      description: |
+        This converter fills empty cells in the specified rows.
+        It iterates through each specified row and fills empty cells with the value from the last non-empty cell.
+        If there are no non-empty cells in the row an error will be thrown.
+        This converter expects a non-empty cell at the beginning of each specified row.
+
+        The converterType MUST be FILL_EMPTY_ROW.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         rowIndex:
+          description: The indices of the rows to fill
           items:
             minimum: 0
             type: integer
-          minItems: 0
+          minItems: 1
           type: array
       required:
       - converterType
       - rowIndex
       type: object
     removeHeaderStructure:
+      description: |
+        This converter removes the header from the table.
+        The header is defined as the first rows of the table which only contain a maximum of threshold invalid values.
+        The invalid values are empty cells by default but can be extended using the blacklist properties.
+
+        The converterType MUST be REMOVE_HEADER.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
+          default: 2
+          description: The maximum number of invalid values in a row to be considered
+            a header row.
           minimum: 0
           type: integer
         blackList:
+          description: The list of values to be considered invalid.
           items:
             minLength: 0
             type: string
-          minItems: 0
+          minItems: 1
           type: array
       required:
       - converterType
       type: object
     removeFooterStructure:
+      description: |
+        This converter removes the footer from the table.
+        The footer is defined as the last rows of the table which only contain a maximum of threshold invalid values.
+        The invalid values are empty cells by default but can be extended using the blacklist properties.
+
+        The converterType MUST be REMOVE_FOOTER.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
+          default: 2
+          description: The maximum number of invalid values in a row to be considered
+            a footer row.
           minimum: 0
           type: integer
         blackList:
+          description: The list of values to be considered invalid.
           items:
             minLength: 0
             type: string
@@ -475,28 +525,43 @@ components:
       - converterType
       type: object
     replaceEntriesStructure:
+      description: |
+        This converter replaces entries in the table with the specified replacement value.
+        Entries to replace can be selected by specifying either a search string or a regex search string.
+        If both search and regexSearch are provided, the search will be used.
+        The replacement value will be used to replace the entries.
+        This converter only affects the specified area of the table.
+
+        The converterType MUST be REPLACE_ENTRIES.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         search:
+          description: The string to search for in the table.
           minLength: 1
           type: string
         regexSearch:
+          description: The regex pattern to search for in the table.
           minLength: 1
           type: string
         replacement:
+          description: The value to replace the found entries with.
           minLength: 0
           type: string
         startRow:
+          description: The start row index of the area to search in (inclusive).
           minimum: 0
           type: integer
         startColumn:
+          description: The start column index of the area to search in (inclusive).
           minimum: 0
           type: integer
         endRow:
+          description: The end row index of the area to search in (exclusive).
           minimum: 0
           type: integer
         endColumn:
+          description: The end column index of the area to search in (exclusive).
           minimum: 0
           type: integer
       required:
@@ -504,19 +569,35 @@ components:
       - replacement
       type: object
     splitRowStructure:
+      description: |
+        This converter splits the entries in the specified column into multiple rows.
+        The entries will be split by the specified delimiter.
+        The delimiter is a line break by default.
+        The new rows will replace the original row.
+        If the specified column index is out of bounds, an error will be thrown.
+        If the specified delimiter is not found in the entry, the entry will not be split.
+        If the specified startRow is greater than the endRow, an error will be thrown.
+        If the specified startRow is out of bounds, an error will be thrown.
+        If the specified endRow is out of bounds, an error will be thrown.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         columnIndex:
+          description: The index of the column with the entries to split
           minimum: 0
           type: integer
         delimiter:
+          description: |
+            The delimiter to split the entries by.
+            Line break by default.
           minLength: 1
           type: string
         startRow:
+          description: The start row index of the area to split (inclusive).
           minimum: 0
           type: integer
         endRow:
+          description: The end row index of the area to split (exclusive).
           minimum: 0
           type: integer
       required:
@@ -524,13 +605,23 @@ components:
       - converterType
       type: object
     removeInvalidRowsStructure:
+      description: |
+        This converter removes invalid rows from the table.
+        Invalid rows are defined as the rows of the table which only contain a maximum of threshold invalid values.
+        The invalid values are empty cells by default but can be extended using the blacklist properties.
+
+        The converterType MUST be REMOVE_INVALID_ROWS.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
+          default: 2
+          description: The maximum number of invalid values in a row to be considered
+            invalid.
           minimum: 0
           type: integer
         blackList:
+          description: The list of values to be considered invalid.
           items:
             minimum: 0
             type: string
@@ -540,13 +631,22 @@ components:
       - converterType
       type: object
     removeTrailingColumnStructure:
+      description: |
+        This converter removes invalid columns from the end of the table.
+        Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
+        The invalid values are empty cells by default but can be extended using the blacklist properties.
+
+        The converterType MUST be REMOVE_TRAILING_COLUMN.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
+          description: CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of
+            invalid values in a column to be considered invalid.
           minimum: 0
           type: integer
         blackList:
+          description: The list of values to be considered invalid.
           items:
             minimum: 0
             type: string
@@ -556,19 +656,35 @@ components:
       - converterType
       type: object
     mergeColumnsStructure:
+      description: |
+        This converter merges the specified columns into a single column.
+        The new column will be at the lowest index of the specified columns.
+        The new column will have the specified header name.
+        If there are multiple non-empty cells in the specified columns, the non-empty cell with the lowest index will be used.
+        If you want to change that, you can use the precedenceOrder property.
+        The precedenceOrder property specifies the order in which the cells will be checked for non-empty values.
+        If not all specified columns are in the precedenceOrder, the remaining columns will be checked after the precedenceOrder.
+        If there are indices in the precedenceOrder that are not in the specified columns, an error will the thrown.
+        If there are no non-empty cells in the specified columns the cell will be empty.
+
+        The converterType MUST be MERGE_COLUMNS.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
         columnIndex:
+          description: The indices of the columns to merge
           items:
             minimum: 0
             type: integer
           minItems: 2
           type: array
         headerName:
+          description: The name of the new column
           minLength: 1
           type: string
         precedenceOrder:
+          description: The order in which the cells will be checked for non-empty
+            values
           items:
             minimum: 0
             type: integer

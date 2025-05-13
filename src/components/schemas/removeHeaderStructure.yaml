@@ -1,4 +1,10 @@
 #removeHeaderStructure:
+description: |
+  This converter removes the header from the table.
+  The header is defined as the first rows of the table which only contain a maximum of threshold invalid values.
+  The invalid values are empty cells by default but can be extended using the blacklist properties.
+  
+  The converterType MUST be REMOVE_HEADER.
 type: object
 required:
   - converterType
@@ -6,11 +12,14 @@ properties:
   converterType:
     $ref: './converterType.yaml'
   threshold:
+    description: The maximum number of invalid values in a row to be considered a header row.
     type: integer
     minimum: 0
+    default: 2
   blackList:
+    description: The list of values to be considered invalid.
     type: array
-    minItems: 0
+    minItems: 1
     items:
       type: string
       minLength: 0
