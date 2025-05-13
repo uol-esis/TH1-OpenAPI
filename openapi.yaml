@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.12.0
+  version: 1.13.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
