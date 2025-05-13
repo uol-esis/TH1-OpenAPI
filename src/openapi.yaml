@@ -49,6 +49,9 @@ paths:
   /converter/file:
     $ref: './paths/converter.yaml#/file'
 
+  /feedback:
+    $ref: './paths/feedback.yaml'
+
 components:
   securitySchemes:
     BasicAuth:

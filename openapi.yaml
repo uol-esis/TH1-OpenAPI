@@ -203,6 +203,22 @@ paths:
         "401":
           description: Unauthorized
       summary: Convert a table and return the result as a file
+  /feedback:
+    post:
+      operationId: submitFeedback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/submitFeedback_request'
+      responses:
+        "200":
+          description: Feedback submitted successfully
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+      summary: Submit feedback
 components:
   schemas:
     tableStructure:
@@ -547,6 +563,13 @@ components:
       required:
       - file
       - tableStructure
+      type: object
+    submitFeedback_request:
+      properties:
+        content:
+          type: string
+      required:
+      - content
       type: object
   securitySchemes:
     BasicAuth:

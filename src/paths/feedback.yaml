@@ -1,0 +1,19 @@
+post:
+  summary: Submit feedback
+  operationId: submitFeedback
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [ content ]
+          properties:
+            content:
+              type: string
+  responses:
+    '200':
+      description: Feedback submitted successfully
+    '400':
+      description: Bad request
+    '401':
+      description: Unauthorized
