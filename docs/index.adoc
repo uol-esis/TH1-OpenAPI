@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.12.0
+1.13.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -240,7 +240,7 @@ endif::internal-generation[]
 [.deleteTableStructure]
 ==== deleteTableStructure
 
-`DELETE /table-structures`
+`DELETE /table-structures/{id}`
 
 Delete table structure by id
 
@@ -249,17 +249,13 @@ Delete table structure by id
 
 
 
-// markup not found, no include::{specDir}table-structures/DELETE/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}table-structures/\{id\}/DELETE/spec.adoc[opts=optional]
 
 
 
 ===== Parameters
 
-
-
-
-
-====== Query Parameters
+====== Path Parameters
 
 [cols="2,3,1,1,1"]
 |===
@@ -272,6 +268,10 @@ Delete table structure by id
 | 
 
 |===
+
+
+
+
 
 
 ===== Return Type
@@ -313,20 +313,20 @@ Delete table structure by id
 ===== Samples
 
 
-// markup not found, no include::{snippetDir}table-structures/DELETE/http-request.adoc[opts=optional]
+// markup not found, no include::{snippetDir}table-structures/\{id\}/DELETE/http-request.adoc[opts=optional]
 
 
-// markup not found, no include::{snippetDir}table-structures/DELETE/http-response.adoc[opts=optional]
+// markup not found, no include::{snippetDir}table-structures/\{id\}/DELETE/http-response.adoc[opts=optional]
 
 
 
-// file not found, no * wiremock data link :table-structures/DELETE/DELETE.json[]
+// file not found, no * wiremock data link :table-structures/{id}/DELETE/DELETE.json[]
 
 
 ifdef::internal-generation[]
 ===== Implementation
 
-// markup not found, no include::{specDir}table-structures/DELETE/implementation.adoc[opts=optional]
+// markup not found, no include::{specDir}table-structures/\{id\}/DELETE/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]
