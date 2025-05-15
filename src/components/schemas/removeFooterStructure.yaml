@@ -2,7 +2,7 @@
 description: |
   This converter removes the footer from the table.
   The footer is defined as the last rows of the table which only contain a maximum of threshold invalid values.
-  The invalid values are empty cells by default but can be extended using the blacklist properties.
+  The invalid values are empty cells by default but can be extended using the blockList properties.
   
   The converterType MUST be REMOVE_FOOTER.
 type: object
@@ -16,7 +16,7 @@ properties:
     type: integer
     minimum: 0
     default: 2
-  blackList:
+  blockList:
     description: The list of values to be considered invalid.
     type: array
     minItems: 0
