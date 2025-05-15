@@ -1,8 +1,12 @@
 #feedback:
+description: This represents a feedback message.
 type: object
 required:
   - content
 properties:
   content:
+    description: |
+      The content of the feedback message.
+      This can be an arbitrary string.
     type: string
     minLength: 1

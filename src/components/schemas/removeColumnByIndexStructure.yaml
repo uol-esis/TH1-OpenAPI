@@ -1,4 +1,9 @@
 #removeColumnByIndexStructure:
+description: |
+  This converter removes the specified columns from the table.
+  If the specified column index is out of bounds, an error will be thrown.
+  
+  The converterType MUST be REMOVE_COLUMN_BY_INDEX.
 type: object
 required:
   - converterType
@@ -7,8 +12,9 @@ properties:
   converterType:
     $ref: './converterType.yaml'
   columnIndex:
+    description: The indices of the columns to remove
     type: array
-    minItems: 0
+    minItems: 1
     items:
       type: integer
       minimum: 0
