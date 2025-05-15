@@ -623,7 +623,7 @@ components:
           EMPTY_COLUMN: '#/components/schemas/emptyColumnReport'
           SAME_AS_HEADER: '#/components/schemas/sameAsHeaderReport'
           MISSING_ENTRY: '#/components/schemas/missingEntryReport'
-        propertyName: converterType
+        propertyName: reportType
       example:
         reportType: EMPTY_COLUMN
         columnIndex: 42
