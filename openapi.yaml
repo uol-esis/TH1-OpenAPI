@@ -541,7 +541,7 @@ components:
       description: |
         This converter removes the header from the table.
         The header is defined as the first rows of the table which only contain a maximum of threshold invalid values.
-        The invalid values are empty cells by default but can be extended using the blacklist properties.
+        The invalid values are empty cells by default but can be extended using the blockList properties.
 
         The converterType MUST be REMOVE_HEADER.
       properties:
@@ -553,7 +553,7 @@ components:
             a header row.
           minimum: 0
           type: integer
-        blackList:
+        blockList:
           description: The list of values to be considered invalid.
           items:
             minLength: 0
@@ -567,7 +567,7 @@ components:
       description: |
         This converter removes the footer from the table.
         The footer is defined as the last rows of the table which only contain a maximum of threshold invalid values.
-        The invalid values are empty cells by default but can be extended using the blacklist properties.
+        The invalid values are empty cells by default but can be extended using the blockList properties.
 
         The converterType MUST be REMOVE_FOOTER.
       properties:
@@ -579,7 +579,7 @@ components:
             a footer row.
           minimum: 0
           type: integer
-        blackList:
+        blockList:
           description: The list of values to be considered invalid.
           items:
             minLength: 0
@@ -701,7 +701,7 @@ components:
       description: |
         This converter removes invalid columns from the end of the table.
         Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
-        The invalid values are empty cells by default but can be extended using the blacklist properties.
+        The invalid values are empty cells by default but can be extended using the blockList properties.
 
         The converterType MUST be REMOVE_TRAILING_COLUMN.
       properties:
@@ -712,7 +712,7 @@ components:
             invalid values in a column to be considered invalid.
           minimum: 0
           type: integer
-        blackList:
+        blockList:
           description: The list of values to be considered invalid.
           items:
             minimum: 0

@@ -1115,7 +1115,7 @@ The converterType MUST be REMOVE_COLUMN_BY_INDEX.
 
 This converter removes the footer from the table.
 The footer is defined as the last rows of the table which only contain a maximum of threshold invalid values.
-The invalid values are empty cells by default but can be extended using the blacklist properties.
+The invalid values are empty cells by default but can be extended using the blockList properties.
 
 The converterType MUST be REMOVE_FOOTER.
 
@@ -1140,7 +1140,7 @@ The converterType MUST be REMOVE_FOOTER.
 | The maximum number of invalid values in a row to be considered a footer row.
 |     
 
-| blackList
+| blockList
 | 
 | 
 |   List   of <<string>>
@@ -1220,7 +1220,7 @@ The converterType MUST be REMOVE_GROUPED_HEADER.
 
 This converter removes the header from the table.
 The header is defined as the first rows of the table which only contain a maximum of threshold invalid values.
-The invalid values are empty cells by default but can be extended using the blacklist properties.
+The invalid values are empty cells by default but can be extended using the blockList properties.
 
 The converterType MUST be REMOVE_HEADER.
 
@@ -1245,7 +1245,7 @@ The converterType MUST be REMOVE_HEADER.
 | The maximum number of invalid values in a row to be considered a header row.
 |     
 
-| blackList
+| blockList
 | 
 | 
 |   List   of <<string>>
@@ -1335,7 +1335,7 @@ The converterType MUST be REMOVE_ROW_BY_INDEX.
 
 This converter removes invalid columns from the end of the table.
 Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
-The invalid values are empty cells by default but can be extended using the blacklist properties.
+The invalid values are empty cells by default but can be extended using the blockList properties.
 
 The converterType MUST be REMOVE_TRAILING_COLUMN.
 
@@ -1360,7 +1360,7 @@ The converterType MUST be REMOVE_TRAILING_COLUMN.
 | CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of invalid values in a column to be considered invalid.
 |     
 
-| blackList
+| blockList
 | 
 | 
 |   List   of <<string>>
@@ -1586,7 +1586,7 @@ The converterType is used as a discriminator to determine the specific structure
 | CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of invalid values in a column to be considered invalid.
 |     
 
-| blackList
+| blockList
 | 
 | 
 |   List   of <<string>>
@@ -1633,6 +1633,13 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 |   String  
 | The delimiter to split the entries by. Line break by default. 
+|     
+
+| blackList
+| 
+| 
+|   List   of <<string>>
+| The list of values to be considered invalid.
 |     
 
 | headerName
