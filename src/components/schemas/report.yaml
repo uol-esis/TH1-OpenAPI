@@ -9,7 +9,7 @@ oneOf:
   - $ref: './reports/sameAsHeaderReport.yaml'
   - $ref: './reports/missingEntryReport.yaml'
 discriminator:
-  propertyName: converterType
+  propertyName: reportType
   mapping:
     COLUMN_TYPE_MISMATCH: './reports/columnTypeMismatchReport.yaml'
     GROUPED_HEADER: './reports/groupedHeaderReport.yaml'
