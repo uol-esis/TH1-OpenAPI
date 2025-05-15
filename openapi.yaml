@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.12.0
+  version: 1.13.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -23,26 +23,6 @@ security:
 - BasicAuth: []
 paths:
   /table-structures:
-    delete:
-      operationId: deleteTableStructure
-      parameters:
-      - in: query
-        name: id
-        required: true
-        schema:
-          format: int64
-          minimum: 1
-          type: integer
-      responses:
-        "200":
-          description: OK
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "404":
-          description: Not found
-      summary: Delete table structure by id
     get:
       operationId: getTableStructures
       responses:
@@ -80,6 +60,26 @@ paths:
           description: Unauthorized
       summary: Create a new table structure
   /table-structures/{id}:
+    delete:
+      operationId: deleteTableStructure
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not found
+      summary: Delete table structure by id
     get:
       operationId: getTableStructure
       parameters:
