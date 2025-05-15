@@ -96,3 +96,25 @@ components:
 
     feedback:
       $ref: './components/schemas/feedback.yaml'
+
+    reportType:
+      $ref: './components/schemas/reportType.yaml'
+    report:
+      $ref: './components/schemas/report.yaml'
+    columnTypeMismatchReport:
+      $ref: './components/schemas/reports/columnTypeMismatchReport.yaml'
+    groupedHeaderReport:
+      $ref: './components/schemas/reports/groupedHeaderReport.yaml'
+    emptyHeaderReport:
+      $ref: './components/schemas/reports/emptyHeaderReport.yaml'
+    emptyRowReport:
+      $ref: './components/schemas/reports/emptyRowReport.yaml'
+    emptyColumnReport:
+      $ref: './components/schemas/reports/emptyColumnReport.yaml'
+    sameAsHeaderReport:
+      $ref: './components/schemas/reports/sameAsHeaderReport.yaml'
+    missingEntryReport:
+      $ref: './components/schemas/reports/missingEntryReport.yaml'
+
+    tableStructureGenerationResponse:
+      $ref: './components/schemas/tableStructureGenerationResponse.yaml'

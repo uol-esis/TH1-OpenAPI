@@ -1,0 +1,28 @@
+#structure:
+type: object
+oneOf:
+  - $ref: './reports/columnTypeMismatchReport.yaml'
+  - $ref: './reports/groupedHeaderReport.yaml'
+  - $ref: './reports/emptyHeaderReport.yaml'
+  - $ref: './reports/emptyRowReport.yaml'
+  - $ref: './reports/emptyColumnReport.yaml'
+  - $ref: './reports/sameAsHeaderReport.yaml'
+  - $ref: './reports/missingEntryReport.yaml'
+discriminator:
+  propertyName: converterType
+  mapping:
+    COLUMN_TYPE_MISMATCH: './reports/columnTypeMismatchReport.yaml'
+    GROUPED_HEADER: './reports/groupedHeaderReport.yaml'
+    EMPTY_HEADER: './reports/emptyHeaderReport.yaml'
+    EMPTY_ROW: './reports/emptyRowReport.yaml'
+    EMPTY_COLUMN: './reports/emptyColumnReport.yaml'
+    SAME_AS_HEADER: './reports/sameAsHeaderReport.yaml'
+    MISSING_ENTRY: './reports/missingEntryReport.yaml'
+required:
+  - reportType
+properties:
+  reportType:
+    $ref: './reportType.yaml'
+example:
+  reportType: EMPTY_COLUMN
+  columnIndex: 42

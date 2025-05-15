@@ -1,0 +1,11 @@
+#reportType:
+type: string
+x-field-extra-annotation: "@de.uol.pgdoener.th1.api.validation.ValidReportType"
+enum:
+  - COLUMN_TYPE_MISMATCH
+  - GROUPED_HEADER
+  - EMPTY_HEADER
+  - EMPTY_ROW
+  - EMPTY_COLUMN
+  - SAME_AS_HEADER
+  - MISSING_ENTRY

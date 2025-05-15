@@ -1,0 +1,15 @@
+# emptyRowReport:
+description: |
+  This report indicates that the specified row is empty.
+  
+  The reportType MUST be EMPTY_ROW.
+type: object
+required:
+  - reportType
+  - rowIndex
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  rowIndex:
+    type: integer
+    minimum: 0

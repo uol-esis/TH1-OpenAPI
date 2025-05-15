@@ -103,7 +103,7 @@ generate:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/tableStructure.yaml'
+              $ref: '../components/schemas/tableStructureGenerationResponse.yaml'
       '400':
         description: Bad request
       '401':
