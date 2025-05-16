@@ -92,7 +92,9 @@ generate:
         multipart/form-data:
           schema:
             type: object
-            required: [ file ]
+            required:
+              - file
+              - settings
             properties:
               file:
                 type: string

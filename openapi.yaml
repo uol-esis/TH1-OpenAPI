@@ -952,6 +952,7 @@ components:
           $ref: '#/components/schemas/tableStructureGenerationSettings'
       required:
       - file
+      - settings
       type: object
     convertTable_request:
       properties:
