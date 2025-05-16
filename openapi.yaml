@@ -627,6 +627,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     removeFooterSettings:
       properties:
@@ -642,6 +646,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     removeColumnsSettings:
       properties:
@@ -657,6 +665,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     removeInvalidRowsSettings:
       properties:
@@ -672,6 +684,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     reportType:
       enum:
