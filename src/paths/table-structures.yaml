@@ -92,12 +92,18 @@ generate:
         multipart/form-data:
           schema:
             type: object
+            required:
+              - file
             properties:
               file:
                 type: string
                 format: binary
-              settings:
-                $ref: '../components/schemas/tableStructureGenerationSettings.yaml'
+              headerEnabled:
+                type: boolean
+                default: true
+              footerEnabled:
+                type: boolean
+                default: true
     responses:
       '200':
         description: OK
