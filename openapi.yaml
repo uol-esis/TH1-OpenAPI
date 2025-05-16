@@ -109,7 +109,7 @@ paths:
       operationId: generateTableStructure
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               $ref: '#/components/schemas/generateTableStructure_request'
       responses:
@@ -945,17 +945,8 @@ components:
       type: object
     generateTableStructure_request:
       properties:
-        file:
-          format: binary
-          type: string
-        headerEnabled:
-          default: true
-          type: boolean
-        footerEnabled:
-          default: true
-          type: boolean
-      required:
-      - file
+        settings:
+          $ref: '#/components/schemas/tableStructureGenerationSettings'
       type: object
     convertTable_request:
       properties:

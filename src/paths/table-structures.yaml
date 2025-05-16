@@ -89,21 +89,12 @@ generate:
     operationId: generateTableStructure
     requestBody:
       content:
-        multipart/form-data:
+        application/json:
           schema:
             type: object
-            required:
-              - file
             properties:
-              file:
-                type: string
-                format: binary
-              headerEnabled:
-                type: boolean
-                default: true
-              footerEnabled:
-                type: boolean
-                default: true
+              settings:
+                $ref: '../components/schemas/tableStructureGenerationSettings.yaml'
     responses:
       '200':
         description: OK
