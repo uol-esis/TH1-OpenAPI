@@ -94,7 +94,6 @@ generate:
             type: object
             required:
               - file
-              - settings
             properties:
               file:
                 type: string
