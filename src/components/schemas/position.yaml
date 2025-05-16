@@ -1,4 +1,7 @@
 type: object
+required:
+  - rowIndex
+  - columnIndex
 properties:
   rowIndex:
     type: integer
