@@ -948,8 +948,14 @@ components:
         file:
           format: binary
           type: string
-        settings:
-          $ref: '#/components/schemas/tableStructureGenerationSettings'
+        headerEnabled:
+          default: true
+          type: boolean
+        footerEnabled:
+          default: true
+          type: boolean
+      required:
+      - file
       type: object
     convertTable_request:
       properties:
