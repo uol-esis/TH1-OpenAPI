@@ -97,6 +97,17 @@ components:
     feedback:
       $ref: './components/schemas/feedback.yaml'
 
+    tableStructureGenerationSettings:
+      $ref: './components/schemas/tableStructureGenerationSettings.yaml'
+    removeHeaderSettings:
+      $ref: './components/schemas/generation/removeHeaderSettings.yaml'
+    removeFooterSettings:
+      $ref: './components/schemas/generation/removeFooterSettings.yaml'
+    removeColumnsSettings:
+      $ref: './components/schemas/generation/removeColumnsSettings.yaml'
+    removeInvalidRowsSettings:
+      $ref: './components/schemas/generation/removeInvalidRowsSettings.yaml'
+
     reportType:
       $ref: './components/schemas/reportType.yaml'
     report:

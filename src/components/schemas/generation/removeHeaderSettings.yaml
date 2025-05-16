@@ -1,0 +1,15 @@
+# removeHeaderSettings:
+type: object
+properties:
+  enabled:
+    type: boolean
+    default: true
+  threshold:
+    type: integer
+    minimum: 0
+    default: 2
+  blockList:
+    type: array
+    items:
+      type: string
+      minLength: 1

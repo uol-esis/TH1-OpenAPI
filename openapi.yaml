@@ -139,7 +139,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/generateTableStructure_request'
+              $ref: '#/components/schemas/convertTable_request'
       responses:
         "200":
           description: OK
@@ -602,6 +602,77 @@ components:
       required:
       - content
       type: object
+    tableStructureGenerationSettings:
+      properties:
+        removeHeader:
+          $ref: '#/components/schemas/removeHeaderSettings'
+        removeFooter:
+          $ref: '#/components/schemas/removeFooterSettings'
+        removeColumns:
+          $ref: '#/components/schemas/removeColumnsSettings'
+        removeInvalidRows:
+          $ref: '#/components/schemas/removeInvalidRowsSettings'
+      type: object
+    removeHeaderSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      type: object
+    removeFooterSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      type: object
+    removeColumnsSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      type: object
+    removeInvalidRowsSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      type: object
     reportType:
       enum:
       - COLUMN_TYPE_MISMATCH
@@ -860,6 +931,16 @@ components:
       - tableStructure
       type: object
     generateTableStructure_request:
+      properties:
+        file:
+          format: binary
+          type: string
+        settings:
+          $ref: '#/components/schemas/tableStructureGenerationSettings'
+      required:
+      - file
+      type: object
+    convertTable_request:
       properties:
         file:
           format: binary

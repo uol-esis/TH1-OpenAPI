@@ -1,0 +1,11 @@
+# tableStructureGenerationSettings:
+type: object
+properties:
+  removeHeader:
+    $ref: './generation/removeHeaderSettings.yaml'
+  removeFooter:
+    $ref: './generation/removeFooterSettings.yaml'
+  removeColumns:
+    $ref: './generation/removeColumnsSettings.yaml'
+  removeInvalidRows:
+    $ref: './generation/removeInvalidRowsSettings.yaml'
