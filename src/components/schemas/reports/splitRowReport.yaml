@@ -1,8 +1,8 @@
-# emptyRowReport:
+# splitRowReport:
 description: |
-  This report indicates that the specified row is empty.
+  This report indicates that the specified row can be split into multiple rows.
   
-  The reportType MUST be EMPTY_ROW.
+  The reportType MUST be SPLIT_ROW.
 type: object
 required:
   - reportType

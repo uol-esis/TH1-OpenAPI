@@ -12,5 +12,7 @@ properties:
   reportType:
     $ref: '../reportType.yaml'
   columnIndex:
-    type: integer
-    minimum: 0
+    type: array
+    items:
+      type: integer
+      minimum: 0

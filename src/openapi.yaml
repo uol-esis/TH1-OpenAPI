@@ -115,6 +115,10 @@ components:
       $ref: './components/schemas/reports/sameAsHeaderReport.yaml'
     missingEntryReport:
       $ref: './components/schemas/reports/missingEntryReport.yaml'
+    mergeableColumnsReport:
+      $ref: './components/schemas/reports/mergeableColumnsReport.yaml'
+    splitRowReport:
+      $ref: './components/schemas/reports/splitRowReport.yaml'
 
     tableStructureGenerationResponse:
       $ref: './components/schemas/tableStructureGenerationResponse.yaml'

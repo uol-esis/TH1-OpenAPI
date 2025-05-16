@@ -12,9 +12,14 @@ required:
 properties:
   reportType:
     $ref: '../reportType.yaml'
-  rowIndex:
-    type: integer
-    minimum: 0
-  columnIndex:
-    type: integer
-    minimum: 0
+  cells:
+    type: array
+    items:
+      type: object
+      properties:
+        rowIndex:
+          type: integer
+          minimum: 0
+        columnIndex:
+          type: integer
+          minimum: 0

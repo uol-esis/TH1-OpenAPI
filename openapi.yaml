@@ -611,6 +611,8 @@ components:
       - EMPTY_COLUMN
       - SAME_AS_HEADER
       - MISSING_ENTRY
+      - MERGEABLE_COLUMNS
+      - SPLIT_ROW
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidReportType'
     report:
@@ -623,6 +625,8 @@ components:
           EMPTY_COLUMN: '#/components/schemas/emptyColumnReport'
           SAME_AS_HEADER: '#/components/schemas/sameAsHeaderReport'
           MISSING_ENTRY: '#/components/schemas/missingEntryReport'
+          MERGEABLE_COLUMNS: '#/components/schemas/mergeableColumnsReport'
+          SPLIT_ROW: '#/components/schemas/splitRowReport'
         propertyName: reportType
       example:
         reportType: EMPTY_COLUMN
@@ -635,6 +639,8 @@ components:
       - $ref: '#/components/schemas/emptyColumnReport'
       - $ref: '#/components/schemas/sameAsHeaderReport'
       - $ref: '#/components/schemas/missingEntryReport'
+      - $ref: '#/components/schemas/mergeableColumnsReport'
+      - $ref: '#/components/schemas/splitRowReport'
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
@@ -651,8 +657,10 @@ components:
         reportType:
           $ref: '#/components/schemas/reportType'
         columnIndex:
-          minimum: 0
-          type: integer
+          items:
+            minimum: 0
+            type: integer
+          type: array
       required:
       - columnIndex
       - reportType
@@ -701,8 +709,10 @@ components:
         reportType:
           $ref: '#/components/schemas/reportType'
         columnIndex:
-          minimum: 0
-          type: integer
+          items:
+            minimum: 0
+            type: integer
+          type: array
       required:
       - columnIndex
       - reportType
@@ -716,8 +726,10 @@ components:
         reportType:
           $ref: '#/components/schemas/reportType'
         rowIndex:
-          minimum: 0
-          type: integer
+          items:
+            minimum: 0
+            type: integer
+          type: array
       required:
       - reportType
       - rowIndex
@@ -731,8 +743,10 @@ components:
         reportType:
           $ref: '#/components/schemas/reportType'
         columnIndex:
-          minimum: 0
-          type: integer
+          items:
+            minimum: 0
+            type: integer
+          type: array
       required:
       - columnIndex
       - reportType
@@ -746,12 +760,10 @@ components:
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
-        rowIndex:
-          minimum: 0
-          type: integer
-        columnIndex:
-          minimum: 0
-          type: integer
+        cells:
+          items:
+            $ref: '#/components/schemas/sameAsHeaderReport_cells_inner'
+          type: array
       required:
       - columnIndex
       - reportType
@@ -766,14 +778,46 @@ components:
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
-        rowIndex:
-          minimum: 0
-          type: integer
-        columnIndex:
-          minimum: 0
-          type: integer
+        cells:
+          items:
+            $ref: '#/components/schemas/sameAsHeaderReport_cells_inner'
+          type: array
       required:
       - columnIndex
+      - reportType
+      - rowIndex
+      type: object
+    mergeableColumnsReport:
+      description: |
+        This report indicates that the specified columns are mergeable.
+        This is report is generated if a tuple of columns have entries where other columns in the tuple are empty.
+
+        The reportType MUST be MERGEABLE_COLUMNS.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        mergeables:
+          items:
+            $ref: '#/components/schemas/mergeableColumnsReport_mergeables_inner'
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      type: object
+    splitRowReport:
+      description: |
+        This report indicates that the specified row can be split into multiple rows.
+
+        The reportType MUST be SPLIT_ROW.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
       - reportType
       - rowIndex
       type: object
@@ -833,6 +877,21 @@ components:
       required:
       - file
       - tableStructure
+      type: object
+    sameAsHeaderReport_cells_inner:
+      properties:
+        rowIndex:
+          minimum: 0
+          type: integer
+        columnIndex:
+          minimum: 0
+          type: integer
+      type: object
+    mergeableColumnsReport_mergeables_inner:
+      properties:
+        columnIndex:
+          minimum: 0
+          type: integer
       type: object
   securitySchemes:
     BasicAuth:
