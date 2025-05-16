@@ -96,3 +96,42 @@ components:
 
     feedback:
       $ref: './components/schemas/feedback.yaml'
+
+    tableStructureGenerationSettings:
+      $ref: './components/schemas/tableStructureGenerationSettings.yaml'
+    removeHeaderSettings:
+      $ref: './components/schemas/generation/removeHeaderSettings.yaml'
+    removeFooterSettings:
+      $ref: './components/schemas/generation/removeFooterSettings.yaml'
+    removeColumnsSettings:
+      $ref: './components/schemas/generation/removeColumnsSettings.yaml'
+    removeInvalidRowsSettings:
+      $ref: './components/schemas/generation/removeInvalidRowsSettings.yaml'
+
+    reportType:
+      $ref: './components/schemas/reportType.yaml'
+    report:
+      $ref: './components/schemas/report.yaml'
+    columnTypeMismatchReport:
+      $ref: './components/schemas/reports/columnTypeMismatchReport.yaml'
+    groupedHeaderReport:
+      $ref: './components/schemas/reports/groupedHeaderReport.yaml'
+    emptyHeaderReport:
+      $ref: './components/schemas/reports/emptyHeaderReport.yaml'
+    emptyRowReport:
+      $ref: './components/schemas/reports/emptyRowReport.yaml'
+    emptyColumnReport:
+      $ref: './components/schemas/reports/emptyColumnReport.yaml'
+    sameAsHeaderReport:
+      $ref: './components/schemas/reports/sameAsHeaderReport.yaml'
+    missingEntryReport:
+      $ref: './components/schemas/reports/missingEntryReport.yaml'
+    mergeableColumnsReport:
+      $ref: './components/schemas/reports/mergeableColumnsReport.yaml'
+    splitRowReport:
+      $ref: './components/schemas/reports/splitRowReport.yaml'
+
+    tableStructureGenerationResponse:
+      $ref: './components/schemas/tableStructureGenerationResponse.yaml'
+    position:
+      $ref: './components/schemas/position.yaml'

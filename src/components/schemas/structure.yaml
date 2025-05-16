@@ -37,3 +37,14 @@ properties:
   description:
     type: string
     minLength: 1
+example:
+  name: Resolve Grouped Header
+  description: Resolves the grouped header
+  converterType: REMOVE_GROUPED_HEADER
+  rowIndex:
+    - 0
+    - 1
+  columnIndex:
+    - 0
+  startRow: 3
+  startColumn: 0

@@ -1,0 +1,18 @@
+# emptyHeaderReport:
+description: |
+  This report indicates that the specified column header is empty or undefined.
+  It is assumed that the first row is the header.
+  
+  The reportType MUST be EMPTY_HEADER.
+type: object
+required:
+  - reportType
+  - columnIndex
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  columnIndex:
+    type: array
+    items:
+      type: integer
+      minimum: 0
