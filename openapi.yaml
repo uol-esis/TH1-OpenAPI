@@ -109,7 +109,7 @@ paths:
       operationId: generateTableStructure
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/generateTableStructure_request'
       responses:
@@ -627,6 +627,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     removeFooterSettings:
       properties:
@@ -642,6 +646,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     removeColumnsSettings:
       properties:
@@ -657,6 +665,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     removeInvalidRowsSettings:
       properties:
@@ -672,6 +684,10 @@ components:
             minLength: 1
             type: string
           type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
       type: object
     reportType:
       enum:
@@ -945,8 +961,14 @@ components:
       type: object
     generateTableStructure_request:
       properties:
+        file:
+          format: binary
+          type: string
         settings:
           $ref: '#/components/schemas/tableStructureGenerationSettings'
+      required:
+      - file
+      - settings
       type: object
     convertTable_request:
       properties:

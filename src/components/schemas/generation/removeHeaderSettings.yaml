@@ -1,5 +1,9 @@
 # removeHeaderSettings:
 type: object
+required:
+  - enabled
+  - threshold
+  - blockList
 properties:
   enabled:
     type: boolean

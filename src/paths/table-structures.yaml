@@ -89,10 +89,16 @@ generate:
     operationId: generateTableStructure
     requestBody:
       content:
-        application/json:
+        multipart/form-data:
           schema:
             type: object
+            required:
+              - file
+              - settings
             properties:
+              file:
+                type: string
+                format: binary
               settings:
                 $ref: '../components/schemas/tableStructureGenerationSettings.yaml'
     responses:
