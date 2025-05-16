@@ -939,6 +939,9 @@ components:
         columnIndex:
           minimum: 0
           type: integer
+      required:
+      - columnIndex
+      - rowIndex
       type: object
     generateTableStructure_request:
       properties:
