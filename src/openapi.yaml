@@ -133,3 +133,5 @@ components:
 
     tableStructureGenerationResponse:
       $ref: './components/schemas/tableStructureGenerationResponse.yaml'
+    position:
+      $ref: './components/schemas/position.yaml'

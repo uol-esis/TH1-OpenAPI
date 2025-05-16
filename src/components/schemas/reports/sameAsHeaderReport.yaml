@@ -15,11 +15,4 @@ properties:
   cells:
     type: array
     items:
-      type: object
-      properties:
-        rowIndex:
-          type: integer
-          minimum: 0
-        columnIndex:
-          type: integer
-          minimum: 0
+      $ref: '../position.yaml'

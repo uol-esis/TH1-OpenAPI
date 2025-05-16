@@ -1,0 +1,8 @@
+type: object
+properties:
+  rowIndex:
+    type: integer
+    minimum: 0
+  columnIndex:
+    type: integer
+    minimum: 0

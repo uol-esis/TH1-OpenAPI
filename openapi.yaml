@@ -833,7 +833,7 @@ components:
           $ref: '#/components/schemas/reportType'
         cells:
           items:
-            $ref: '#/components/schemas/sameAsHeaderReport_cells_inner'
+            $ref: '#/components/schemas/position'
           type: array
       required:
       - columnIndex
@@ -851,7 +851,7 @@ components:
           $ref: '#/components/schemas/reportType'
         cells:
           items:
-            $ref: '#/components/schemas/sameAsHeaderReport_cells_inner'
+            $ref: '#/components/schemas/position'
           type: array
       required:
       - columnIndex
@@ -869,7 +869,8 @@ components:
           $ref: '#/components/schemas/reportType'
         mergeables:
           items:
-            $ref: '#/components/schemas/mergeableColumnsReport_mergeables_inner'
+            minimum: 0
+            type: integer
           type: array
       required:
       - columnIndex
@@ -930,6 +931,15 @@ components:
       - reports
       - tableStructure
       type: object
+    position:
+      properties:
+        rowIndex:
+          minimum: 0
+          type: integer
+        columnIndex:
+          minimum: 0
+          type: integer
+      type: object
     generateTableStructure_request:
       properties:
         file:
@@ -958,21 +968,6 @@ components:
       required:
       - file
       - tableStructure
-      type: object
-    sameAsHeaderReport_cells_inner:
-      properties:
-        rowIndex:
-          minimum: 0
-          type: integer
-        columnIndex:
-          minimum: 0
-          type: integer
-      type: object
-    mergeableColumnsReport_mergeables_inner:
-      properties:
-        columnIndex:
-          minimum: 0
-          type: integer
       type: object
   securitySchemes:
     BasicAuth:

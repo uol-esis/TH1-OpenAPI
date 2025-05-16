@@ -14,8 +14,5 @@ properties:
   mergeables:
     type: array
     items:
-      type: object
-      properties:
-        columnIndex:
-          type: integer
-          minimum: 0
+      type: integer
+      minimum: 0
