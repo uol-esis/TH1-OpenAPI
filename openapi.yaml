@@ -673,7 +673,7 @@ components:
     removeInvalidRowsSettings:
       properties:
         enabled:
-          default: true
+          default: false
           type: boolean
         threshold:
           default: 2
@@ -779,6 +779,18 @@ components:
         startColumn:
           minimum: 0
           type: integer
+        rowsToFill:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+        columnsToFill:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
       required:
       - columnIndex
       - reportType

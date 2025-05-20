@@ -32,3 +32,15 @@ properties:
   startColumn:
     type: integer
     minimum: 0
+  rowsToFill:
+    type: array
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0
+  columnsToFill:
+    type: array
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0
