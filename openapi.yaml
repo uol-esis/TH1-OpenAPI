@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.13.0
+  version: 1.13.1
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -217,9 +217,8 @@ paths:
           content:
             application/json:
               schema:
-                format: int64
-                minimum: 1
-                type: integer
+                format: uuid
+                type: number
           description: Created
         "400":
           description: Bad request
