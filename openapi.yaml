@@ -612,6 +612,10 @@ components:
           $ref: '#/components/schemas/removeColumnsSettings'
         removeInvalidRows:
           $ref: '#/components/schemas/removeInvalidRowsSettings'
+        maxIterations:
+          default: 5
+          minimum: 1
+          type: integer
       type: object
     removeHeaderSettings:
       properties:
@@ -791,10 +795,19 @@ components:
             type: integer
           minItems: 0
           type: array
+        headerNames:
+          items:
+            minLength: 1
+            type: string
+          minItems: 0
+          type: array
       required:
       - columnIndex
+      - columnsToFill
+      - headerNames
       - reportType
       - rowIndex
+      - rowsToFill
       - startColumn
       - startRow
       type: object

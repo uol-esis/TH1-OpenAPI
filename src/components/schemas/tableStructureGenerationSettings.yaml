@@ -9,3 +9,7 @@ properties:
     $ref: './generation/removeColumnsSettings.yaml'
   removeInvalidRows:
     $ref: './generation/removeInvalidRowsSettings.yaml'
+  maxIterations:
+    type: integer
+    minimum: 1
+    default: 5

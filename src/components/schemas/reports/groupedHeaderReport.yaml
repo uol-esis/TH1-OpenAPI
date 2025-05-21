@@ -11,6 +11,9 @@ required:
   - columnIndex
   - startRow
   - startColumn
+  - rowsToFill
+  - columnsToFill
+  - headerNames
 properties:
   reportType:
     $ref: '../reportType.yaml'
@@ -44,3 +47,9 @@ properties:
     items:
       type: integer
       minimum: 0
+  headerNames:
+    type: array
+    minItems: 0
+    items:
+      type: string
+      minLength: 1
