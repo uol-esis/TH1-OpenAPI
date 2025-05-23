@@ -734,6 +734,7 @@ components:
       - MISSING_ENTRY
       - MERGEABLE_COLUMNS
       - SPLIT_ROW
+      - SUM
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidReportType'
     report:
