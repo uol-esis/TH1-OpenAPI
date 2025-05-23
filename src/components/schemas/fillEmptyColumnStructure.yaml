@@ -1,0 +1,14 @@
+#fillEmptyColumnStructure:
+type: object
+required:
+  - converterType
+  - columnIndex
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  columnIndex:
+    type: array
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0

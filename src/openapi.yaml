@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.13.0
+  version: 1.14.2
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -79,6 +79,8 @@ components:
       $ref: './components/schemas/addHeaderNameStructure.yaml'
     fillEmptyRowStructure:
       $ref: './components/schemas/fillEmptyRowStructure.yaml'
+    fillEmptyColumnStructure:
+      $ref: './components/schemas/fillEmptyColumnStructure.yaml'
     removeHeaderStructure:
       $ref: './components/schemas/removeHeaderStructure.yaml'
     removeFooterStructure:

@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.13.0
+  version: 1.14.2
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -217,9 +217,8 @@ paths:
           content:
             application/json:
               schema:
-                format: int64
-                minimum: 1
-                type: integer
+                format: uuid
+                type: string
           description: Created
         "400":
           description: Bad request
@@ -279,6 +278,7 @@ components:
         mapping:
           REMOVE_GROUPED_HEADER: '#/components/schemas/removeGroupedHeaderStructure'
           FILL_EMPTY_ROW: '#/components/schemas/fillEmptyRowStructure'
+          FILL_EMPTY_COLUMN: '#/components/schemas/fillEmptyColumnStructure'
           REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
@@ -306,6 +306,7 @@ components:
       - $ref: '#/components/schemas/removeColumnByIndexStructure'
       - $ref: '#/components/schemas/removeGroupedHeaderStructure'
       - $ref: '#/components/schemas/fillEmptyRowStructure'
+      - $ref: '#/components/schemas/fillEmptyColumnStructure'
       - $ref: '#/components/schemas/addHeaderNameStructure'
       - $ref: '#/components/schemas/removeHeaderStructure'
       - $ref: '#/components/schemas/removeFooterStructure'
@@ -362,6 +363,7 @@ components:
       enum:
       - REMOVE_GROUPED_HEADER
       - FILL_EMPTY_ROW
+      - FILL_EMPTY_COLUMN
       - REMOVE_COLUMN_BY_INDEX
       - REMOVE_ROW_BY_INDEX
       - ADD_HEADER_NAME
@@ -456,6 +458,20 @@ components:
       required:
       - converterType
       - rowIndex
+      type: object
+    fillEmptyColumnStructure:
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+      required:
+      - columnIndex
+      - converterType
       type: object
     removeHeaderStructure:
       properties:
