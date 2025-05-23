@@ -1,0 +1,13 @@
+# tableStructureGenerationResponse:
+type: object
+required:
+  - tableStructure
+  - reports
+properties:
+  tableStructure:
+    $ref: './tableStructure.yaml'
+  reports:
+    type: array
+    items:
+      $ref: './report.yaml'
+

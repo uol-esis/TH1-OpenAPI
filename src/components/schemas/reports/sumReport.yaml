@@ -1,0 +1,23 @@
+# sumReport:
+description: |
+  This report indicates that the specified rows have sum entries and the specified columns have a sum entry at the top.
+  
+  The reportType MUST be SUM.
+type: object
+required:
+  - reportType
+  - rowIndex
+  - columnIndex
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  rowIndex:
+    type: array
+    items:
+      type: integer
+      minimum: 0
+  columnIndex:
+    type: array
+    items:
+      type: integer
+      minimum: 0

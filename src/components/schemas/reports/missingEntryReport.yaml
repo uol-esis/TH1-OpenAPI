@@ -1,0 +1,19 @@
+# missingEntryReport:
+description: |
+  This report indicates that the specified cell is empty or undefined.
+  This is report is generated if other cells in the same row are not empty.
+  
+  The reportType MUST be MISSING_ENTRY.
+type: object
+required:
+  - reportType
+  - rowIndex
+  - columnIndex
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  cells:
+    type: array
+    items:
+      $ref: '../position.yaml'
+

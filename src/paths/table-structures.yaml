@@ -92,18 +92,22 @@ generate:
         multipart/form-data:
           schema:
             type: object
-            required: [ file ]
+            required:
+              - file
+              - settings
             properties:
               file:
                 type: string
                 format: binary
+              settings:
+                $ref: '../components/schemas/tableStructureGenerationSettings.yaml'
     responses:
       '200':
         description: OK
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/tableStructure.yaml'
+              $ref: '../components/schemas/tableStructureGenerationResponse.yaml'
       '400':
         description: Bad request
       '401':
