@@ -4,6 +4,7 @@ x-field-extra-annotation: "@de.uol.pgdoener.th1.api.validation.ValidConverterTyp
 enum:
   - REMOVE_GROUPED_HEADER
   - FILL_EMPTY_ROW
+  - FILL_EMPTY_COLUMN
   - REMOVE_COLUMN_BY_INDEX
   - REMOVE_ROW_BY_INDEX
   - ADD_HEADER_NAME
