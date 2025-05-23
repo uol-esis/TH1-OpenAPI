@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.13.0
+1.15.1
 :toc: left
 :numbered:
 :toclevels: 4
@@ -463,6 +463,12 @@ Generate a tableStructure and return the result as a json
 | null
 | 
 
+| settings
+|  <<tableStructureGenerationSettings>>
+| X
+| null
+| 
+
 |===
 
 
@@ -470,7 +476,7 @@ Generate a tableStructure and return the result as a json
 
 ===== Return Type
 
-<<tableStructure>>
+<<tableStructureGenerationResponse>>
 
 
 ===== Content Type
@@ -487,7 +493,7 @@ Generate a tableStructure and return the result as a json
 
 | 200
 | OK
-|  <<tableStructure>>
+|  <<tableStructureGenerationResponse>>
 
 
 | 400
@@ -846,7 +852,7 @@ Submit feedback
 ===== Return Type
 
 
-<<Long>>
+<<UUID>>
 
 
 ===== Content Type
@@ -863,7 +869,7 @@ Submit feedback
 
 | 201
 | Created
-|  <<Long>>
+|  <<UUID>>
 
 
 | 400
@@ -924,13 +930,46 @@ The converterType MUST be ADD_HEADER_NAME.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | headerNames
 | X
 | 
 |   List   of <<string>>
 | The header names
+|     
+
+|===
+
+
+
+[#ColumnTypeMismatchReport]
+=== _ColumnTypeMismatchReport_ 
+
+This report indicates that entries in the specified column are not of the same type.
+This excludes the first row as it assumes the first row is a header.
+
+The reportType MUST be COLUMN_TYPE_MISMATCH.
+
+
+
+[.fields-ColumnTypeMismatchReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
 |     
 
 |===
@@ -952,6 +991,7 @@ This enum is used as a discriminator for structures.
 
 | REMOVE_GROUPED_HEADER
 | FILL_EMPTY_ROW
+| FILL_EMPTY_COLUMN
 | REMOVE_COLUMN_BY_INDEX
 | REMOVE_ROW_BY_INDEX
 | ADD_HEADER_NAME
@@ -964,6 +1004,103 @@ This enum is used as a discriminator for structures.
 | MERGE_COLUMNS
 
 |===
+
+
+[#EmptyColumnReport]
+=== _EmptyColumnReport_ 
+
+This report indicates that the specified column is empty.
+
+The reportType MUST be EMPTY_COLUMN.
+
+
+
+[.fields-EmptyColumnReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#EmptyHeaderReport]
+=== _EmptyHeaderReport_ 
+
+This report indicates that the specified column header is empty or undefined.
+It is assumed that the first row is the header.
+
+The reportType MUST be EMPTY_HEADER.
+
+
+
+[.fields-EmptyHeaderReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#EmptyRowReport]
+=== _EmptyRowReport_ 
+
+This report indicates that the specified row is empty.
+
+The reportType MUST be EMPTY_ROW.
+
+
+
+[.fields-EmptyRowReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
 
 
 [#Feedback]
@@ -982,6 +1119,35 @@ This represents a feedback message.
 | 
 |   String  
 | The content of the feedback message. This can be an arbitrary string. 
+|     
+
+|===
+
+
+
+[#FillEmptyColumnStructure]
+=== _FillEmptyColumnStructure_ 
+
+
+
+
+[.fields-FillEmptyColumnStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
 |     
 
 |===
@@ -1010,13 +1176,88 @@ The converterType MUST be FILL_EMPTY_ROW.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | rowIndex
 | X
 | 
 |   List   of <<integer>>
 | The indices of the rows to fill
+|     
+
+|===
+
+
+
+[#GroupedHeaderReport]
+=== _GroupedHeaderReport_ 
+
+This report indicates that the table contains a grouped header.
+The parameters describe the guessed location of the grouped header.
+
+The reportType MUST be GROUPED_HEADER.
+
+
+
+[.fields-GroupedHeaderReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| startRow
+| X
+| 
+|   Integer  
+| 
+|     
+
+| startColumn
+| X
+| 
+|   Integer  
+| 
+|     
+
+| rowsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| headerNames
+| X
+| 
+|   List   of <<string>>
+| 
 |     
 
 |===
@@ -1050,7 +1291,7 @@ The converterType MUST be MERGE_COLUMNS.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | columnIndex
 | X
@@ -1077,6 +1318,101 @@ The converterType MUST be MERGE_COLUMNS.
 
 
 
+[#MergeableColumnsReport]
+=== _MergeableColumnsReport_ 
+
+This report indicates that the specified columns are mergeable.
+This is report is generated if a tuple of columns have entries where other columns in the tuple are empty.
+
+The reportType MUST be MERGEABLE_COLUMNS.
+
+
+
+[.fields-MergeableColumnsReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| mergeables
+| 
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#MissingEntryReport]
+=== _MissingEntryReport_ 
+
+This report indicates that the specified cell is empty or undefined.
+This is report is generated if other cells in the same row are not empty.
+
+The reportType MUST be MISSING_ENTRY.
+
+
+
+[.fields-MissingEntryReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| cells
+| 
+| 
+|   List   of <<position>>
+| 
+|     
+
+|===
+
+
+
+[#Position]
+=== _Position_ 
+
+
+
+
+[.fields-Position]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| rowIndex
+| X
+| 
+|   Integer  
+| 
+|     
+
+| columnIndex
+| X
+| 
+|   Integer  
+| 
+|     
+
+|===
+
+
+
 [#RemoveColumnByIndexStructure]
 === _RemoveColumnByIndexStructure_ 
 
@@ -1097,13 +1433,85 @@ The converterType MUST be REMOVE_COLUMN_BY_INDEX.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | columnIndex
 | X
 | 
 |   List   of <<integer>>
 | The indices of the columns to remove
+|     
+
+|===
+
+
+
+[#RemoveColumnsSettings]
+=== _RemoveColumnsSettings_ 
+
+
+
+
+[.fields-RemoveColumnsSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
+[#RemoveFooterSettings]
+=== _RemoveFooterSettings_ 
+
+
+
+
+[.fields-RemoveFooterSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
 |     
 
 |===
@@ -1131,7 +1539,7 @@ The converterType MUST be REMOVE_FOOTER.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | threshold
 | 
@@ -1181,7 +1589,7 @@ The converterType MUST be REMOVE_GROUPED_HEADER.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | rowIndex
 | X
@@ -1215,6 +1623,42 @@ The converterType MUST be REMOVE_GROUPED_HEADER.
 
 
 
+[#RemoveHeaderSettings]
+=== _RemoveHeaderSettings_ 
+
+
+
+
+[.fields-RemoveHeaderSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
 [#RemoveHeaderStructure]
 === _RemoveHeaderStructure_ 
 
@@ -1236,7 +1680,7 @@ The converterType MUST be REMOVE_HEADER.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | threshold
 | 
@@ -1250,6 +1694,42 @@ The converterType MUST be REMOVE_HEADER.
 | 
 |   List   of <<string>>
 | The list of values to be considered invalid.
+|     
+
+|===
+
+
+
+[#RemoveInvalidRowsSettings]
+=== _RemoveInvalidRowsSettings_ 
+
+
+
+
+[.fields-RemoveInvalidRowsSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
 |     
 
 |===
@@ -1277,7 +1757,7 @@ The converterType MUST be REMOVE_INVALID_ROWS.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | threshold
 | 
@@ -1317,7 +1797,7 @@ The converterType MUST be REMOVE_ROW_BY_INDEX.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | rowIndex
 | X
@@ -1351,7 +1831,7 @@ The converterType MUST be REMOVE_TRAILING_COLUMN.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | threshold
 | 
@@ -1394,7 +1874,7 @@ The converterType MUST be REPLACE_ENTRIES.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | search
 | 
@@ -1449,6 +1929,183 @@ The converterType MUST be REPLACE_ENTRIES.
 
 
 
+[#Report]
+=== _Report_ 
+
+
+
+
+[.fields-Report]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| startRow
+| X
+| 
+|   Integer  
+| 
+|     
+
+| startColumn
+| X
+| 
+|   Integer  
+| 
+|     
+
+| rowsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| headerNames
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+| cells
+| 
+| 
+|   List   of <<position>>
+| 
+|     
+
+| mergeables
+| 
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#ReportType]
+=== _ReportType_ 
+
+
+
+
+
+
+[.fields-ReportType]
+[cols="1"]
+|===
+| Enum Values
+
+| COLUMN_TYPE_MISMATCH
+| GROUPED_HEADER
+| EMPTY_HEADER
+| EMPTY_ROW
+| EMPTY_COLUMN
+| SAME_AS_HEADER
+| MISSING_ENTRY
+| MERGEABLE_COLUMNS
+| SPLIT_ROW
+| SUM
+
+|===
+
+
+[#SameAsHeaderReport]
+=== _SameAsHeaderReport_ 
+
+This report indicates that the specified cell is the same as the header of the column.
+The first row is assumed to be the header.
+
+The reportType MUST be SAME_AS_HEADER.
+
+
+
+[.fields-SameAsHeaderReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| cells
+| 
+| 
+|   List   of <<position>>
+| 
+|     
+
+|===
+
+
+
+[#SplitRowReport]
+=== _SplitRowReport_ 
+
+This report indicates that the specified row can be split into multiple rows.
+
+The reportType MUST be SPLIT_ROW.
+
+
+
+[.fields-SplitRowReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
 [#SplitRowStructure]
 === _SplitRowStructure_ 
 
@@ -1476,7 +2133,7 @@ If the specified endRow is out of bounds, an error will be thrown.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | columnIndex
 | X
@@ -1528,7 +2185,7 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
 
 | name
 | 
@@ -1678,7 +2335,46 @@ It only contains the converterType to identify the use of the structure.
 | 
 |  <<converterType>>  
 | 
-|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+|===
+
+
+
+[#SumReport]
+=== _SumReport_ 
+
+This report indicates that the specified rows have sum entries and the specified columns have a sum entry at the top.
+
+The reportType MUST be SUM.
+
+
+
+[.fields-SumReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
 
 |===
 
@@ -1731,6 +2427,92 @@ The properties endRow and endColumn can be used to cut off rows and columns at t
 | 
 |   Integer  
 | The last zero-based column index of the table. All columns after this index are removed. If this property is not set, all columns are kept. 
+|     
+
+|===
+
+
+
+[#TableStructureGenerationResponse]
+=== _TableStructureGenerationResponse_ 
+
+
+
+
+[.fields-TableStructureGenerationResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| tableStructure
+| X
+| 
+| <<tableStructure>>    
+| 
+|     
+
+| reports
+| X
+| 
+|   List   of <<report>>
+| 
+|     
+
+|===
+
+
+
+[#TableStructureGenerationSettings]
+=== _TableStructureGenerationSettings_ 
+
+
+
+
+[.fields-TableStructureGenerationSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| removeHeader
+| 
+| 
+| <<removeHeaderSettings>>    
+| 
+|     
+
+| removeFooter
+| 
+| 
+| <<removeFooterSettings>>    
+| 
+|     
+
+| removeColumns
+| 
+| 
+| <<removeColumnsSettings>>    
+| 
+|     
+
+| removeInvalidRows
+| 
+| 
+| <<removeInvalidRowsSettings>>    
+| 
+|     
+
+| maxIterations
+| 
+| 
+|   Integer  
+| 
+|     
+
+| sumBlockList
+| 
+| 
+|   List   of <<string>>
+| 
 |     
 
 |===
