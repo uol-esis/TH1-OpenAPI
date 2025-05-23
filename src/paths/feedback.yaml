@@ -13,7 +13,7 @@ post:
       content:
         application/json:
           schema:
-            type: number
+            type: string
             format: uuid
     '400':
       description: Bad request
