@@ -1,0 +1,18 @@
+# mergeableColumnsReport:
+description: |
+  This report indicates that the specified columns are mergeable.
+  This is report is generated if a tuple of columns have entries where other columns in the tuple are empty.
+  
+  The reportType MUST be MERGEABLE_COLUMNS.
+type: object
+required:
+  - reportType
+  - columnIndex
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  mergeables:
+    type: array
+    items:
+      type: integer
+      minimum: 0

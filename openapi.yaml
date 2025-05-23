@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.13.0
+  version: 1.15.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -117,7 +117,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tableStructure'
+                $ref: '#/components/schemas/tableStructureGenerationResponse'
           description: OK
         "400":
           description: Bad request
@@ -139,7 +139,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/generateTableStructure_request'
+              $ref: '#/components/schemas/convertTable_request'
       responses:
         "200":
           description: OK
@@ -217,9 +217,8 @@ paths:
           content:
             application/json:
               schema:
-                format: int64
-                minimum: 1
-                type: integer
+                format: uuid
+                type: string
           description: Created
         "400":
           description: Bad request
@@ -234,17 +233,25 @@ components:
         It contains all structures and their information needed to convert a table.
         The properties endRow and endColumn can be used to cut off rows and columns at the end of the table.
       example:
-        endColumn: 1
+        id: 1
         name: Table structure 1
         structures:
-        - name: name
-          description: description
+        - name: Fill Header
+          description: Fills empty cells in the header
+          converterType: FILL_EMPTY_ROW
+          rowIndex:
+          - 0
+          - 1
+        - name: Resolve Grouped Header
+          description: Resolves the grouped header
           converterType: REMOVE_GROUPED_HEADER
-        - name: name
-          description: description
-          converterType: REMOVE_GROUPED_HEADER
-        endRow: 1
-        id: 1
+          rowIndex:
+          - 0
+          - 1
+          columnIndex:
+          - 0
+          startRow: 3
+          startColumn: 0
       properties:
         id:
           description: The ID of the table structure.
@@ -291,6 +298,7 @@ components:
         mapping:
           REMOVE_GROUPED_HEADER: '#/components/schemas/removeGroupedHeaderStructure'
           FILL_EMPTY_ROW: '#/components/schemas/fillEmptyRowStructure'
+          FILL_EMPTY_COLUMN: '#/components/schemas/fillEmptyColumnStructure'
           REMOVE_COLUMN_BY_INDEX: '#/components/schemas/removeColumnByIndexStructure'
           REMOVE_ROW_BY_INDEX: '#/components/schemas/removeRowByIndexStructure'
           ADD_HEADER_NAME: '#/components/schemas/addHeaderNameStructure'
@@ -303,14 +311,22 @@ components:
           MERGE_COLUMNS: '#/components/schemas/mergeColumnsStructure'
         propertyName: converterType
       example:
-        name: name
-        description: description
+        name: Resolve Grouped Header
+        description: Resolves the grouped header
         converterType: REMOVE_GROUPED_HEADER
+        rowIndex:
+        - 0
+        - 1
+        columnIndex:
+        - 0
+        startRow: 3
+        startColumn: 0
       oneOf:
       - $ref: '#/components/schemas/removeRowByIndexStructure'
       - $ref: '#/components/schemas/removeColumnByIndexStructure'
       - $ref: '#/components/schemas/removeGroupedHeaderStructure'
       - $ref: '#/components/schemas/fillEmptyRowStructure'
+      - $ref: '#/components/schemas/fillEmptyColumnStructure'
       - $ref: '#/components/schemas/addHeaderNameStructure'
       - $ref: '#/components/schemas/removeHeaderStructure'
       - $ref: '#/components/schemas/removeFooterStructure'
@@ -390,6 +406,7 @@ components:
       enum:
       - REMOVE_GROUPED_HEADER
       - FILL_EMPTY_ROW
+      - FILL_EMPTY_COLUMN
       - REMOVE_COLUMN_BY_INDEX
       - REMOVE_ROW_BY_INDEX
       - ADD_HEADER_NAME
@@ -536,6 +553,20 @@ components:
       required:
       - converterType
       - rowIndex
+      type: object
+    fillEmptyColumnStructure:
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+      required:
+      - columnIndex
+      - converterType
       type: object
     removeHeaderStructure:
       description: |
@@ -774,7 +805,440 @@ components:
       required:
       - content
       type: object
+    tableStructureGenerationSettings:
+      properties:
+        removeHeader:
+          $ref: '#/components/schemas/removeHeaderSettings'
+        removeFooter:
+          $ref: '#/components/schemas/removeFooterSettings'
+        removeColumns:
+          $ref: '#/components/schemas/removeColumnsSettings'
+        removeInvalidRows:
+          $ref: '#/components/schemas/removeInvalidRowsSettings'
+        maxIterations:
+          default: 5
+          minimum: 1
+          type: integer
+        sumBlockList:
+          default:
+          - gesamt
+          - ges
+          - summe
+          - sum
+          - total
+          - totalsumme
+          - teilsumme
+          - endsumme
+          items:
+            minLength: 1
+            type: string
+          type: array
+      type: object
+    removeHeaderSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
+      type: object
+    removeFooterSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
+      type: object
+    removeColumnsSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
+      type: object
+    removeInvalidRowsSettings:
+      properties:
+        enabled:
+          default: false
+          type: boolean
+        threshold:
+          default: 2
+          minimum: 0
+          type: integer
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - blockList
+      - enabled
+      - threshold
+      type: object
+    reportType:
+      enum:
+      - COLUMN_TYPE_MISMATCH
+      - GROUPED_HEADER
+      - EMPTY_HEADER
+      - EMPTY_ROW
+      - EMPTY_COLUMN
+      - SAME_AS_HEADER
+      - MISSING_ENTRY
+      - MERGEABLE_COLUMNS
+      - SPLIT_ROW
+      - SUM
+      type: string
+      x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidReportType'
+    report:
+      discriminator:
+        mapping:
+          COLUMN_TYPE_MISMATCH: '#/components/schemas/columnTypeMismatchReport'
+          GROUPED_HEADER: '#/components/schemas/groupedHeaderReport'
+          EMPTY_HEADER: '#/components/schemas/emptyHeaderReport'
+          EMPTY_ROW: '#/components/schemas/emptyRowReport'
+          EMPTY_COLUMN: '#/components/schemas/emptyColumnReport'
+          SAME_AS_HEADER: '#/components/schemas/sameAsHeaderReport'
+          MISSING_ENTRY: '#/components/schemas/missingEntryReport'
+          MERGEABLE_COLUMNS: '#/components/schemas/mergeableColumnsReport'
+          SPLIT_ROW: '#/components/schemas/splitRowReport'
+          SUM: '#/components/schemas/sumReport'
+        propertyName: reportType
+      example:
+        reportType: EMPTY_COLUMN
+        columnIndex: 42
+      oneOf:
+      - $ref: '#/components/schemas/columnTypeMismatchReport'
+      - $ref: '#/components/schemas/groupedHeaderReport'
+      - $ref: '#/components/schemas/emptyHeaderReport'
+      - $ref: '#/components/schemas/emptyRowReport'
+      - $ref: '#/components/schemas/emptyColumnReport'
+      - $ref: '#/components/schemas/sameAsHeaderReport'
+      - $ref: '#/components/schemas/missingEntryReport'
+      - $ref: '#/components/schemas/mergeableColumnsReport'
+      - $ref: '#/components/schemas/splitRowReport'
+      - $ref: '#/components/schemas/sumReport'
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+      required:
+      - reportType
+      type: object
+    columnTypeMismatchReport:
+      description: |
+        This report indicates that entries in the specified column are not of the same type.
+        This excludes the first row as it assumes the first row is a header.
+
+        The reportType MUST be COLUMN_TYPE_MISMATCH.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      type: object
+    groupedHeaderReport:
+      description: |
+        This report indicates that the table contains a grouped header.
+        The parameters describe the guessed location of the grouped header.
+
+        The reportType MUST be GROUPED_HEADER.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 1
+          type: array
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 1
+          type: array
+        startRow:
+          minimum: 0
+          type: integer
+        startColumn:
+          minimum: 0
+          type: integer
+        rowsToFill:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+        columnsToFill:
+          items:
+            minimum: 0
+            type: integer
+          minItems: 0
+          type: array
+        headerNames:
+          items:
+            minLength: 1
+            type: string
+          minItems: 0
+          type: array
+      required:
+      - columnIndex
+      - columnsToFill
+      - headerNames
+      - reportType
+      - rowIndex
+      - rowsToFill
+      - startColumn
+      - startRow
+      type: object
+    emptyHeaderReport:
+      description: |
+        This report indicates that the specified column header is empty or undefined.
+        It is assumed that the first row is the header.
+
+        The reportType MUST be EMPTY_HEADER.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      type: object
+    emptyRowReport:
+      description: |
+        This report indicates that the specified row is empty.
+
+        The reportType MUST be EMPTY_ROW.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - reportType
+      - rowIndex
+      type: object
+    emptyColumnReport:
+      description: |
+        This report indicates that the specified column is empty.
+
+        The reportType MUST be EMPTY_COLUMN.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      type: object
+    sameAsHeaderReport:
+      description: |
+        This report indicates that the specified cell is the same as the header of the column.
+        The first row is assumed to be the header.
+
+        The reportType MUST be SAME_AS_HEADER.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        cells:
+          items:
+            $ref: '#/components/schemas/position'
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      - rowIndex
+      type: object
+    missingEntryReport:
+      description: |
+        This report indicates that the specified cell is empty or undefined.
+        This is report is generated if other cells in the same row are not empty.
+
+        The reportType MUST be MISSING_ENTRY.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        cells:
+          items:
+            $ref: '#/components/schemas/position'
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      - rowIndex
+      type: object
+    mergeableColumnsReport:
+      description: |
+        This report indicates that the specified columns are mergeable.
+        This is report is generated if a tuple of columns have entries where other columns in the tuple are empty.
+
+        The reportType MUST be MERGEABLE_COLUMNS.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        mergeables:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      type: object
+    splitRowReport:
+      description: |
+        This report indicates that the specified row can be split into multiple rows.
+
+        The reportType MUST be SPLIT_ROW.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - reportType
+      - rowIndex
+      type: object
+    sumReport:
+      description: |
+        This report indicates that the specified rows have sum entries and the specified columns have a sum entry at the top.
+
+        The reportType MUST be SUM.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - columnIndex
+      - reportType
+      - rowIndex
+      type: object
+    tableStructureGenerationResponse:
+      example:
+        reports:
+        - reportType: EMPTY_COLUMN
+          columnIndex: 42
+        - reportType: EMPTY_COLUMN
+          columnIndex: 42
+        tableStructure:
+          id: 1
+          name: Table structure 1
+          structures:
+          - name: Fill Header
+            description: Fills empty cells in the header
+            converterType: FILL_EMPTY_ROW
+            rowIndex:
+            - 0
+            - 1
+          - name: Resolve Grouped Header
+            description: Resolves the grouped header
+            converterType: REMOVE_GROUPED_HEADER
+            rowIndex:
+            - 0
+            - 1
+            columnIndex:
+            - 0
+            startRow: 3
+            startColumn: 0
+      properties:
+        tableStructure:
+          $ref: '#/components/schemas/tableStructure'
+        reports:
+          items:
+            $ref: '#/components/schemas/report'
+          type: array
+      required:
+      - reports
+      - tableStructure
+      type: object
+    position:
+      properties:
+        rowIndex:
+          minimum: 0
+          type: integer
+        columnIndex:
+          minimum: 0
+          type: integer
+      required:
+      - columnIndex
+      - rowIndex
+      type: object
     generateTableStructure_request:
+      properties:
+        file:
+          format: binary
+          type: string
+        settings:
+          $ref: '#/components/schemas/tableStructureGenerationSettings'
+      required:
+      - file
+      - settings
+      type: object
+    convertTable_request:
       properties:
         file:
           format: binary

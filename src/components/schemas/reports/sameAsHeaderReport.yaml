@@ -1,0 +1,18 @@
+# sameAsHeaderReport:
+description: |
+  This report indicates that the specified cell is the same as the header of the column.
+  The first row is assumed to be the header.
+  
+  The reportType MUST be SAME_AS_HEADER.
+type: object
+required:
+  - reportType
+  - rowIndex
+  - columnIndex
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  cells:
+    type: array
+    items:
+      $ref: '../position.yaml'

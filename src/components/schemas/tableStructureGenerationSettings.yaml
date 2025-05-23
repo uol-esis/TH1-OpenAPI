@@ -1,0 +1,29 @@
+# tableStructureGenerationSettings:
+type: object
+properties:
+  removeHeader:
+    $ref: './generation/removeHeaderSettings.yaml'
+  removeFooter:
+    $ref: './generation/removeFooterSettings.yaml'
+  removeColumns:
+    $ref: './generation/removeColumnsSettings.yaml'
+  removeInvalidRows:
+    $ref: './generation/removeInvalidRowsSettings.yaml'
+  maxIterations:
+    type: integer
+    minimum: 1
+    default: 5
+  sumBlockList:
+    type: array
+    items:
+      type: string
+      minLength: 1
+    default:
+      - 'gesamt'
+      - 'ges'
+      - 'summe'
+      - 'sum'
+      - 'total'
+      - 'totalsumme'
+      - 'teilsumme'
+      - 'endsumme'

@@ -1,0 +1,17 @@
+# emptyColumnReport:
+description: |
+  This report indicates that the specified column is empty.
+  
+  The reportType MUST be EMPTY_COLUMN.
+type: object
+required:
+  - reportType
+  - columnIndex
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  columnIndex:
+    type: array
+    items:
+      type: integer
+      minimum: 0

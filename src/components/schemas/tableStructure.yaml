@@ -41,3 +41,23 @@ properties:
       If this property is not set, all columns are kept.
     type: integer
     minimum: 1
+example:
+  id: 1
+  name: Table structure 1
+  structures:
+    - name: Fill Header
+      description: Fills empty cells in the header
+      converterType: FILL_EMPTY_ROW
+      rowIndex:
+        - 0
+        - 1
+    - name: Resolve Grouped Header
+      description: Resolves the grouped header
+      converterType: REMOVE_GROUPED_HEADER
+      rowIndex:
+        - 0
+        - 1
+      columnIndex:
+        - 0
+      startRow: 3
+      startColumn: 0

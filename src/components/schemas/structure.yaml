@@ -8,6 +8,7 @@ oneOf:
   - $ref: './removeColumnByIndexStructure.yaml'
   - $ref: './removeGroupedHeaderStructure.yaml'
   - $ref: './fillEmptyRowStructure.yaml'
+  - $ref: './fillEmptyColumnStructure.yaml'
   - $ref: './addHeaderNameStructure.yaml'
   - $ref: './removeHeaderStructure.yaml'
   - $ref: './removeFooterStructure.yaml'
@@ -21,6 +22,7 @@ discriminator:
   mapping:
     REMOVE_GROUPED_HEADER: './removeGroupedHeaderStructure.yaml'
     FILL_EMPTY_ROW: './fillEmptyRowStructure.yaml'
+    FILL_EMPTY_COLUMN: './fillEmptyColumnStructure.yaml'
     REMOVE_COLUMN_BY_INDEX: './removeColumnByIndexStructure.yaml'
     REMOVE_ROW_BY_INDEX: './removeRowByIndexStructure.yaml'
     ADD_HEADER_NAME: './addHeaderNameStructure.yaml'
@@ -50,3 +52,14 @@ properties:
       It can be any string.
     type: string
     minLength: 1
+example:
+  name: Resolve Grouped Header
+  description: Resolves the grouped header
+  converterType: REMOVE_GROUPED_HEADER
+  rowIndex:
+    - 0
+    - 1
+  columnIndex:
+    - 0
+  startRow: 3
+  startColumn: 0
