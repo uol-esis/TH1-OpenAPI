@@ -1,0 +1,2560 @@
+= TH1
+team@openapitools.org
+1.15.1
+:toc: left
+:numbered:
+:toclevels: 4
+:source-highlighter: highlightjs
+:keywords: openapi, rest, TH1
+:specDir: 
+:snippetDir: 
+:generator-template: v1 2019-12-20
+:info-url: https://openapi-generator.tech
+:app-name: TH1
+
+[abstract]
+.Abstract
+TH1
+
+
+// markup not found, no include::{specDir}intro.adoc[opts=optional]
+
+
+== Access
+
+* *HTTP Basic* Authentication _BasicAuth_
+
+
+
+
+
+
+== Endpoints
+
+
+[.Default]
+=== Default
+
+
+[.convertTable]
+==== convertTable
+
+`POST /converter/{tableStructureId}`
+
+Convert a table and save it to the database
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}converter/\{tableStructureId\}/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| tableStructureId
+|  
+| X
+| null
+| 
+
+|===
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file
+|  <<file>>
+| X
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+
+
+-
+
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+
+| 404
+| Not found
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}converter/\{tableStructureId\}/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}converter/\{tableStructureId\}/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :converter/{tableStructureId}/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}converter/\{tableStructureId\}/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.createTableStructure]
+==== createTableStructure
+
+`POST /table-structures`
+
+Create a new table structure
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}table-structures/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| TableStructure
+|  <<TableStructure>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+
+<<Long>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 201
+| Created
+|  <<Long>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}table-structures/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}table-structures/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :table-structures/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}table-structures/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.deleteTableStructure]
+==== deleteTableStructure
+
+`DELETE /table-structures/{id}`
+
+Delete table structure by id
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}table-structures/\{id\}/DELETE/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| id
+|  
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+
+
+-
+
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+
+| 404
+| Not found
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}table-structures/\{id\}/DELETE/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}table-structures/\{id\}/DELETE/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :table-structures/{id}/DELETE/DELETE.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}table-structures/\{id\}/DELETE/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.fileConvertTable]
+==== fileConvertTable
+
+`POST /converter/file`
+
+Convert a table and return the result as a file
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}converter/file/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file
+|  <<file>>
+| X
+| null
+| 
+
+| tableStructure
+|  <<tableStructure>>
+| X
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+
+<<File>>
+
+
+===== Content Type
+
+* application/octet-stream
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<File>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}converter/file/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}converter/file/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :converter/file/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}converter/file/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.generateTableStructure]
+==== generateTableStructure
+
+`POST /table-structures/generate`
+
+Generate a tableStructure and return the result as a json
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}table-structures/generate/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file
+|  <<file>>
+| X
+| null
+| 
+
+| settings
+|  <<tableStructureGenerationSettings>>
+| X
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+<<tableStructureGenerationResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<tableStructureGenerationResponse>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}table-structures/generate/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}table-structures/generate/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :table-structures/generate/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}table-structures/generate/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getTableStructure]
+==== getTableStructure
+
+`GET /table-structures/{id}`
+
+Get a table structure by id
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}table-structures/\{id\}/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| id
+|  
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<tableStructure>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<tableStructure>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+
+| 404
+| Not found
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}table-structures/\{id\}/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}table-structures/\{id\}/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :table-structures/{id}/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}table-structures/\{id\}/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getTableStructures]
+==== getTableStructures
+
+`GET /table-structures`
+
+Get all table structures
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}table-structures/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+array[<<tableStructureSummary>>]
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+| List[<<tableStructureSummary>>] 
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}table-structures/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}table-structures/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :table-structures/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}table-structures/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.previewConvertTable]
+==== previewConvertTable
+
+`POST /converter/preview`
+
+Convert a table and return a preview of the result
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}converter/preview/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| file
+|  <<file>>
+| X
+| null
+| 
+
+| tableStructure
+|  <<tableStructure>>
+| X
+| null
+| 
+
+|===
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| limit
+|  
+| -
+| 10
+| 
+
+|===
+
+
+===== Return Type
+
+
+<<List>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+| List[<<string>>] 
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}converter/preview/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}converter/preview/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :converter/preview/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}converter/preview/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.submitFeedback]
+==== submitFeedback
+
+`POST /feedback`
+
+Submit feedback
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}feedback/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| Feedback
+|  <<Feedback>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+
+<<UUID>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 201
+| Created
+|  <<UUID>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}feedback/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}feedback/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :feedback/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}feedback/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[#models]
+== Models
+
+
+[#AddHeaderNameStructure]
+=== _AddHeaderNameStructure_ 
+
+This converter replaces the first row of the table with the specified header names.
+If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
+If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
+
+The converterType MUST be ADD_HEADER_NAME.
+
+
+
+[.fields-AddHeaderNameStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| headerNames
+| X
+| 
+|   List   of <<string>>
+| The header names
+|     
+
+|===
+
+
+
+[#ColumnTypeMismatchReport]
+=== _ColumnTypeMismatchReport_ 
+
+This report indicates that entries in the specified column are not of the same type.
+This excludes the first row as it assumes the first row is a header.
+
+The reportType MUST be COLUMN_TYPE_MISMATCH.
+
+
+
+[.fields-ColumnTypeMismatchReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#ConverterType]
+=== _ConverterType_ 
+
+This enum is used as a discriminator for structures.
+
+
+
+
+[.fields-ConverterType]
+[cols="1"]
+|===
+| Enum Values
+
+| REMOVE_GROUPED_HEADER
+| FILL_EMPTY_ROW
+| FILL_EMPTY_COLUMN
+| REMOVE_COLUMN_BY_INDEX
+| REMOVE_ROW_BY_INDEX
+| ADD_HEADER_NAME
+| REMOVE_FOOTER
+| REMOVE_HEADER
+| REPLACE_ENTRIES
+| SPLIT_ROW
+| REMOVE_INVALID_ROWS
+| REMOVE_TRAILING_COLUMN
+| MERGE_COLUMNS
+
+|===
+
+
+[#EmptyColumnReport]
+=== _EmptyColumnReport_ 
+
+This report indicates that the specified column is empty.
+
+The reportType MUST be EMPTY_COLUMN.
+
+
+
+[.fields-EmptyColumnReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#EmptyHeaderReport]
+=== _EmptyHeaderReport_ 
+
+This report indicates that the specified column header is empty or undefined.
+It is assumed that the first row is the header.
+
+The reportType MUST be EMPTY_HEADER.
+
+
+
+[.fields-EmptyHeaderReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#EmptyRowReport]
+=== _EmptyRowReport_ 
+
+This report indicates that the specified row is empty.
+
+The reportType MUST be EMPTY_ROW.
+
+
+
+[.fields-EmptyRowReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#Feedback]
+=== _Feedback_ 
+
+This represents a feedback message.
+
+
+[.fields-Feedback]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| content
+| X
+| 
+|   String  
+| The content of the feedback message. This can be an arbitrary string. 
+|     
+
+|===
+
+
+
+[#FillEmptyColumnStructure]
+=== _FillEmptyColumnStructure_ 
+
+
+
+
+[.fields-FillEmptyColumnStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#FillEmptyRowStructure]
+=== _FillEmptyRowStructure_ 
+
+This converter fills empty cells in the specified rows.
+It iterates through each specified row and fills empty cells with the value from the last non-empty cell.
+If there are no non-empty cells in the row an error will be thrown.
+This converter expects a non-empty cell at the beginning of each specified row.
+
+The converterType MUST be FILL_EMPTY_ROW.
+
+
+
+[.fields-FillEmptyRowStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the rows to fill
+|     
+
+|===
+
+
+
+[#GroupedHeaderReport]
+=== _GroupedHeaderReport_ 
+
+This report indicates that the table contains a grouped header.
+The parameters describe the guessed location of the grouped header.
+
+The reportType MUST be GROUPED_HEADER.
+
+
+
+[.fields-GroupedHeaderReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| startRow
+| X
+| 
+|   Integer  
+| 
+|     
+
+| startColumn
+| X
+| 
+|   Integer  
+| 
+|     
+
+| rowsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| headerNames
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
+[#MergeColumnsStructure]
+=== _MergeColumnsStructure_ 
+
+This converter merges the specified columns into a single column.
+The new column will be at the lowest index of the specified columns.
+The new column will have the specified header name.
+If there are multiple non-empty cells in the specified columns, the non-empty cell with the lowest index will be used.
+If you want to change that, you can use the precedenceOrder property.
+The precedenceOrder property specifies the order in which the cells will be checked for non-empty values.
+If not all specified columns are in the precedenceOrder, the remaining columns will be checked after the precedenceOrder.
+If there are indices in the precedenceOrder that are not in the specified columns, an error will the thrown.
+If there are no non-empty cells in the specified columns the cell will be empty.
+
+The converterType MUST be MERGE_COLUMNS.
+
+
+
+[.fields-MergeColumnsStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the columns to merge
+|     
+
+| headerName
+| X
+| 
+|   String  
+| The name of the new column
+|     
+
+| precedenceOrder
+| 
+| 
+|   List   of <<integer>>
+| The order in which the cells will be checked for non-empty values
+|     
+
+|===
+
+
+
+[#MergeableColumnsReport]
+=== _MergeableColumnsReport_ 
+
+This report indicates that the specified columns are mergeable.
+This is report is generated if a tuple of columns have entries where other columns in the tuple are empty.
+
+The reportType MUST be MERGEABLE_COLUMNS.
+
+
+
+[.fields-MergeableColumnsReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| mergeables
+| 
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#MissingEntryReport]
+=== _MissingEntryReport_ 
+
+This report indicates that the specified cell is empty or undefined.
+This is report is generated if other cells in the same row are not empty.
+
+The reportType MUST be MISSING_ENTRY.
+
+
+
+[.fields-MissingEntryReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| cells
+| 
+| 
+|   List   of <<position>>
+| 
+|     
+
+|===
+
+
+
+[#Position]
+=== _Position_ 
+
+
+
+
+[.fields-Position]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| rowIndex
+| X
+| 
+|   Integer  
+| 
+|     
+
+| columnIndex
+| X
+| 
+|   Integer  
+| 
+|     
+
+|===
+
+
+
+[#RemoveColumnByIndexStructure]
+=== _RemoveColumnByIndexStructure_ 
+
+This converter removes the specified columns from the table.
+If the specified column index is out of bounds, an error will be thrown.
+
+The converterType MUST be REMOVE_COLUMN_BY_INDEX.
+
+
+
+[.fields-RemoveColumnByIndexStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the columns to remove
+|     
+
+|===
+
+
+
+[#RemoveColumnsSettings]
+=== _RemoveColumnsSettings_ 
+
+
+
+
+[.fields-RemoveColumnsSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
+[#RemoveFooterSettings]
+=== _RemoveFooterSettings_ 
+
+
+
+
+[.fields-RemoveFooterSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
+[#RemoveFooterStructure]
+=== _RemoveFooterStructure_ 
+
+This converter removes the footer from the table.
+The footer is defined as the last rows of the table which only contain a maximum of threshold invalid values.
+The invalid values are empty cells by default but can be extended using the blockList properties.
+
+The converterType MUST be REMOVE_FOOTER.
+
+
+
+[.fields-RemoveFooterStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| threshold
+| 
+| 
+|   Integer  
+| The maximum number of invalid values in a row to be considered a footer row.
+|     
+
+| blockList
+| 
+| 
+|   List   of <<string>>
+| The list of values to be considered invalid.
+|     
+
+|===
+
+
+
+[#RemoveGroupedHeaderStructure]
+=== _RemoveGroupedHeaderStructure_ 
+
+This converter restructures the table to remove the grouped header.
+
+The rowIndex list contains the row indices of the grouped header rows.
+This can be used to describe grouped headers at the top of the table.
+Rows above the grouped header are not allowed, thus the first index in the rowIndex list has to be 0.
+
+The columnIndex list contains the column indices of the grouped header columns.
+Column indices can be used to describe grouped headers at the left of the table.
+All columns to the left of the lowest column index are removed.
+
+The properties startRow and startColumn can be used to specify the topmost and leftmost cell data points below and to the left of the grouped header.
+The startRow and startColumn properties are optional and default to below last rowIndex and to the right of the last columnIndex.
+
+The converterType MUST be REMOVE_GROUPED_HEADER.
+
+
+
+[.fields-RemoveGroupedHeaderStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the rows that are part of the grouped header at the top of the table.
+|     
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the columns that are part of the grouped header at the left of the table.
+|     
+
+| startRow
+| 
+| 
+|   Integer  
+| The index of the first data row below the grouped header.
+|     
+
+| startColumn
+| 
+| 
+|   Integer  
+| The index of the first data column to the right of the grouped header.
+|     
+
+|===
+
+
+
+[#RemoveHeaderSettings]
+=== _RemoveHeaderSettings_ 
+
+
+
+
+[.fields-RemoveHeaderSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
+[#RemoveHeaderStructure]
+=== _RemoveHeaderStructure_ 
+
+This converter removes the header from the table.
+The header is defined as the first rows of the table which only contain a maximum of threshold invalid values.
+The invalid values are empty cells by default but can be extended using the blockList properties.
+
+The converterType MUST be REMOVE_HEADER.
+
+
+
+[.fields-RemoveHeaderStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| threshold
+| 
+| 
+|   Integer  
+| The maximum number of invalid values in a row to be considered a header row.
+|     
+
+| blockList
+| 
+| 
+|   List   of <<string>>
+| The list of values to be considered invalid.
+|     
+
+|===
+
+
+
+[#RemoveInvalidRowsSettings]
+=== _RemoveInvalidRowsSettings_ 
+
+
+
+
+[.fields-RemoveInvalidRowsSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| threshold
+| X
+| 
+|   Integer  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
+[#RemoveInvalidRowsStructure]
+=== _RemoveInvalidRowsStructure_ 
+
+This converter removes invalid rows from the table.
+Invalid rows are defined as the rows of the table which only contain a maximum of threshold invalid values.
+The invalid values are empty cells by default but can be extended using the blacklist properties.
+
+The converterType MUST be REMOVE_INVALID_ROWS.
+
+
+
+[.fields-RemoveInvalidRowsStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| threshold
+| 
+| 
+|   Integer  
+| The maximum number of invalid values in a row to be considered invalid.
+|     
+
+| blackList
+| 
+| 
+|   List   of <<string>>
+| The list of values to be considered invalid.
+|     
+
+|===
+
+
+
+[#RemoveRowByIndexStructure]
+=== _RemoveRowByIndexStructure_ 
+
+This converter removes the specified rows from the table.
+If the specified row index is out of bounds, an error will be thrown.
+
+The converterType MUST be REMOVE_ROW_BY_INDEX.
+
+
+
+[.fields-RemoveRowByIndexStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the rows to remove
+|     
+
+|===
+
+
+
+[#RemoveTrailingColumnStructure]
+=== _RemoveTrailingColumnStructure_ 
+
+This converter removes invalid columns from the end of the table.
+Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
+The invalid values are empty cells by default but can be extended using the blockList properties.
+
+The converterType MUST be REMOVE_TRAILING_COLUMN.
+
+
+
+[.fields-RemoveTrailingColumnStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| threshold
+| 
+| 
+|   Integer  
+| CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of invalid values in a column to be considered invalid.
+|     
+
+| blockList
+| 
+| 
+|   List   of <<string>>
+| The list of values to be considered invalid.
+|     
+
+|===
+
+
+
+[#ReplaceEntriesStructure]
+=== _ReplaceEntriesStructure_ 
+
+This converter replaces entries in the table with the specified replacement value.
+Entries to replace can be selected by specifying either a search string or a regex search string.
+If both search and regexSearch are provided, the search will be used.
+The replacement value will be used to replace the entries.
+This converter only affects the specified area of the table.
+
+The converterType MUST be REPLACE_ENTRIES.
+
+
+
+[.fields-ReplaceEntriesStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| search
+| 
+| 
+|   String  
+| The string to search for in the table.
+|     
+
+| regexSearch
+| 
+| 
+|   String  
+| The regex pattern to search for in the table.
+|     
+
+| replacement
+| X
+| 
+|   String  
+| The value to replace the found entries with.
+|     
+
+| startRow
+| 
+| 
+|   Integer  
+| The start row index of the area to search in (inclusive).
+|     
+
+| startColumn
+| 
+| 
+|   Integer  
+| The start column index of the area to search in (inclusive).
+|     
+
+| endRow
+| 
+| 
+|   Integer  
+| The end row index of the area to search in (exclusive).
+|     
+
+| endColumn
+| 
+| 
+|   Integer  
+| The end column index of the area to search in (exclusive).
+|     
+
+|===
+
+
+
+[#Report]
+=== _Report_ 
+
+
+
+
+[.fields-Report]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| startRow
+| X
+| 
+|   Integer  
+| 
+|     
+
+| startColumn
+| X
+| 
+|   Integer  
+| 
+|     
+
+| rowsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnsToFill
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| headerNames
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+| cells
+| 
+| 
+|   List   of <<position>>
+| 
+|     
+
+| mergeables
+| 
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#ReportType]
+=== _ReportType_ 
+
+
+
+
+
+
+[.fields-ReportType]
+[cols="1"]
+|===
+| Enum Values
+
+| COLUMN_TYPE_MISMATCH
+| GROUPED_HEADER
+| EMPTY_HEADER
+| EMPTY_ROW
+| EMPTY_COLUMN
+| SAME_AS_HEADER
+| MISSING_ENTRY
+| MERGEABLE_COLUMNS
+| SPLIT_ROW
+| SUM
+
+|===
+
+
+[#SameAsHeaderReport]
+=== _SameAsHeaderReport_ 
+
+This report indicates that the specified cell is the same as the header of the column.
+The first row is assumed to be the header.
+
+The reportType MUST be SAME_AS_HEADER.
+
+
+
+[.fields-SameAsHeaderReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| cells
+| 
+| 
+|   List   of <<position>>
+| 
+|     
+
+|===
+
+
+
+[#SplitRowReport]
+=== _SplitRowReport_ 
+
+This report indicates that the specified row can be split into multiple rows.
+
+The reportType MUST be SPLIT_ROW.
+
+
+
+[.fields-SplitRowReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#SplitRowStructure]
+=== _SplitRowStructure_ 
+
+This converter splits the entries in the specified column into multiple rows.
+The entries will be split by the specified delimiter.
+The delimiter is a line break by default.
+The new rows will replace the original row.
+If the specified column index is out of bounds, an error will be thrown.
+If the specified delimiter is not found in the entry, the entry will not be split.
+If the specified startRow is greater than the endRow, an error will be thrown.
+If the specified startRow is out of bounds, an error will be thrown.
+If the specified endRow is out of bounds, an error will be thrown.
+
+  The converterType MUST be SPLIT_ROW.
+
+
+
+[.fields-SplitRowStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| columnIndex
+| X
+| 
+|   Integer  
+| The index of the column with the entries to split
+|     
+
+| delimiter
+| 
+| 
+|   String  
+| The delimiter to split the entries by. Line break by default. 
+|     
+
+| startRow
+| 
+| 
+|   Integer  
+| The start row index of the area to split (inclusive).
+|     
+
+| endRow
+| 
+| 
+|   Integer  
+| The end row index of the area to split (exclusive).
+|     
+
+|===
+
+
+
+[#Structure]
+=== _Structure_ 
+
+This is the base for all converter structures.
+The converterType is used as a discriminator to determine the specific structure.
+
+
+
+[.fields-Structure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+| name
+| 
+| 
+|   String  
+| A name for the structure. This can be used to identify the structure in the UI. It can be any string. 
+|     
+
+| description
+| 
+| 
+|   String  
+| A description for the structure. This can be used to provide more information about the structure in the UI. It can be any string. 
+|     
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the rows to fill
+|     
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| The indices of the columns to merge
+|     
+
+| startRow
+| 
+| 
+|   Integer  
+| The start row index of the area to split (inclusive).
+|     
+
+| startColumn
+| 
+| 
+|   Integer  
+| The start column index of the area to search in (inclusive).
+|     
+
+| headerNames
+| X
+| 
+|   List   of <<string>>
+| The header names
+|     
+
+| threshold
+| 
+| 
+|   Integer  
+| CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of invalid values in a column to be considered invalid.
+|     
+
+| blockList
+| 
+| 
+|   List   of <<string>>
+| The list of values to be considered invalid.
+|     
+
+| search
+| 
+| 
+|   String  
+| The string to search for in the table.
+|     
+
+| regexSearch
+| 
+| 
+|   String  
+| The regex pattern to search for in the table.
+|     
+
+| replacement
+| X
+| 
+|   String  
+| The value to replace the found entries with.
+|     
+
+| endRow
+| 
+| 
+|   Integer  
+| The end row index of the area to split (exclusive).
+|     
+
+| endColumn
+| 
+| 
+|   Integer  
+| The end column index of the area to search in (exclusive).
+|     
+
+| delimiter
+| 
+| 
+|   String  
+| The delimiter to split the entries by. Line break by default. 
+|     
+
+| blackList
+| 
+| 
+|   List   of <<string>>
+| The list of values to be considered invalid.
+|     
+
+| headerName
+| X
+| 
+|   String  
+| The name of the new column
+|     
+
+| precedenceOrder
+| 
+| 
+|   List   of <<integer>>
+| The order in which the cells will be checked for non-empty values
+|     
+
+|===
+
+
+
+[#StructureSummary]
+=== _StructureSummary_ 
+
+This is a summary of a structure.
+It only contains the converterType to identify the use of the structure.
+
+
+
+[.fields-StructureSummary]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, MERGE_COLUMNS,  
+
+|===
+
+
+
+[#SumReport]
+=== _SumReport_ 
+
+This report indicates that the specified rows have sum entries and the specified columns have a sum entry at the top.
+
+The reportType MUST be SUM.
+
+
+
+[.fields-SumReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| reportType
+| X
+| 
+|  <<reportType>>  
+| 
+|    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
+
+| rowIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+| columnIndex
+| X
+| 
+|   List   of <<integer>>
+| 
+|     
+
+|===
+
+
+
+[#TableStructure]
+=== _TableStructure_ 
+
+This is a table structure.
+It contains all structures and their information needed to convert a table.
+The properties endRow and endColumn can be used to cut off rows and columns at the end of the table.
+
+
+
+[.fields-TableStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| 
+| 
+|   Long  
+| The ID of the table structure.
+| int64    
+
+| name
+| X
+| 
+|   String  
+| The name of the table structure. This is an arbitrary string. 
+|     
+
+| structures
+| X
+| 
+|   List   of <<structure>>
+| The list of structures in the table structure.
+|     
+
+| endRow
+| 
+| 
+|   Integer  
+| The last zero-based row index of the table. All rows after this index are removed. If this property is not set, all rows are kept. 
+|     
+
+| endColumn
+| 
+| 
+|   Integer  
+| The last zero-based column index of the table. All columns after this index are removed. If this property is not set, all columns are kept. 
+|     
+
+|===
+
+
+
+[#TableStructureGenerationResponse]
+=== _TableStructureGenerationResponse_ 
+
+
+
+
+[.fields-TableStructureGenerationResponse]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| tableStructure
+| X
+| 
+| <<tableStructure>>    
+| 
+|     
+
+| reports
+| X
+| 
+|   List   of <<report>>
+| 
+|     
+
+|===
+
+
+
+[#TableStructureGenerationSettings]
+=== _TableStructureGenerationSettings_ 
+
+
+
+
+[.fields-TableStructureGenerationSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| removeHeader
+| 
+| 
+| <<removeHeaderSettings>>    
+| 
+|     
+
+| removeFooter
+| 
+| 
+| <<removeFooterSettings>>    
+| 
+|     
+
+| removeColumns
+| 
+| 
+| <<removeColumnsSettings>>    
+| 
+|     
+
+| removeInvalidRows
+| 
+| 
+| <<removeInvalidRowsSettings>>    
+| 
+|     
+
+| maxIterations
+| 
+| 
+|   Integer  
+| 
+|     
+
+| sumBlockList
+| 
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
+[#TableStructureSummary]
+=== _TableStructureSummary_ 
+
+This is a summary of a table structure.
+It contains am ID, name, and an array of structure summaries.
+However, it does not contain the actual structure with its fields.
+
+
+
+[.fields-TableStructureSummary]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   Long  
+| The ID of the table structure.
+| int64    
+
+| name
+| X
+| 
+|   String  
+| The name of the table structure. This is an arbitrary string. 
+|     
+
+| structures
+| X
+| 
+|   List   of <<structureSummary>>
+| The list of structures in the table structure as summaries.
+|     
+
+|===
+
+
+

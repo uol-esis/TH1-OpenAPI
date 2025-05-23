@@ -1,4 +1,10 @@
 #addHeaderNameStructure:
+description: |
+  This converter replaces the first row of the table with the specified header names.
+  If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
+  If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
+  
+  The converterType MUST be ADD_HEADER_NAME.
 type: object
 required:
   - converterType
@@ -7,8 +13,12 @@ properties:
   converterType:
     $ref: './converterType.yaml'
   headerNames:
+    description: The header names
+    example:
+      - "Name"
+      - "Date of Birth"
     type: array
-    minItems: 0
+    minItems: 1
     items:
       type: string
       minLength: 1

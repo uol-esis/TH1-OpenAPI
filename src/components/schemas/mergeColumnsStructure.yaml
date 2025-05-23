@@ -1,4 +1,16 @@
 #mergeColumnsStructure:
+description: |
+  This converter merges the specified columns into a single column.
+  The new column will be at the lowest index of the specified columns.
+  The new column will have the specified header name.
+  If there are multiple non-empty cells in the specified columns, the non-empty cell with the lowest index will be used.
+  If you want to change that, you can use the precedenceOrder property.
+  The precedenceOrder property specifies the order in which the cells will be checked for non-empty values.
+  If not all specified columns are in the precedenceOrder, the remaining columns will be checked after the precedenceOrder.
+  If there are indices in the precedenceOrder that are not in the specified columns, an error will the thrown.
+  If there are no non-empty cells in the specified columns the cell will be empty.
+  
+  The converterType MUST be MERGE_COLUMNS.
 type: object
 required:
   - converterType
@@ -8,15 +20,18 @@ properties:
   converterType:
     $ref: './converterType.yaml'
   columnIndex:
+    description: The indices of the columns to merge
     type: array
     minItems: 2
     items:
       type: integer
       minimum: 0
   headerName:
+    description: The name of the new column
     type: string
     minLength: 1
   precedenceOrder:
+    description: The order in which the cells will be checked for non-empty values
     type: array
     minItems: 0
     items:

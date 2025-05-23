@@ -1,4 +1,7 @@
 #structure:
+description: |
+  This is the base for all converter structures.
+  The converterType is used as a discriminator to determine the specific structure.
 type: object
 oneOf:
   - $ref: './removeRowByIndexStructure.yaml'
@@ -30,13 +33,23 @@ discriminator:
     REMOVE_INVALID_ROWS: './removeInvalidRowsStructure.yaml'
     REMOVE_TRAILING_COLUMN: './removeTrailingColumnStructure.yaml'
     MERGE_COLUMNS: './mergeColumnsStructure.yaml'
+required:
+  - converterType
 properties:
   converterType:
     $ref: './converterType.yaml'
   name:
+    description: |
+      A name for the structure.
+      This can be used to identify the structure in the UI.
+      It can be any string.
     type: string
     minLength: 1
   description:
+    description: |
+      A description for the structure.
+      This can be used to provide more information about the structure in the UI.
+      It can be any string.
     type: string
     minLength: 1
 example:

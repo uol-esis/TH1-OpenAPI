@@ -1,4 +1,8 @@
 #tableStructureSummary:
+description: |
+  This is a summary of a table structure.
+  It contains am ID, name, and an array of structure summaries.
+  However, it does not contain the actual structure with its fields.
 type: object
 required:
   - id
@@ -6,13 +10,18 @@ required:
   - structures
 properties:
   id:
+    description: The ID of the table structure.
     type: integer
     format: int64
     minimum: 1
   name:
+    description: |
+      The name of the table structure.
+      This is an arbitrary string.
     type: string
     minLength: 1
   structures:
+    description: The list of structures in the table structure as summaries.
     type: array
     minItems: 0
     items:
