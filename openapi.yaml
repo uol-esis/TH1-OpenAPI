@@ -632,6 +632,20 @@ components:
           default: 5
           minimum: 1
           type: integer
+        sumBlockList:
+          default:
+          - gesamt
+          - ges
+          - summe
+          - sum
+          - total
+          - totalsumme
+          - teilsumme
+          - endsumme
+          items:
+            minLength: 1
+            type: string
+          type: array
       type: object
     removeHeaderSettings:
       properties:
@@ -734,6 +748,7 @@ components:
           MISSING_ENTRY: '#/components/schemas/missingEntryReport'
           MERGEABLE_COLUMNS: '#/components/schemas/mergeableColumnsReport'
           SPLIT_ROW: '#/components/schemas/splitRowReport'
+          SUM: '#/components/schemas/sumReport'
         propertyName: reportType
       example:
         reportType: EMPTY_COLUMN
@@ -748,6 +763,7 @@ components:
       - $ref: '#/components/schemas/missingEntryReport'
       - $ref: '#/components/schemas/mergeableColumnsReport'
       - $ref: '#/components/schemas/splitRowReport'
+      - $ref: '#/components/schemas/sumReport'
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
@@ -947,6 +963,29 @@ components:
             type: integer
           type: array
       required:
+      - reportType
+      - rowIndex
+      type: object
+    sumReport:
+      description: |
+        This report indicates that the specified rows have sum entries and the specified columns have a sum entry at the top.
+
+        The reportType MUST be SUM.
+      properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+        columnIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - columnIndex
       - reportType
       - rowIndex
       type: object

@@ -10,6 +10,7 @@ oneOf:
   - $ref: './reports/missingEntryReport.yaml'
   - $ref: './reports/mergeableColumnsReport.yaml'
   - $ref: './reports/splitRowReport.yaml'
+  - $ref: './reports/sumReport.yaml'
 discriminator:
   propertyName: reportType
   mapping:
@@ -22,6 +23,7 @@ discriminator:
     MISSING_ENTRY: './reports/missingEntryReport.yaml'
     MERGEABLE_COLUMNS: './reports/mergeableColumnsReport.yaml'
     SPLIT_ROW: './reports/splitRowReport.yaml'
+    SUM: './reports/sumReport.yaml'
 required:
   - reportType
 properties:

@@ -132,6 +132,8 @@ components:
       $ref: './components/schemas/reports/mergeableColumnsReport.yaml'
     splitRowReport:
       $ref: './components/schemas/reports/splitRowReport.yaml'
+    sumReport:
+      $ref: './components/schemas/reports/sumReport.yaml'
 
     tableStructureGenerationResponse:
       $ref: './components/schemas/tableStructureGenerationResponse.yaml'
