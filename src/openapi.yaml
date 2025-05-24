@@ -28,7 +28,8 @@ servers:
     }
 
 security:
-  - BasicAuth: [ ]
+  - oAuth2Auth:
+    - user
 
 paths:
   /table-structures:
@@ -54,9 +55,8 @@ paths:
 
 components:
   securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
+    oAuth2Auth:
+      $ref: './components/securitySchemes/oAuth2.yaml'
   schemas:
     tableStructure:
       $ref: './components/schemas/tableStructure.yaml'

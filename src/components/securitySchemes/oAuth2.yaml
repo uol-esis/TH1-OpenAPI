@@ -1,0 +1,7 @@
+type: oauth2
+flows:
+  authorizationCode:
+    authorizationUrl: https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/auth
+    tokenUrl: https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/token
+    scopes:
+      user: scope to used for restricted endpoints

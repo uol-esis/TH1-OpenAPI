@@ -2,6 +2,9 @@ file:
   post:
     summary: Convert a table and return the result as a file
     operationId: fileConvertTable
+    security:
+      - oAuth2Auth:
+        - user
     requestBody:
       content:
         multipart/form-data:
@@ -31,6 +34,9 @@ preview:
   post:
     summary: Convert a table and return a preview of the result
     operationId: previewConvertTable
+    security:
+      - oAuth2Auth:
+        - user
     parameters:
       - name: limit
         in: query
@@ -71,6 +77,9 @@ table-structure-id:
   post:
     summary: Convert a table and save it to the database
     operationId: convertTable
+    security:
+      - oAuth2Auth:
+        - user
     parameters:
       - name: tableStructureId
         in: path

@@ -1,6 +1,9 @@
 post:
   summary: Submit feedback
   operationId: submitFeedback
+  security:
+      - oAuth2Auth:
+        - user
   requestBody:
     required: true
     content:
