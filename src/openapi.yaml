@@ -116,6 +116,8 @@ components:
       $ref: './components/schemas/report.yaml'
     columnTypeMismatchReport:
       $ref: './components/schemas/reports/columnTypeMismatchReport.yaml'
+    columnTypeMismatch:
+      $ref: './components/schemas/reports/columnTypeMismatch.yaml'
     groupedHeaderReport:
       $ref: './components/schemas/reports/groupedHeaderReport.yaml'
     emptyHeaderReport:
