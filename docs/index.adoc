@@ -1005,7 +1005,7 @@ The reportType MUST be COLUMN_TYPE_MISMATCH.
 | mismatches
 | X
 | 
-| <<columnTypeMismatch>>    
+|   List   of <<columnTypeMismatch>>
 | 
 |     
 
@@ -1987,7 +1987,7 @@ The converterType MUST be REPLACE_ENTRIES.
 | mismatches
 | X
 | 
-| <<columnTypeMismatch>>    
+|   List   of <<columnTypeMismatch>>
 | 
 |     
 

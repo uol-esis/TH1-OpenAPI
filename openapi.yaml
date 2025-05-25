@@ -968,7 +968,9 @@ components:
         reportType:
           $ref: '#/components/schemas/reportType'
         mismatches:
-          $ref: '#/components/schemas/columnTypeMismatch'
+          items:
+            $ref: '#/components/schemas/columnTypeMismatch'
+          type: array
       required:
       - mismatches
       - reportType

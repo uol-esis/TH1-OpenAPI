@@ -12,4 +12,6 @@ properties:
   reportType:
     $ref: '../reportType.yaml'
   mismatches:
-    $ref: './columnTypeMismatch.yaml'
+    type: array
+    items:
+      $ref: './columnTypeMismatch.yaml'
