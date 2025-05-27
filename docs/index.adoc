@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.15.1
+1.16.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -943,6 +943,43 @@ The converterType MUST be ADD_HEADER_NAME.
 
 
 
+[#ColumnTypeMismatch]
+=== _ColumnTypeMismatch_ 
+
+This is a type mismatch report for a specific column in a table structure.
+
+
+
+[.fields-ColumnTypeMismatch]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| columnIndex
+| X
+| 
+|   Integer  
+| 
+|     
+
+| replacementSearch
+| 
+| 
+|   String  
+| If the mismatch can be resolved by replacing a value, this field contains the search string.
+|     
+
+| replacementValue
+| 
+| 
+|   String  
+| If the mismatch can be resolved by replacing a value, this field contains the replacement value.
+|     
+
+|===
+
+
+
 [#ColumnTypeMismatchReport]
 === _ColumnTypeMismatchReport_ 
 
@@ -965,10 +1002,10 @@ The reportType MUST be COLUMN_TYPE_MISMATCH.
 | 
 |    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
 
-| columnIndex
+| mismatches
 | X
 | 
-|   List   of <<integer>>
+|   List   of <<columnTypeMismatch>>
 | 
 |     
 
@@ -1947,14 +1984,21 @@ The converterType MUST be REPLACE_ENTRIES.
 | 
 |    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
 
-| columnIndex
+| mismatches
+| X
+| 
+|   List   of <<columnTypeMismatch>>
+| 
+|     
+
+| rowIndex
 | X
 | 
 |   List   of <<integer>>
 | 
 |     
 
-| rowIndex
+| columnIndex
 | X
 | 
 |   List   of <<integer>>

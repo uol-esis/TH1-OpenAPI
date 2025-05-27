@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.15.1
+  version: 1.16.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -967,14 +967,31 @@ components:
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
-        columnIndex:
+        mismatches:
           items:
-            minimum: 0
-            type: integer
+            $ref: '#/components/schemas/columnTypeMismatch'
           type: array
       required:
-      - columnIndex
+      - mismatches
       - reportType
+      type: object
+    columnTypeMismatch:
+      description: |
+        This is a type mismatch report for a specific column in a table structure.
+      properties:
+        columnIndex:
+          minimum: 0
+          type: integer
+        replacementSearch:
+          description: "If the mismatch can be resolved by replacing a value, this\
+            \ field contains the search string."
+          type: string
+        replacementValue:
+          description: "If the mismatch can be resolved by replacing a value, this\
+            \ field contains the replacement value."
+          type: string
+      required:
+      - columnIndex
       type: object
     groupedHeaderReport:
       description: |

@@ -1,0 +1,16 @@
+# columnTypeMismatch:
+description: |
+  This is a type mismatch report for a specific column in a table structure.
+type: object
+required:
+  - columnIndex
+properties:
+  columnIndex:
+    type: integer
+    minimum: 0
+  replacementSearch:
+    description: If the mismatch can be resolved by replacing a value, this field contains the search string.
+    type: string
+  replacementValue:
+    description: If the mismatch can be resolved by replacing a value, this field contains the replacement value.
+    type: string
