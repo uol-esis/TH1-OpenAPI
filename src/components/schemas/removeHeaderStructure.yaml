@@ -19,7 +19,7 @@ properties:
   blockList:
     description: The list of values to be considered invalid.
     type: array
-    minItems: 1
+    minItems: 0
     items:
       type: string
       minLength: 0
