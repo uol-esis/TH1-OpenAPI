@@ -17,7 +17,7 @@ properties:
   search:
     description: The string to search for in the table.
     type: string
-    minLength: 1
+    minLength: 0
   regexSearch:
     description: The regex pattern to search for in the table.
     type: string
