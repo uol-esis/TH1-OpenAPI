@@ -590,7 +590,6 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             a header row.
           minimum: 0
@@ -616,7 +615,6 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             a footer row.
           minimum: 0
@@ -724,7 +722,6 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             invalid.
           minimum: 0
