@@ -93,6 +93,8 @@ components:
       $ref: './components/schemas/removeInvalidRowsStructure.yaml'
     removeTrailingColumnStructure:
       $ref: './components/schemas/removeTrailingColumnStructure.yaml'
+    removeLeadingColumnStructure:
+       $ref: './components/schemas/removeLeadingColumnStructure.yaml'
     mergeColumnsStructure:
       $ref: './components/schemas/mergeColumnsStructure.yaml'
 
@@ -107,6 +109,8 @@ components:
       $ref: './components/schemas/generation/removeFooterSettings.yaml'
     removeColumnsSettings:
       $ref: './components/schemas/generation/removeColumnsSettings.yaml'
+    removeLeadingColumnsSettings:
+      $ref: './components/schemas/generation/removeLeadingColumnSettings.yaml'
     removeInvalidRowsSettings:
       $ref: './components/schemas/generation/removeInvalidRowsSettings.yaml'
 
