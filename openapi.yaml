@@ -726,7 +726,7 @@ components:
             invalid.
           minimum: 0
           type: integer
-        blackList:
+        blockList:
           description: The list of values to be considered invalid.
           items:
             minimum: 0
