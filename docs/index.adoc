@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.16.2
+1.17.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -1816,7 +1816,7 @@ The converterType MUST be REMOVE_INVALID_ROWS.
 | The maximum number of invalid values in a row to be considered invalid.
 |     
 
-| blackList
+| blockList
 | 
 | 
 |   List   of <<string>>
@@ -2347,13 +2347,6 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 |   String  
 | The delimiter to split the entries by. Line break by default. 
-|     
-
-| blackList
-| 
-| 
-|   List   of <<string>>
-| The list of values to be considered invalid.
 |     
 
 | headerName

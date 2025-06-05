@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.16.2
+  version: 1.17.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -590,7 +590,6 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             a header row.
           minimum: 0
@@ -616,7 +615,6 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             a footer row.
           minimum: 0
@@ -724,12 +722,11 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             invalid.
           minimum: 0
           type: integer
-        blackList:
+        blockList:
           description: The list of values to be considered invalid.
           items:
             minimum: 0
@@ -851,7 +848,6 @@ components:
           default: true
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
@@ -870,7 +866,6 @@ components:
           default: true
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
@@ -889,7 +884,6 @@ components:
           default: true
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
@@ -908,7 +902,6 @@ components:
           default: false
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
