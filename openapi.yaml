@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.17.0
+  version: 1.18.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -739,18 +739,12 @@ components:
     removeTrailingColumnStructure:
       description: |
         This converter removes invalid columns from the end of the table.
-        Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
         The invalid values are empty cells by default but can be extended using the blockList properties.
 
         The converterType MUST be REMOVE_TRAILING_COLUMN.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
-        threshold:
-          description: CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of
-            invalid values in a column to be considered invalid.
-          minimum: 0
-          type: integer
         blockList:
           description: The list of values to be considered invalid.
           items:
