@@ -27,10 +27,6 @@ servers:
       }
     }
 
-security:
-  - oAuth2Auth:
-    - user
-
 paths:
   /table-structures:
     $ref: './paths/table-structures.yaml#/root'

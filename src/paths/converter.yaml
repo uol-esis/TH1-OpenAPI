@@ -4,7 +4,7 @@ file:
     operationId: fileConvertTable
     security:
       - oAuth2Auth:
-        - user
+        - read:converter
     requestBody:
       content:
         multipart/form-data:
@@ -36,7 +36,7 @@ preview:
     operationId: previewConvertTable
     security:
       - oAuth2Auth:
-        - user
+        - read:converter
     parameters:
       - name: limit
         in: query
@@ -79,7 +79,7 @@ table-structure-id:
     operationId: convertTable
     security:
       - oAuth2Auth:
-        - user
+        - write:converter
     parameters:
       - name: tableStructureId
         in: path

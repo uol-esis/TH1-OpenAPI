@@ -4,7 +4,7 @@ root:
     operationId: getTableStructures
     security:
       - oAuth2Auth:
-        - user
+        - read:tablestructure
     responses:
       '200':
         description: OK
@@ -21,7 +21,7 @@ root:
     operationId: createTableStructure
     security:
       - oAuth2Auth:
-        - user
+        - write:tablestructure
     requestBody:
       required: true
       content:
@@ -48,7 +48,7 @@ by-id:
     operationId: getTableStructure
     security:
       - oAuth2Auth:
-        - user
+        - read:tablestructure
     parameters:
       - name: id
         in: path
@@ -76,7 +76,7 @@ by-id:
     operationId: deleteTableStructure
     security:
       - oAuth2Auth:
-        - user
+        - write:tablestructure
     parameters:
       - name: id
         in: path
@@ -101,7 +101,7 @@ generate:
     operationId: generateTableStructure
     security:
       - oAuth2Auth:
-        - user
+        - read:tablestructure
     requestBody:
       content:
         multipart/form-data:
