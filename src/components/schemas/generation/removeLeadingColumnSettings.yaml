@@ -1,0 +1,14 @@
+# removeLeadingColumnsSettings:
+type: object
+required:
+  - enabled
+  - blockList
+properties:
+  enabled:
+    type: boolean
+    default: true
+  blockList:
+    type: array
+    items:
+      type: string
+      minLength: 1

@@ -1,0 +1,18 @@
+#removeLeadingColumnStructure:
+description: |
+  This converter removes invalid columns from the begin of the table.
+  The invalid values are empty cells by default but can be extended using the blockList properties.
+  The converterType MUST be REMOVE_LEADING_COLUMN.
+type: object
+required:
+  - converterType
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  blockList:
+    description: The list of values to be considered invalid.
+    type: array
+    minItems: 0
+    items:
+      type: string
+      minimum: 0
