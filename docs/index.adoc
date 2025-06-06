@@ -1817,7 +1817,7 @@ The converterType MUST be REMOVE_INVALID_ROWS.
 | The maximum number of invalid values in a row to be considered invalid.
 |     
 
-| blackList
+| blockList
 | 
 | 
 |   List   of <<string>>
@@ -1955,7 +1955,6 @@ The converterType MUST be REMOVE_ROW_BY_INDEX.
 === _RemoveTrailingColumnStructure_ 
 
 This converter removes invalid columns from the end of the table.
-Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
 The invalid values are empty cells by default but can be extended using the blockList properties.
 
 The converterType MUST be REMOVE_TRAILING_COLUMN.
@@ -1973,13 +1972,6 @@ The converterType MUST be REMOVE_TRAILING_COLUMN.
 |  <<converterType>>  
 | 
 |    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, REMOVE_LEADING_COLUMN, MERGE_COLUMNS,  
-
-| threshold
-| 
-| 
-|   Integer  
-| CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of invalid values in a column to be considered invalid.
-|     
 
 | blockList
 | 
@@ -2388,7 +2380,7 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 | 
 |   Integer  
-| CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of invalid values in a column to be considered invalid.
+| The maximum number of invalid values in a row to be considered invalid.
 |     
 
 | blockList
@@ -2438,13 +2430,6 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 |   String  
 | The delimiter to split the entries by. Line break by default. 
-|     
-
-| blackList
-| 
-| 
-|   List   of <<string>>
-| The list of values to be considered invalid.
 |     
 
 | headerName

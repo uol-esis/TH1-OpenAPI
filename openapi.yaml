@@ -593,7 +593,6 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             a header row.
           minimum: 0
@@ -619,7 +618,6 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             a footer row.
           minimum: 0
@@ -727,12 +725,11 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
         threshold:
-          default: 2
           description: The maximum number of invalid values in a row to be considered
             invalid.
           minimum: 0
           type: integer
-        blackList:
+        blockList:
           description: The list of values to be considered invalid.
           items:
             minimum: 0
@@ -745,18 +742,12 @@ components:
     removeTrailingColumnStructure:
       description: |
         This converter removes invalid columns from the end of the table.
-        Invalid columns are defined as the columns of the table which only contain a maximum of threshold invalid values.
         The invalid values are empty cells by default but can be extended using the blockList properties.
 
         The converterType MUST be REMOVE_TRAILING_COLUMN.
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
-        threshold:
-          description: CURRENTLY NOT IMPLEMENTED BY BACKEND The maximum number of
-            invalid values in a column to be considered invalid.
-          minimum: 0
-          type: integer
         blockList:
           description: The list of values to be considered invalid.
           items:
@@ -872,7 +863,6 @@ components:
           default: true
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
@@ -891,7 +881,6 @@ components:
           default: true
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
@@ -910,7 +899,6 @@ components:
           default: true
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
@@ -943,7 +931,6 @@ components:
           default: false
           type: boolean
         threshold:
-          default: 2
           minimum: 0
           type: integer
         blockList:
