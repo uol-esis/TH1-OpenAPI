@@ -88,6 +88,13 @@ table-structure-id:
           type: integer
           format: int64
           minimum: 1
+      - name: mode
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [ CREATE, EXTEND, REPLACE, RESTRUCTURE ]
+          default: "CREATE"
     requestBody:
       content:
         multipart/form-data:

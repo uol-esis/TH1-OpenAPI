@@ -7,12 +7,11 @@ description: |
 type: object
 required:
   - reportType
-  - columnIndex
+  - mismatches
 properties:
   reportType:
     $ref: '../reportType.yaml'
-  columnIndex:
+  mismatches:
     type: array
     items:
-      type: integer
-      minimum: 0
+      $ref: './columnTypeMismatch.yaml'

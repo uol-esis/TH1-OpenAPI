@@ -1,4 +1,12 @@
 #replaceEntriesStructure:
+description: |
+  This converter replaces entries in the table with the specified replacement value.
+  Entries to replace can be selected by specifying either a search string or a regex search string.
+  If both search and regexSearch are provided, the search will be used.
+  The replacement value will be used to replace the entries.
+  This converter only affects the specified area of the table.
+  
+  The converterType MUST be REPLACE_ENTRIES.
 type: object
 required:
   - converterType
@@ -7,23 +15,30 @@ properties:
   converterType:
     $ref: './converterType.yaml'
   search:
+    description: The string to search for in the table.
     type: string
-    minLength: 1
+    minLength: 0
   regexSearch:
+    description: The regex pattern to search for in the table.
     type: string
     minLength: 1
   replacement:
+    description: The value to replace the found entries with.
     type: string
     minLength: 0
   startRow:
+    description: The start row index of the area to search in (inclusive).
     type: integer
     minimum: 0
   startColumn:
+    description: The start column index of the area to search in (inclusive).
     type: integer
     minimum: 0
   endRow:
+    description: The end row index of the area to search in (exclusive).
     type: integer
     minimum: 0
   endColumn:
+    description: The end column index of the area to search in (exclusive).
     type: integer
     minimum: 0
