@@ -22,10 +22,7 @@ TH1
 
 == Access
 
-* *HTTP Basic* Authentication _BasicAuth_
-
-
-
+* *OAuth*  AuthorizationUrl: _https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/auth_, TokenUrl:   _https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/token_ 
 
 
 
