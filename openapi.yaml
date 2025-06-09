@@ -1194,11 +1194,11 @@ components:
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
-        rowIndex:
-          items:
-            minimum: 0
-            type: integer
-          type: array
+        columnIndex:
+          minimum: 0
+          type: integer
+        delimiter:
+          type: string
       required:
       - reportType
       - rowIndex

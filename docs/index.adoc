@@ -2172,6 +2172,13 @@ The converterType MUST be REPLACE_ENTRIES.
 | 
 |     
 
+| delimiter
+| 
+| 
+|   String  
+| 
+|     
+
 |===
 
 
@@ -2257,10 +2264,17 @@ The reportType MUST be SPLIT_ROW.
 | 
 |    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
 
-| rowIndex
-| X
+| columnIndex
 | 
-|   List   of <<integer>>
+| 
+|   Integer  
+| 
+|     
+
+| delimiter
+| 
+| 
+|   String  
 | 
 |     
 
