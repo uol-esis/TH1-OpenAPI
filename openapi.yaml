@@ -1200,8 +1200,9 @@ components:
         delimiter:
           type: string
       required:
+      - columnIndex
+      - delimiter
       - reportType
-      - rowIndex
       type: object
     sumReport:
       description: |

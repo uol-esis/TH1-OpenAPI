@@ -6,7 +6,8 @@ description: |
 type: object
 required:
   - reportType
-  - rowIndex
+  - columnIndex
+  - delimiter
 properties:
   reportType:
     $ref: '../reportType.yaml'
