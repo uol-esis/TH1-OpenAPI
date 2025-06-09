@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.18.0
+  version: 1.20.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -344,6 +344,7 @@ components:
           SPLIT_ROW: '#/components/schemas/splitRowStructure'
           REMOVE_INVALID_ROWS: '#/components/schemas/removeInvalidRowsStructure'
           REMOVE_TRAILING_COLUMN: '#/components/schemas/removeTrailingColumnStructure'
+          REMOVE_LEADING_COLUMN: '#/components/schemas/removeLeadingColumnStructure'
           MERGE_COLUMNS: '#/components/schemas/mergeColumnsStructure'
         propertyName: converterType
       example:
@@ -370,6 +371,7 @@ components:
       - $ref: '#/components/schemas/splitRowStructure'
       - $ref: '#/components/schemas/removeInvalidRowsStructure'
       - $ref: '#/components/schemas/removeTrailingColumnStructure'
+      - $ref: '#/components/schemas/removeLeadingColumnStructure'
       - $ref: '#/components/schemas/mergeColumnsStructure'
       properties:
         converterType:
@@ -452,6 +454,7 @@ components:
       - SPLIT_ROW
       - REMOVE_INVALID_ROWS
       - REMOVE_TRAILING_COLUMN
+      - REMOVE_LEADING_COLUMN
       - MERGE_COLUMNS
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
@@ -780,6 +783,24 @@ components:
       required:
       - converterType
       type: object
+    removeLeadingColumnStructure:
+      description: |
+        This converter removes invalid columns from the begin of the table.
+        The invalid values are empty cells by default but can be extended using the blockList properties.
+        The converterType MUST be REMOVE_LEADING_COLUMN.
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        blockList:
+          description: The list of values to be considered invalid.
+          items:
+            minimum: 0
+            type: string
+          minItems: 0
+          type: array
+      required:
+      - converterType
+      type: object
     mergeColumnsStructure:
       description: |
         This converter merges the specified columns into a single column.
@@ -914,6 +935,20 @@ components:
       - blockList
       - enabled
       - threshold
+      type: object
+    removeLeadingColumnsSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - blockList
+      - enabled
       type: object
     removeInvalidRowsSettings:
       properties:
@@ -1266,6 +1301,20 @@ components:
       required:
       - columnIndex
       - rowIndex
+      type: object
+    removeLeadingColumnSettings:
+      properties:
+        enabled:
+          default: true
+          type: boolean
+        blockList:
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - blockList
+      - enabled
       type: object
     generateTableStructure_request:
       properties:
