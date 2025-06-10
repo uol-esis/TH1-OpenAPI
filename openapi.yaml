@@ -834,10 +834,8 @@ components:
           $ref: '#/components/schemas/removeHeaderSettings'
         removeFooter:
           $ref: '#/components/schemas/removeFooterSettings'
-        removeTrailingColumn:
-          $ref: '#/components/schemas/removeTrailingColumnSettings'
-        removeLeadingColumn:
-          $ref: '#/components/schemas/removeLeadingColumnSettings'
+        removeColumns:
+          $ref: '#/components/schemas/removeColumnsSettings'
         removeInvalidRows:
           $ref: '#/components/schemas/removeInvalidRowsSettings'
         maxIterations:
@@ -900,6 +898,9 @@ components:
         enabled:
           default: true
           type: boolean
+        threshold:
+          minimum: 0
+          type: integer
         blockList:
           items:
             minLength: 1
@@ -1194,15 +1195,14 @@ components:
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
-        columnIndex:
-          minimum: 0
-          type: integer
-        delimiter:
-          type: string
+        rowIndex:
+          items:
+            minimum: 0
+            type: integer
+          type: array
       required:
-      - columnIndex
-      - delimiter
       - reportType
+      - rowIndex
       type: object
     sumReport:
       description: |
@@ -1276,21 +1276,6 @@ components:
       required:
       - columnIndex
       - rowIndex
-      type: object
-    removeTrailingColumnSettings:
-      properties:
-        enabled:
-          default: true
-          type: boolean
-        blockList:
-          items:
-            minLength: 1
-            type: string
-          type: array
-      required:
-      - blockList
-      - enabled
-      - threshold
       type: object
     removeLeadingColumnSettings:
       properties:
