@@ -1515,13 +1515,6 @@ The converterType MUST be REMOVE_COLUMN_BY_INDEX.
 | 
 |     
 
-| threshold
-| X
-| 
-|   Integer  
-| 
-|     
-
 | blockList
 | X
 | 
@@ -1951,6 +1944,35 @@ The converterType MUST be REMOVE_ROW_BY_INDEX.
 
 
 
+[#RemoveTrailingColumnSettings]
+=== _RemoveTrailingColumnSettings_ 
+
+
+
+
+[.fields-RemoveTrailingColumnSettings]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| enabled
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| blockList
+| X
+| 
+|   List   of <<string>>
+| 
+|     
+
+|===
+
+
+
 [#RemoveTrailingColumnStructure]
 === _RemoveTrailingColumnStructure_ 
 
@@ -2150,6 +2172,13 @@ The converterType MUST be REPLACE_ENTRIES.
 | 
 |     
 
+| delimiter
+| X
+| 
+|   String  
+| 
+|     
+
 |===
 
 
@@ -2235,10 +2264,17 @@ The reportType MUST be SPLIT_ROW.
 | 
 |    COLUMN_TYPE_MISMATCH, GROUPED_HEADER, EMPTY_HEADER, EMPTY_ROW, EMPTY_COLUMN, SAME_AS_HEADER, MISSING_ENTRY, MERGEABLE_COLUMNS, SPLIT_ROW, SUM,  
 
-| rowIndex
+| columnIndex
 | X
 | 
-|   List   of <<integer>>
+|   Integer  
+| 
+|     
+
+| delimiter
+| X
+| 
+|   String  
 | 
 |     
 
@@ -2620,10 +2656,17 @@ The properties endRow and endColumn can be used to cut off rows and columns at t
 | 
 |     
 
-| removeColumns
+| removeTrailingColumn
 | 
 | 
-| <<removeColumnsSettings>>    
+| <<removeTrailingColumnSettings>>    
+| 
+|     
+
+| removeLeadingColumn
+| 
+| 
+| <<removeLeadingColumnSettings>>    
 | 
 |     
 
