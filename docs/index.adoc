@@ -2030,6 +2030,13 @@ The converterType MUST be REPLACE_ENTRIES.
 | The value to replace the found entries with.
 |     
 
+| columnIndex
+| 
+| 
+|   List   of <<integer>>
+| The indices of the columns to replace
+|     
+
 | startRow
 | 
 | 
@@ -2037,25 +2044,11 @@ The converterType MUST be REPLACE_ENTRIES.
 | The start row index of the area to search in (inclusive).
 |     
 
-| startColumn
-| 
-| 
-|   Integer  
-| The start column index of the area to search in (inclusive).
-|     
-
 | endRow
 | 
 | 
 |   Integer  
 | The end row index of the area to search in (exclusive).
-|     
-
-| endColumn
-| 
-| 
-|   Integer  
-| The end column index of the area to search in (exclusive).
 |     
 
 |===
@@ -2366,7 +2359,7 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 | 
 |   Integer  
-| The start column index of the area to search in (inclusive).
+| The index of the first data column to the right of the grouped header.
 |     
 
 | headerNames
@@ -2416,13 +2409,6 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 |   Integer  
 | The end row index of the area to split (exclusive).
-|     
-
-| endColumn
-| 
-| 
-|   Integer  
-| The end column index of the area to search in (exclusive).
 |     
 
 | delimiter

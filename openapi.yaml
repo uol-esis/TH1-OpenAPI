@@ -656,20 +656,19 @@ components:
           description: The value to replace the found entries with.
           minLength: 0
           type: string
+        columnIndex:
+          description: The indices of the columns to replace
+          items:
+            minimum: 0
+            type: integer
+          minItems: 1
+          type: array
         startRow:
           description: The start row index of the area to search in (inclusive).
           minimum: 0
           type: integer
-        startColumn:
-          description: The start column index of the area to search in (inclusive).
-          minimum: 0
-          type: integer
         endRow:
           description: The end row index of the area to search in (exclusive).
-          minimum: 0
-          type: integer
-        endColumn:
-          description: The end column index of the area to search in (exclusive).
           minimum: 0
           type: integer
       required:
