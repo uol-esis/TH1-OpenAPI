@@ -85,7 +85,6 @@ table-structure-id:
         schema:
           type: string
           enum: [ CREATE, EXTEND, REPLACE, RESTRUCTURE ]
-          default: "CREATE"
     requestBody:
       content:
         multipart/form-data:
