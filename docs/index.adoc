@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.19.0
+1.19.1
 :toc: left
 :numbered:
 :toclevels: 4
@@ -93,7 +93,7 @@ Convert a table and save it to the database
 | mode
 |  
 | -
-| CREATE
+| null
 | 
 
 |===
