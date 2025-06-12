@@ -1012,10 +1012,8 @@ components:
         This is a type mismatch report for a specific column in a table structure.
       properties:
         columnIndex:
-          items:
-            minimum: 0
-            type: integer
-          type: array
+          minimum: 0
+          type: integer
         replacementSearch:
           description: "If the mismatch can be resolved by replacing a value, this\
             \ field contains the search string."
