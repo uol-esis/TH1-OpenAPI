@@ -971,7 +971,7 @@ This is a type mismatch report for a specific column in a table structure.
 | columnIndex
 | X
 | 
-|   Integer  
+|   List   of <<integer>>
 | 
 |     
 
