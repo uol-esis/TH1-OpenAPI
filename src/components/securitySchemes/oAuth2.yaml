@@ -1,0 +1,12 @@
+type: oauth2
+flows:
+  authorizationCode:
+    authorizationUrl: https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/auth
+    tokenUrl: https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/token
+    scopes:
+      write:feedback: Scope to enable users to write feedback
+      read:feedback: Scope to enable users to read feedback
+      write:converter: Scope to enable users to write converter requests
+      read:converter: Scope to enable users to read converter requests
+      write:tablestructure: Scope to enable users to write table structures
+      read:tablestructure: Scope to enable users to read table structures

@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.19.0
+  version: 1.20.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -19,8 +19,6 @@ servers:
   variables:
     port:
       default: "8080"
-security:
-- BasicAuth: []
 paths:
   /table-structures:
     get:
@@ -36,6 +34,9 @@ paths:
           description: OK
         "401":
           description: Unauthorized
+      security:
+      - oAuth2Auth:
+        - read:tablestructure
       summary: Get all table structures
     post:
       operationId: createTableStructure
@@ -58,6 +59,9 @@ paths:
           description: Bad request
         "401":
           description: Unauthorized
+      security:
+      - oAuth2Auth:
+        - write:tablestructure
       summary: Create a new table structure
   /table-structures/{id}:
     delete:
@@ -79,6 +83,9 @@ paths:
           description: Unauthorized
         "404":
           description: Not found
+      security:
+      - oAuth2Auth:
+        - write:tablestructure
       summary: Delete table structure by id
     get:
       operationId: getTableStructure
@@ -103,6 +110,9 @@ paths:
           description: Unauthorized
         "404":
           description: Not found
+      security:
+      - oAuth2Auth:
+        - read:tablestructure
       summary: Get a table structure by id
   /table-structures/generate:
     post:
@@ -123,6 +133,9 @@ paths:
           description: Bad request
         "401":
           description: Unauthorized
+      security:
+      - oAuth2Auth:
+        - read:tablestructure
       summary: Generate a tableStructure and return the result as a json
   /converter/{tableStructureId}:
     post:
@@ -160,6 +173,9 @@ paths:
           description: Unauthorized
         "404":
           description: Not found
+      security:
+      - oAuth2Auth:
+        - write:converter
       summary: Convert a table and save it to the database
   /converter/preview:
     post:
@@ -192,6 +208,9 @@ paths:
           description: Bad request
         "401":
           description: Unauthorized
+      security:
+      - oAuth2Auth:
+        - read:converter
       summary: Convert a table and return a preview of the result
   /converter/file:
     post:
@@ -213,6 +232,9 @@ paths:
           description: Bad request
         "401":
           description: Unauthorized
+      security:
+      - oAuth2Auth:
+        - read:converter
       summary: Convert a table and return the result as a file
   /feedback:
     post:
@@ -235,6 +257,9 @@ paths:
           description: Bad request
         "401":
           description: Unauthorized
+      security:
+      - oAuth2Auth:
+        - write:feedback
       summary: Submit feedback
 components:
   schemas:
@@ -1322,6 +1347,16 @@ components:
       - tableStructure
       type: object
   securitySchemes:
-    BasicAuth:
-      scheme: basic
-      type: http
+    oAuth2Auth:
+      flows:
+        authorizationCode:
+          authorizationUrl: https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/auth
+          scopes:
+            write:feedback: Scope to enable users to write feedback
+            read:feedback: Scope to enable users to read feedback
+            write:converter: Scope to enable users to write converter requests
+            read:converter: Scope to enable users to read converter requests
+            write:tablestructure: Scope to enable users to write table structures
+            read:tablestructure: Scope to enable users to read table structures
+          tokenUrl: https://pg-doener-dev.virt.uni-oldenburg.de:8085/realms/th1/protocol/openid-connect/token
+      type: oauth2
