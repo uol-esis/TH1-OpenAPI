@@ -1,4 +1,4 @@
-# removeColumnsSettings:
+# removeTrailingColumnsSettings:
 type: object
 required:
   - enabled
@@ -8,9 +8,6 @@ properties:
   enabled:
     type: boolean
     default: true
-  threshold:
-    type: integer
-    minimum: 0
   blockList:
     type: array
     items:
