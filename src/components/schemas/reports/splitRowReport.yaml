@@ -6,12 +6,13 @@ description: |
 type: object
 required:
   - reportType
-  - rowIndex
+  - columnIndex
+  - delimiter
 properties:
   reportType:
     $ref: '../reportType.yaml'
-  rowIndex:
-    type: array
-    items:
-      type: integer
-      minimum: 0
+  columnIndex:
+    type: integer
+    minimum: 0
+  delimiter:
+    type: string

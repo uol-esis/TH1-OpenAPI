@@ -5,8 +5,10 @@ properties:
     $ref: './generation/removeHeaderSettings.yaml'
   removeFooter:
     $ref: './generation/removeFooterSettings.yaml'
-  removeColumns:
-    $ref: './generation/removeColumnsSettings.yaml'
+  removeTrailingColumn:
+    $ref: './generation/removeTrailingColumnSettings.yaml'
+  removeLeadingColumn:
+    $ref: './generation/removeLeadingColumnSettings.yaml'
   removeInvalidRows:
     $ref: './generation/removeInvalidRowsSettings.yaml'
   maxIterations:

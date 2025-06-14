@@ -104,7 +104,7 @@ components:
     removeFooterSettings:
       $ref: './components/schemas/generation/removeFooterSettings.yaml'
     removeColumnsSettings:
-      $ref: './components/schemas/generation/removeColumnsSettings.yaml'
+      $ref: './components/schemas/generation/removeTrailingColumnSettings.yaml'
     removeLeadingColumnsSettings:
       $ref: './components/schemas/generation/removeLeadingColumnSettings.yaml'
     removeInvalidRowsSettings:
