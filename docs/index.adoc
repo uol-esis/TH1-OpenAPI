@@ -1942,7 +1942,7 @@ The converterType MUST be REMOVE_ROW_BY_INDEX.
 
 
 [#RemoveTrailingColumnSettings]
-=== _RemoveTrailingColumnSettings_
+=== _RemoveTrailingColumnSettings_ 
 
 
 
@@ -1954,17 +1954,17 @@ The converterType MUST be REMOVE_ROW_BY_INDEX.
 
 | enabled
 | X
-|
-|   Boolean
-|
-|
+| 
+|   Boolean  
+| 
+|     
 
 | blockList
 | X
-|
+| 
 |   List   of <<string>>
-|
-|
+| 
+|     
 
 |===
 
@@ -2050,11 +2050,11 @@ The converterType MUST be REPLACE_ENTRIES.
 |     
 
 | columnIndex
-|
-|
+| 
+| 
 |   List   of <<integer>>
 | The indices of the columns to replace
-|
+|     
 
 | startRow
 | 
@@ -2164,10 +2164,10 @@ The converterType MUST be REPLACE_ENTRIES.
 
 | delimiter
 | X
-|
-|   String
-|
-|
+| 
+|   String  
+| 
+|     
 
 |===
 
@@ -2256,15 +2256,15 @@ The reportType MUST be SPLIT_ROW.
 
 | columnIndex
 | X
-|
-|   Integer
-|
-|
+| 
+|   Integer  
+| 
+|     
 
 | delimiter
 | X
 | 
-|   String
+|   String  
 | 
 |     
 
@@ -2642,16 +2642,16 @@ The properties endRow and endColumn can be used to cut off rows and columns at t
 | removeTrailingColumn
 | 
 | 
-| <<removeTrailingColumnSettings>>
+| <<removeTrailingColumnSettings>>    
 | 
 |     
 
 | removeLeadingColumn
-|
-|
-| <<removeLeadingColumnSettings>>
-|
-|
+| 
+| 
+| <<removeLeadingColumnSettings>>    
+| 
+|     
 
 | removeInvalidRows
 | 
