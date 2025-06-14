@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.20.0
+1.21.0
 :toc: left
 :numbered:
 :toclevels: 4
