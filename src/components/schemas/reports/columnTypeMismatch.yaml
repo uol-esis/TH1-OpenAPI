@@ -6,8 +6,10 @@ required:
   - columnIndex
 properties:
   columnIndex:
-    type: integer
-    minimum: 0
+    type: array
+    items:
+      type: integer
+      minimum: 0
   replacementSearch:
     description: If the mismatch can be resolved by replacing a value, this field contains the search string.
     type: string
