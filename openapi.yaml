@@ -346,6 +346,7 @@ components:
           REMOVE_TRAILING_COLUMN: '#/components/schemas/removeTrailingColumnStructure'
           REMOVE_LEADING_COLUMN: '#/components/schemas/removeLeadingColumnStructure'
           MERGE_COLUMNS: '#/components/schemas/mergeColumnsStructure'
+          TRANSPOSE_MATRIX: '#/components/schemas/transposeMatrixStructure'
         propertyName: converterType
       example:
         name: Resolve Grouped Header
@@ -373,6 +374,7 @@ components:
       - $ref: '#/components/schemas/removeTrailingColumnStructure'
       - $ref: '#/components/schemas/removeLeadingColumnStructure'
       - $ref: '#/components/schemas/mergeColumnsStructure'
+      - $ref: '#/components/schemas/transposeMatrixStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -456,6 +458,7 @@ components:
       - REMOVE_TRAILING_COLUMN
       - REMOVE_LEADING_COLUMN
       - MERGE_COLUMNS
+      - TRANSPOSE_MATRIX
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
@@ -1302,6 +1305,15 @@ components:
       required:
       - columnIndex
       - rowIndex
+      type: object
+    transposeMatrixStructure:
+      description: |
+        This converter transposes the given matrix.
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+      required:
+      - converterType
       type: object
     removeTrailingColumnSettings:
       properties:

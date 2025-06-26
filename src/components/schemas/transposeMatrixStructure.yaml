@@ -1,0 +1,9 @@
+#invertMatrixConverter:
+description: |
+  This converter transposes the given matrix.
+type: object
+required:
+  - converterType
+properties:
+  converterType:
+    $ref: './converterType.yaml'
