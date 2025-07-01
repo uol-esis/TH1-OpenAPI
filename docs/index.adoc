@@ -1468,11 +1468,11 @@ The converterType MUST be PIVOT_MATRIX.
 | 
 |    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_ROW, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, REMOVE_LEADING_COLUMN, MERGE_COLUMNS, TRANSPOSE_MATRIX, PIVOT_MATRIX,  
 
-| columnIndex
-| X
+| pivotField
 | 
-|   List   of <<integer>>
-| The indices of the columns to remove
+| 
+|   Map   of <<array>>
+| 
 |     
 
 | blockIndices
@@ -2439,7 +2439,7 @@ The converterType is used as a discriminator to determine the specific structure
 | X
 | 
 |   List   of <<integer>>
-| The indices of the columns to remove
+| The indices of the columns to merge
 |     
 
 | startRow
@@ -2524,6 +2524,13 @@ The converterType is used as a discriminator to determine the specific structure
 | 
 |   List   of <<integer>>
 | The order in which the cells will be checked for non-empty values
+|     
+
+| pivotField
+| 
+| 
+|   Map   of <<array>>
+| 
 |     
 
 | blockIndices

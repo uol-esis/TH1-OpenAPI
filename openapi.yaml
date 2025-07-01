@@ -1334,13 +1334,12 @@ components:
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
-        columnIndex:
-          description: The indices of the columns to remove
-          items:
-            minimum: 0
-            type: integer
-          minItems: 1
-          type: array
+        pivotField:
+          additionalProperties:
+            items:
+              type: integer
+            type: array
+          type: object
         blockIndices:
           default:
           - 0
