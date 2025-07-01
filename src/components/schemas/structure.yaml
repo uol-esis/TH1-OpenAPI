@@ -19,6 +19,7 @@ oneOf:
   - $ref: './removeLeadingColumnStructure.yaml'
   - $ref: './mergeColumnsStructure.yaml'
   - $ref : './transposeMatrixStructure.yaml'
+  - $ref: './pivotMatrixStructure.yaml'
 discriminator:
   propertyName: converterType
   mapping:
@@ -37,6 +38,7 @@ discriminator:
     REMOVE_LEADING_COLUMN: './removeLeadingColumnStructure.yaml'
     MERGE_COLUMNS: './mergeColumnsStructure.yaml'
     TRANSPOSE_MATRIX: './transposeMatrixStructure.yaml'
+    PIVOT_MATRIX: './pivotMatrixStructure.yaml'
 required:
   - converterType
 properties:

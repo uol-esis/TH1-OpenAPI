@@ -347,6 +347,7 @@ components:
           REMOVE_LEADING_COLUMN: '#/components/schemas/removeLeadingColumnStructure'
           MERGE_COLUMNS: '#/components/schemas/mergeColumnsStructure'
           TRANSPOSE_MATRIX: '#/components/schemas/transposeMatrixStructure'
+          PIVOT_MATRIX: '#/components/schemas/pivotMatrixStructure'
         propertyName: converterType
       example:
         name: Resolve Grouped Header
@@ -375,6 +376,7 @@ components:
       - $ref: '#/components/schemas/removeLeadingColumnStructure'
       - $ref: '#/components/schemas/mergeColumnsStructure'
       - $ref: '#/components/schemas/transposeMatrixStructure'
+      - $ref: '#/components/schemas/pivotMatrixStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -459,6 +461,7 @@ components:
       - REMOVE_LEADING_COLUMN
       - MERGE_COLUMNS
       - TRANSPOSE_MATRIX
+      - PIVOT_MATRIX
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
@@ -1313,6 +1316,46 @@ components:
         converterType:
           $ref: '#/components/schemas/converterType'
       required:
+      - converterType
+      type: object
+    pivotMatrixStructure:
+      description: "This converter remove certain columns from a pivot matrix based\
+        \ on their indices.\n\nIn addition, the converter supports the definition\
+        \ of block indices to separate logical data blocks \nwithin the matrix. This\
+        \ is particularly helpful if several pivot structures \noccur one after the\
+        \ other in a table.\n\nThe 'keysToCarryForward' field can be used to specify\
+        \ certain column names whose \nvalues are to be carried forward automatically\
+        \ from previous rows when empty cells occur \n(so-called \"carry forward\"\
+        ).\n\nNotes:\n- ‘columnIndex’ is a list of the column indices to be removed.\
+        \ An invalid index leads to an error.\n- ‘blockIndices’ defines the rows at\
+        \ which new data blocks start (default: [0]).\n- 'keysToCarryForward' contains\
+        \ the column names where missing values are to be filled in.\n\nThe converterType\
+        \ MUST be PIVOT_MATRIX.\n"
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        columnIndex:
+          description: The indices of the columns to remove
+          items:
+            minimum: 0
+            type: integer
+          minItems: 1
+          type: array
+        blockIndices:
+          default:
+          - 0
+          description: Indices that define the start of new data blocks
+          items:
+            minimum: 0
+            type: integer
+          type: array
+        keysToCarryForward:
+          description: Column names whose values should be carried forward if empty
+          items:
+            type: string
+          type: array
+      required:
+      - columnIndex
       - converterType
       type: object
     removeTrailingColumnSettings:
