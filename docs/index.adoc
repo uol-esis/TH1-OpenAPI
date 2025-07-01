@@ -2230,6 +2230,13 @@ The converterType MUST be REPLACE_ENTRIES.
 | 
 |     
 
+| detected
+| X
+| 
+|   Boolean  
+| True if the matrix is detected as transposed, false otherwise
+|     
+
 |===
 
 
@@ -2794,6 +2801,28 @@ However, it does not contain the actual structure with its fields.
 | 
 |   List   of <<structureSummary>>
 | The list of structures in the table structure as summaries.
+|     
+
+|===
+
+
+
+[#TransposeMatrixReport]
+=== _TransposeMatrixReport_ 
+
+Report indicating whether a matrix is detected as transposed
+
+
+[.fields-TransposeMatrixReport]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| detected
+| X
+| 
+|   Boolean  
+| True if the matrix is detected as transposed, false otherwise
 |     
 
 |===

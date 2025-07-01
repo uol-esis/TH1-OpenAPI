@@ -1390,6 +1390,14 @@ components:
       - enabled
       type: object
     transposeMatrixReport:
+      description: Report indicating whether a matrix is detected as transposed
+      properties:
+        detected:
+          description: "True if the matrix is detected as transposed, false otherwise"
+          example: true
+          type: boolean
+      required:
+      - detected
       type: object
     generateTableStructure_request:
       properties:
