@@ -984,6 +984,7 @@ components:
       - MERGEABLE_COLUMNS
       - SPLIT_ROW
       - SUM
+      - TRANSPOSE_MATRIX
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidReportType'
     report:
@@ -999,6 +1000,7 @@ components:
           MERGEABLE_COLUMNS: '#/components/schemas/mergeableColumnsReport'
           SPLIT_ROW: '#/components/schemas/splitRowReport'
           SUM: '#/components/schemas/sumReport'
+          TRANSPOSE_MATRIX: '#/components/schemas/transposeMatrixReport'
         propertyName: reportType
       example:
         reportType: EMPTY_COLUMN
@@ -1014,6 +1016,7 @@ components:
       - $ref: '#/components/schemas/mergeableColumnsReport'
       - $ref: '#/components/schemas/splitRowReport'
       - $ref: '#/components/schemas/sumReport'
+      - $ref: '#/components/schemas/transposeMatrixReport'
       properties:
         reportType:
           $ref: '#/components/schemas/reportType'
@@ -1385,6 +1388,8 @@ components:
       required:
       - blockList
       - enabled
+      type: object
+    transposeMatrixReport:
       type: object
     generateTableStructure_request:
       properties:

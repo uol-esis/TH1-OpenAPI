@@ -1,0 +1,10 @@
+TransposedMatrixReportDto:
+  type: object
+  description: Report indicating whether a matrix is detected as transposed
+  required:
+    - detected
+  properties:
+    detected:
+      type: boolean
+      description: True if the matrix is detected as transposed, false otherwise
+      example: true

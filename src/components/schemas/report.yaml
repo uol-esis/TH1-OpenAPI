@@ -11,6 +11,7 @@ oneOf:
   - $ref: './reports/mergeableColumnsReport.yaml'
   - $ref: './reports/splitRowReport.yaml'
   - $ref: './reports/sumReport.yaml'
+  - $ref: './reports/transposeMatrixReport.yaml'
 discriminator:
   propertyName: reportType
   mapping:
@@ -24,6 +25,7 @@ discriminator:
     MERGEABLE_COLUMNS: './reports/mergeableColumnsReport.yaml'
     SPLIT_ROW: './reports/splitRowReport.yaml'
     SUM: './reports/sumReport.yaml'
+    TRANSPOSE_MATRIX: './reports/transposeMatrixReport.yaml'
 required:
   - reportType
 properties:
