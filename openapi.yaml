@@ -1392,12 +1392,15 @@ components:
     transposeMatrixReport:
       description: Report indicating whether a matrix is detected as transposed
       properties:
+        reportType:
+          $ref: '#/components/schemas/reportType'
         detected:
           description: "True if the matrix is detected as transposed, false otherwise"
           example: true
           type: boolean
       required:
       - detected
+      - reportType
       type: object
     generateTableStructure_request:
       properties:
