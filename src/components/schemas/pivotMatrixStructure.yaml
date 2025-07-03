@@ -1,0 +1,43 @@
+#pivotMatrixStructure:
+description: |
+  This converter remove certain columns from a pivot matrix based on their indices.
+
+  In addition, the converter supports the definition of block indices to separate logical data blocks 
+  within the matrix. This is particularly helpful if several pivot structures 
+  occur one after the other in a table.
+
+  The 'keysToCarryForward' field can be used to specify certain column names whose 
+  values are to be carried forward automatically from previous rows when empty cells occur 
+  (so-called "carry forward").
+  
+  Notes:
+  - ‘columnIndex’ is a list of the column indices to be removed. An invalid index leads to an error.
+  - ‘blockIndices’ defines the rows at which new data blocks start (default: [0]).
+  - 'keysToCarryForward' contains the column names where missing values are to be filled in.
+
+  The converterType MUST be PIVOT_MATRIX.
+type: object
+required:
+  - converterType
+  - columnIndex
+properties:
+  converterType:
+    $ref: './converterType.yaml'
+  pivotField:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        type: integer
+  blockIndices:
+    description: Indices that define the start of new data blocks
+    type: array
+    items:
+      type: integer
+      minimum: 0
+    default: [ 0 ]
+  keysToCarryForward:
+    description: Column names whose values should be carried forward if empty
+    type: array
+    items:
+      type: string

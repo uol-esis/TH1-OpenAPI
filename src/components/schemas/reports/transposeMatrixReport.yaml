@@ -1,0 +1,12 @@
+#TransposedMatrixReportDto:
+description: Report indicating whether a matrix is detected as transposed
+required:
+  - reportType
+  - detected
+properties:
+  reportType:
+    $ref: '../reportType.yaml'
+  detected:
+    type: boolean
+    description: True if the matrix is detected as transposed, false otherwise
+    example: true
