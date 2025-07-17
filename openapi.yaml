@@ -348,6 +348,7 @@ components:
           MERGE_COLUMNS: '#/components/schemas/mergeColumnsStructure'
           TRANSPOSE_MATRIX: '#/components/schemas/transposeMatrixStructure'
           PIVOT_MATRIX: '#/components/schemas/pivotMatrixStructure'
+          REMOVE_KEYWORD: '#/components/schemas/removeKeywordsStructure'
         propertyName: converterType
       example:
         name: Resolve Grouped Header
@@ -377,6 +378,7 @@ components:
       - $ref: '#/components/schemas/mergeColumnsStructure'
       - $ref: '#/components/schemas/transposeMatrixStructure'
       - $ref: '#/components/schemas/pivotMatrixStructure'
+      - $ref: '#/components/schemas/removeKeywordsStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -462,6 +464,7 @@ components:
       - MERGE_COLUMNS
       - TRANSPOSE_MATRIX
       - PIVOT_MATRIX
+      - REMOVE_KEYWORD
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
@@ -870,24 +873,12 @@ components:
           $ref: '#/components/schemas/removeLeadingColumnSettings'
         removeInvalidRows:
           $ref: '#/components/schemas/removeInvalidRowsSettings'
+        removeKeywords:
+          $ref: '#/components/schemas/removeKeywordsSettings'
         maxIterations:
           default: 5
           minimum: 1
           type: integer
-        sumBlockList:
-          default:
-          - gesamt
-          - ges
-          - summe
-          - sum
-          - total
-          - totalsumme
-          - teilsumme
-          - endsumme
-          items:
-            minLength: 1
-            type: string
-          type: array
       type: object
     removeHeaderSettings:
       properties:
@@ -1360,6 +1351,46 @@ components:
       - columnIndex
       - converterType
       type: object
+    removeKeywordsStructure:
+      description: Configuration to remove rows and/or columns that contain specified
+        keywords.
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        keywords:
+          description: |
+            A list of keywords to match against.  If a cell contains any of these keywords, the corresponding row or column will be removed.
+          example:
+          - REMOVE
+          - '*'
+          - INVALID
+          items:
+            type: string
+          type: array
+        removeRows:
+          default: true
+          description: Whether to remove rows that contain a matching keyword.
+          type: boolean
+        removeColumns:
+          default: true
+          description: Whether to remove columns that contain a matching keyword.
+          type: boolean
+        ignoreCase:
+          default: true
+          type: boolean
+        matchType:
+          default: CONTAINS
+          enum:
+          - CONTAINS
+          - EQUALS
+          type: string
+      required:
+      - converterType
+      - ignoreCase
+      - matchType
+      - removeColumns
+      - removeRows
+      type: object
     removeTrailingColumnSettings:
       properties:
         enabled:
@@ -1388,6 +1419,51 @@ components:
       required:
       - blockList
       - enabled
+      type: object
+    removeKeywordsSettings:
+      properties:
+        enabled:
+          default: false
+          type: boolean
+        keywords:
+          default:
+          - gesamt
+          - ges
+          - summe
+          - sum
+          - total
+          - totalsumme
+          - teilsumme
+          - endsumme
+          description: |
+            A list of keywords to match against.  If a cell contains any of these keywords, the corresponding row or column will be removed.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        removeRows:
+          default: true
+          description: Whether to remove rows that contain a matching keyword.
+          type: boolean
+        removeColumns:
+          default: true
+          description: Whether to remove columns that contain a matching keyword.
+          type: boolean
+        ignoreCase:
+          default: true
+          type: boolean
+        matchType:
+          default: CONTAINS
+          enum:
+          - CONTAINS
+          - EQUALS
+          type: string
+      required:
+      - enabled
+      - ignoreCase
+      - matchType
+      - removeColumns
+      - removeRows
       type: object
     transposeMatrixReport:
       description: Report indicating whether a matrix is detected as transposed
