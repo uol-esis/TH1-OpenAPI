@@ -1423,7 +1423,7 @@ components:
     removeKeywordsSettings:
       properties:
         enabled:
-          default: false
+          default: true
           type: boolean
         keywords:
           default:

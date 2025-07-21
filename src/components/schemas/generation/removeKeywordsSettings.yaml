@@ -9,7 +9,7 @@ required:
 properties:
   enabled:
     type: boolean
-    default: false
+    default: true
   keywords:
     type: array
     description: >
