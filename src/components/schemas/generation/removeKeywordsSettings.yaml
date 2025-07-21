@@ -1,0 +1,44 @@
+# removeInvalidRowsSettings:
+type: object
+required:
+  - enabled
+  - removeRows
+  - removeColumns
+  - ignoreCase
+  - matchType
+properties:
+  enabled:
+    type: boolean
+    default: true
+  keywords:
+    type: array
+    description: >
+      A list of keywords to match against. 
+      If a cell contains any of these keywords, the corresponding row or column will be removed.
+    items:
+      type: string
+      minLength: 1
+    default:
+      - 'gesamt'
+      - 'ges'
+      - 'summe'
+      - 'sum'
+      - 'total'
+      - 'totalsumme'
+      - 'teilsumme'
+      - 'endsumme'
+  removeRows:
+    type: boolean
+    description: Whether to remove rows that contain a matching keyword.
+    default: true
+  removeColumns:
+    type: boolean
+    description: Whether to remove columns that contain a matching keyword.
+    default: true
+  ignoreCase:
+    type: boolean
+    default: true
+  matchType:
+    type: string
+    enum: [ CONTAINS, EQUALS ]
+    default: "CONTAINS"
