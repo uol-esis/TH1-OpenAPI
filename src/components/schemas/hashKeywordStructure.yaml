@@ -14,5 +14,5 @@ properties:
     type: boolean
     description: Ob die Groß-/Kleinschreibung ignoriert wird
     example: true
-  matchMode:
+  matchType:
     $ref: './enums/matchType.yaml'
