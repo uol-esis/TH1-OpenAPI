@@ -1418,7 +1418,7 @@ components:
       required:
       - ignoreCase
       - keywords
-      - matchMode
+      - matchType
       type: object
     removeTrailingColumnSettings:
       properties:

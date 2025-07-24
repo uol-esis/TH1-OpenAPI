@@ -1342,7 +1342,7 @@ The reportType MUST be GROUPED_HEADER.
 |     
 
 | matchType
-| 
+| X
 | 
 |  <<matchType>>  
 | 
