@@ -1328,7 +1328,7 @@ The reportType MUST be GROUPED_HEADER.
 | Field Name| Required| Nullable | Type| Description | Format
 
 | converterType
-| 
+| X
 | 
 |  <<converterType>>  
 | 

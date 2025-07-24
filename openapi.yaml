@@ -1418,6 +1418,7 @@ components:
         matchType:
           $ref: '#/components/schemas/matchType'
       required:
+      - converterType
       - ignoreCase
       - keywords
       - matchType
