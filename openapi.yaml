@@ -852,6 +852,15 @@ components:
       - converterType
       - headerName
       type: object
+    matchType:
+      description: |
+        Defines how a column header is matched against the provided keyword(s). - CONTAINS: Header contains the keyword. - EQUALS: Header exactly matches the keyword. - STARTS_WITH: Header starts with the keyword. - ENDS_WITH: Header ends with the keyword. - REGEX: Header matches the keyword as a regular expression.
+      enum:
+      - CONTAINS
+      - EQUALS
+      - STARTS_WITH
+      - ENDS_WITH
+      type: string
     feedback:
       description: This represents a feedback message.
       properties:
@@ -1498,15 +1507,6 @@ components:
       - detected
       - reportType
       type: object
-    matchType:
-      description: |
-        Defines how a column header is matched against the provided keyword(s). - CONTAINS: Header contains the keyword. - EQUALS: Header exactly matches the keyword. - STARTS_WITH: Header starts with the keyword. - ENDS_WITH: Header ends with the keyword. - REGEX: Header matches the keyword as a regular expression.
-      enum:
-      - CONTAINS
-      - EQUALS
-      - STARTS_WITH
-      - ENDS_WITH
-      type: string
     generateTableStructure_request:
       properties:
         file:

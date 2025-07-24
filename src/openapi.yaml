@@ -93,6 +93,8 @@ components:
        $ref: './components/schemas/removeLeadingColumnStructure.yaml'
     mergeColumnsStructure:
       $ref: './components/schemas/mergeColumnsStructure.yaml'
+    matchType:
+      $ref: './components/schemas/enums/matchType.yaml'
 
     feedback:
       $ref: './components/schemas/feedback.yaml'
