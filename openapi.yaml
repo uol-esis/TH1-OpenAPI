@@ -1413,7 +1413,7 @@ components:
           description: Ob die Groß-/Kleinschreibung ignoriert wird
           example: true
           type: boolean
-        matchMode:
+        matchType:
           $ref: '#/components/schemas/matchType'
       required:
       - ignoreCase

@@ -1341,8 +1341,8 @@ The reportType MUST be GROUPED_HEADER.
 | Ob die Groß-/Kleinschreibung ignoriert wird
 |     
 
-| matchMode
-| X
+| matchType
+| 
 | 
 |  <<matchType>>  
 | 
@@ -2758,13 +2758,6 @@ The converterType is used as a discriminator to determine the specific structure
 |     
 
 | matchType
-| X
-| 
-|  <<matchType>>  
-| 
-|    CONTAINS, EQUALS, STARTS_WITH, ENDS_WITH,  
-
-| matchMode
 | X
 | 
 |  <<matchType>>  
