@@ -4,6 +4,8 @@ required:
   - ignoreCase
   - matchType
 properties:
+  converterType:
+    $ref: './converterType.yaml'
   keywords:
     type: array
     items:
