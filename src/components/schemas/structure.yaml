@@ -21,6 +21,7 @@ oneOf:
   - $ref : './transposeMatrixStructure.yaml'
   - $ref: './pivotMatrixStructure.yaml'
   - $ref: './removeKeywordsStructure.yaml'
+  - $ref: './hashKeywordStructure.yaml'
 discriminator:
   propertyName: converterType
   mapping:
@@ -41,6 +42,7 @@ discriminator:
     TRANSPOSE_MATRIX: './transposeMatrixStructure.yaml'
     PIVOT_MATRIX: './pivotMatrixStructure.yaml'
     REMOVE_KEYWORD: './removeKeywordsStructure.yaml'
+    HASH_KEYWORD: './hashKeywordStructure.yaml'
 required:
   - converterType
 properties:

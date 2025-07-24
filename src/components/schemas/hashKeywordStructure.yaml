@@ -1,0 +1,18 @@
+type: object
+required:
+  - keywords
+  - ignoreCase
+  - matchMode
+properties:
+  keywords:
+    type: array
+    items:
+      type: string
+    description: Liste von Keywords zur Spaltenauswahl
+    example: [ "email", "userEmail" ]
+  ignoreCase:
+    type: boolean
+    description: Ob die Groß-/Kleinschreibung ignoriert wird
+    example: true
+  matchMode:
+    $ref: './enums/matchType.yaml'

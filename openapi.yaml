@@ -349,6 +349,7 @@ components:
           TRANSPOSE_MATRIX: '#/components/schemas/transposeMatrixStructure'
           PIVOT_MATRIX: '#/components/schemas/pivotMatrixStructure'
           REMOVE_KEYWORD: '#/components/schemas/removeKeywordsStructure'
+          HASH_KEYWORD: '#/components/schemas/hashKeywordStructure'
         propertyName: converterType
       example:
         name: Resolve Grouped Header
@@ -379,6 +380,7 @@ components:
       - $ref: '#/components/schemas/transposeMatrixStructure'
       - $ref: '#/components/schemas/pivotMatrixStructure'
       - $ref: '#/components/schemas/removeKeywordsStructure'
+      - $ref: '#/components/schemas/hashKeywordStructure'
       properties:
         converterType:
           $ref: '#/components/schemas/converterType'
@@ -465,6 +467,7 @@ components:
       - TRANSPOSE_MATRIX
       - PIVOT_MATRIX
       - REMOVE_KEYWORD
+      - HASH_KEYWORD
       type: string
       x-field-extra-annotation: '@de.uol.pgdoener.th1.api.validation.ValidConverterType'
     removeRowByIndexStructure:
@@ -1379,17 +1382,34 @@ components:
           default: true
           type: boolean
         matchType:
-          default: CONTAINS
-          enum:
-          - CONTAINS
-          - EQUALS
-          type: string
+          $ref: '#/components/schemas/matchType'
       required:
       - converterType
       - ignoreCase
       - matchType
       - removeColumns
       - removeRows
+      type: object
+    hashKeywordStructure:
+      properties:
+        keywords:
+          description: Liste von Keywords zur Spaltenauswahl
+          example:
+          - email
+          - userEmail
+          items:
+            type: string
+          type: array
+        ignoreCase:
+          description: Ob die Groß-/Kleinschreibung ignoriert wird
+          example: true
+          type: boolean
+        matchMode:
+          $ref: '#/components/schemas/matchType'
+      required:
+      - ignoreCase
+      - keywords
+      - matchMode
       type: object
     removeTrailingColumnSettings:
       properties:
@@ -1478,6 +1498,15 @@ components:
       - detected
       - reportType
       type: object
+    matchType:
+      description: |
+        Defines how a column header is matched against the provided keyword(s). - CONTAINS: Header contains the keyword. - EQUALS: Header exactly matches the keyword. - STARTS_WITH: Header starts with the keyword. - ENDS_WITH: Header ends with the keyword. - REGEX: Header matches the keyword as a regular expression.
+      enum:
+      - CONTAINS
+      - EQUALS
+      - STARTS_WITH
+      - ENDS_WITH
+      type: string
     generateTableStructure_request:
       properties:
         file:
