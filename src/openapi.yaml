@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.24.0
+  version: 1.25.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -83,14 +83,14 @@ components:
       $ref: './components/schemas/removeFooterStructure.yaml'
     replaceEntriesStructure:
       $ref: './components/schemas/replaceEntriesStructure.yaml'
-    splitRowStructure:
-      $ref: './components/schemas/splitRowStructure.yaml'
+    splitCellStructure:
+      $ref: './components/schemas/splitCellStructure.yaml'
     removeInvalidRowsStructure:
       $ref: './components/schemas/removeInvalidRowsStructure.yaml'
     removeTrailingColumnStructure:
       $ref: './components/schemas/removeTrailingColumnStructure.yaml'
     removeLeadingColumnStructure:
-       $ref: './components/schemas/removeLeadingColumnStructure.yaml'
+      $ref: './components/schemas/removeLeadingColumnStructure.yaml'
     mergeColumnsStructure:
       $ref: './components/schemas/mergeColumnsStructure.yaml'
 

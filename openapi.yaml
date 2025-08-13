@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.24.0
+  version: 1.25.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -341,7 +341,7 @@ components:
           REMOVE_HEADER: '#/components/schemas/removeHeaderStructure'
           REMOVE_FOOTER: '#/components/schemas/removeFooterStructure'
           REPLACE_ENTRIES: '#/components/schemas/replaceEntriesStructure'
-          SPLIT_ROW: '#/components/schemas/splitRowStructure'
+          SPLIT_CELL: '#/components/schemas/splitCellStructure'
           REMOVE_INVALID_ROWS: '#/components/schemas/removeInvalidRowsStructure'
           REMOVE_TRAILING_COLUMN: '#/components/schemas/removeTrailingColumnStructure'
           REMOVE_LEADING_COLUMN: '#/components/schemas/removeLeadingColumnStructure'
@@ -371,7 +371,7 @@ components:
       - $ref: '#/components/schemas/removeHeaderStructure'
       - $ref: '#/components/schemas/removeFooterStructure'
       - $ref: '#/components/schemas/replaceEntriesStructure'
-      - $ref: '#/components/schemas/splitRowStructure'
+      - $ref: '#/components/schemas/splitCellStructure'
       - $ref: '#/components/schemas/removeInvalidRowsStructure'
       - $ref: '#/components/schemas/removeTrailingColumnStructure'
       - $ref: '#/components/schemas/removeLeadingColumnStructure'
@@ -457,7 +457,7 @@ components:
       - REMOVE_FOOTER
       - REMOVE_HEADER
       - REPLACE_ENTRIES
-      - SPLIT_ROW
+      - SPLIT_CELL
       - REMOVE_INVALID_ROWS
       - REMOVE_TRAILING_COLUMN
       - REMOVE_LEADING_COLUMN
@@ -709,12 +709,12 @@ components:
       - converterType
       - replacement
       type: object
-    splitRowStructure:
+    splitCellStructure:
       description: |
-        This converter splits the entries in the specified column into multiple rows.
+        This converter splits the entries in the specified column into multiple rows or columns.
         The entries will be split by the specified delimiter.
         The delimiter is a line break by default.
-        The new rows will replace the original row.
+        The new rows or columns will replace the original row or column.
         If the specified column index is out of bounds, an error will be thrown.
         If the specified delimiter is not found in the entry, the entry will not be split.
         If the specified startRow is greater than the endRow, an error will be thrown.
@@ -734,6 +734,16 @@ components:
             The delimiter to split the entries by.
             Line break by default.
           minLength: 1
+          type: string
+        mode:
+          description: |
+            The mode to split the entries.
+            Can be either 'row' or 'column'.
+            'row' will split the entries into multiple rows.
+            'column' will split the entries into multiple columns.
+          enum:
+          - row
+          - column
           type: string
         startRow:
           description: The start row index of the area to split (inclusive).
