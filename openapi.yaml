@@ -168,14 +168,6 @@ paths:
           - REPLACE
           - RESTRUCTURE
           type: string
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          maximum: 10
-          minimum: 1
-          type: integer
       requestBody:
         content:
           multipart/form-data:

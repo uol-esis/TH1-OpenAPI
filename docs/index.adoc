@@ -93,12 +93,6 @@ Convert a table and save it to the database
 | CREATE
 | 
 
-| page
-|  
-| -
-| 1
-| 
-
 |===
 
 
