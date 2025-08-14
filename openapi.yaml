@@ -1497,6 +1497,7 @@ components:
           $ref: '#/components/schemas/tableStructureGenerationSettings'
         page:
           format: int32
+          minimum: 1
           type: integer
       required:
       - file
@@ -1519,6 +1520,7 @@ components:
           $ref: '#/components/schemas/tableStructure'
         page:
           format: int32
+          minimum: 1
           type: integer
       required:
       - file
