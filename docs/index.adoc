@@ -381,7 +381,7 @@ Convert a table and return the result as a file
 | 
 
 | page
-|  <<long>>
+|  <<integer>>
 | -
 | null
 | 
@@ -486,7 +486,7 @@ Generate a tableStructure and return the result as a json
 | 
 
 | page
-|  <<long>>
+|  <<integer>>
 | -
 | null
 | 
@@ -761,7 +761,7 @@ Convert a table and return a preview of the result
 | 
 
 | page
-|  <<long>>
+|  <<integer>>
 | -
 | null
 | 

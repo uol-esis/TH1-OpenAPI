@@ -19,7 +19,6 @@ file:
                 $ref: '../components/schemas/tableStructure.yaml'
               page:
                 type: integer
-                format: int64
     responses:
       '200':
         description: OK
@@ -62,7 +61,6 @@ preview:
                 $ref: '../components/schemas/tableStructure.yaml'
               page:
                 type: integer
-                format: int64
     responses:
       '200':
         description: OK
