@@ -94,9 +94,8 @@ paths:
         name: id
         required: true
         schema:
-          default: 0
           format: int64
-          minimum: 0
+          minimum: 1
           type: integer
       responses:
         "200":
