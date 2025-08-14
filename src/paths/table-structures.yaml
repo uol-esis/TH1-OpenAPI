@@ -118,6 +118,7 @@ generate:
                 $ref: '../components/schemas/tableStructureGenerationSettings.yaml'
               page:
                 type: integer
+                format: int32
     responses:
       '200':
         description: OK

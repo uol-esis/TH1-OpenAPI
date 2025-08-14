@@ -19,6 +19,7 @@ file:
                 $ref: '../components/schemas/tableStructure.yaml'
               page:
                 type: integer
+                format: int32
     responses:
       '200':
         description: OK
@@ -61,6 +62,7 @@ preview:
                 $ref: '../components/schemas/tableStructure.yaml'
               page:
                 type: integer
+                format: int32
     responses:
       '200':
         description: OK
