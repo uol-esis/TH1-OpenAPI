@@ -383,7 +383,7 @@ Convert a table and return the result as a file
 | page
 |  <<integer>>
 | -
-| null
+| 1
 | 
 
 |===
@@ -763,7 +763,7 @@ Convert a table and return a preview of the result
 | page
 |  <<integer>>
 | -
-| null
+| 1
 | 
 
 |===

@@ -219,7 +219,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/previewConvertTable_request'
+              $ref: '#/components/schemas/fileConvertTable_request'
       responses:
         "200":
           content:
@@ -1519,7 +1519,23 @@ components:
         tableStructure:
           $ref: '#/components/schemas/tableStructure'
         page:
+          default: 1
           format: int32
+          minimum: 1
+          type: integer
+      required:
+      - file
+      - tableStructure
+      type: object
+    fileConvertTable_request:
+      properties:
+        file:
+          format: binary
+          type: string
+        tableStructure:
+          $ref: '#/components/schemas/tableStructure'
+        page:
+          default: 1
           minimum: 1
           type: integer
       required:

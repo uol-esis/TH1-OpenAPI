@@ -19,8 +19,8 @@ file:
                 $ref: '../components/schemas/tableStructure.yaml'
               page:
                 type: integer
-                format: int32
                 minimum: 1
+                default: 1
     responses:
       '200':
         description: OK
@@ -65,6 +65,7 @@ preview:
                 type: integer
                 format: int32
                 minimum: 1
+                default: 1
     responses:
       '200':
         description: OK
