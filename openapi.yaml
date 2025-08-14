@@ -94,8 +94,9 @@ paths:
         name: id
         required: true
         schema:
+          default: 0
           format: int64
-          minimum: 1
+          minimum: 0
           type: integer
       responses:
         "200":
@@ -122,9 +123,8 @@ paths:
         name: page
         required: false
         schema:
-          default: 1
-          maximum: 10
-          minimum: 1
+          default: 0
+          minimum: 0
           type: integer
       requestBody:
         content:
@@ -201,9 +201,8 @@ paths:
         name: page
         required: false
         schema:
-          default: 1
-          maximum: 10
-          minimum: 1
+          default: 0
+          minimum: 0
           type: integer
       requestBody:
         content:
@@ -237,9 +236,8 @@ paths:
         name: page
         required: false
         schema:
-          default: 1
-          maximum: 10
-          minimum: 1
+          default: 0
+          minimum: 0
           type: integer
       requestBody:
         content:

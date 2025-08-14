@@ -392,7 +392,7 @@ Convert a table and return the result as a file
 | page
 |  
 | -
-| 1
+| 0
 | 
 
 |===
@@ -504,7 +504,7 @@ Generate a tableStructure and return the result as a json
 | page
 |  
 | -
-| 1
+| 0
 | 
 
 |===
@@ -592,7 +592,7 @@ Get a table structure by id
 | id
 |  
 | X
-| null
+| 0
 | 
 
 |===
@@ -792,7 +792,7 @@ Convert a table and return a preview of the result
 | page
 |  
 | -
-| 1
+| 0
 | 
 
 |===
