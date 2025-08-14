@@ -56,8 +56,7 @@ by-id:
         schema:
           type: integer
           format: int64
-          minimum: 0
-          default: 0
+          minimum: 1
     responses:
       '200':
         description: OK
