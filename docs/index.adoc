@@ -380,6 +380,12 @@ Convert a table and return the result as a file
 | null
 | 
 
+| page
+|  <<long>>
+| -
+| null
+| 
+
 |===
 
 
@@ -476,6 +482,12 @@ Generate a tableStructure and return the result as a json
 | settings
 |  <<tableStructureGenerationSettings>>
 | X
+| null
+| 
+
+| page
+|  <<long>>
+| -
 | null
 | 
 
@@ -745,6 +757,12 @@ Convert a table and return a preview of the result
 | tableStructure
 |  <<tableStructure>>
 | X
+| null
+| 
+
+| page
+|  <<long>>
+| -
 | null
 | 
 

@@ -4,7 +4,7 @@ file:
     operationId: fileConvertTable
     security:
       - oAuth2Auth:
-        - read:converter
+          - read:converter
     requestBody:
       content:
         multipart/form-data:
@@ -17,6 +17,9 @@ file:
                 format: binary
               tableStructure:
                 $ref: '../components/schemas/tableStructure.yaml'
+              page:
+                type: integer
+                format: int64
     responses:
       '200':
         description: OK
@@ -36,7 +39,7 @@ preview:
     operationId: previewConvertTable
     security:
       - oAuth2Auth:
-        - read:converter
+          - read:converter
     parameters:
       - name: limit
         in: query
@@ -57,6 +60,9 @@ preview:
                 format: binary
               tableStructure:
                 $ref: '../components/schemas/tableStructure.yaml'
+              page:
+                type: integer
+                format: int64
     responses:
       '200':
         description: OK
@@ -79,7 +85,7 @@ table-structure-id:
     operationId: convertTable
     security:
       - oAuth2Auth:
-        - write:converter
+          - write:converter
     parameters:
       - name: tableStructureId
         in: path
