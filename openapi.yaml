@@ -117,6 +117,14 @@ paths:
   /table-structures/generate:
     post:
       operationId: generateTableStructure
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
       requestBody:
         content:
           multipart/form-data:
@@ -188,6 +196,13 @@ paths:
           default: 10
           minimum: 1
           type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
       requestBody:
         content:
           multipart/form-data:
@@ -215,6 +230,14 @@ paths:
   /converter/file:
     post:
       operationId: fileConvertTable
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
       requestBody:
         content:
           multipart/form-data:

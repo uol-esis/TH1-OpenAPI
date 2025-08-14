@@ -383,6 +383,19 @@ Convert a table and return the result as a file
 |===
 
 
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| page
+|  
+| -
+| 0
+| 
+
+|===
 
 
 ===== Return Type
@@ -482,6 +495,19 @@ Generate a tableStructure and return the result as a json
 |===
 
 
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| page
+|  
+| -
+| 0
+| 
+
+|===
 
 
 ===== Return Type
@@ -761,6 +787,12 @@ Convert a table and return a preview of the result
 |  
 | -
 | 10
+| 
+
+| page
+|  
+| -
+| 0
 | 
 
 |===
