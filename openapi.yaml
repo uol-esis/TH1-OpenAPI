@@ -117,6 +117,15 @@ paths:
   /table-structures/generate:
     post:
       operationId: generateTableStructure
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 10
+          minimum: 1
+          type: integer
       requestBody:
         content:
           multipart/form-data:
@@ -159,6 +168,14 @@ paths:
           - REPLACE
           - RESTRUCTURE
           type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 10
+          minimum: 1
+          type: integer
       requestBody:
         content:
           multipart/form-data:
@@ -188,6 +205,14 @@ paths:
           default: 10
           minimum: 1
           type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 10
+          minimum: 1
+          type: integer
       requestBody:
         content:
           multipart/form-data:
@@ -215,11 +240,20 @@ paths:
   /converter/file:
     post:
       operationId: fileConvertTable
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 10
+          minimum: 1
+          type: integer
       requestBody:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/fileConvertTable_request'
+              $ref: '#/components/schemas/previewConvertTable_request'
       responses:
         "200":
           content:
@@ -1495,10 +1529,6 @@ components:
           type: string
         settings:
           $ref: '#/components/schemas/tableStructureGenerationSettings'
-        page:
-          format: int32
-          minimum: 1
-          type: integer
       required:
       - file
       - settings
@@ -1518,26 +1548,6 @@ components:
           type: string
         tableStructure:
           $ref: '#/components/schemas/tableStructure'
-        page:
-          default: 1
-          format: int32
-          minimum: 1
-          type: integer
-      required:
-      - file
-      - tableStructure
-      type: object
-    fileConvertTable_request:
-      properties:
-        file:
-          format: binary
-          type: string
-        tableStructure:
-          $ref: '#/components/schemas/tableStructure'
-        page:
-          default: 1
-          minimum: 1
-          type: integer
       required:
       - file
       - tableStructure
