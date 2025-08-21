@@ -32,4 +32,4 @@ properties:
   matchType:
     type: string
     enum: [ CONTAINS, EQUALS ]
-    default: "CONTAINS"
+    default: "EQUALS"
