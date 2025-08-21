@@ -986,7 +986,7 @@ The converterType MUST be ADD_HEADER_NAME.
 |     
 
 | headerPlacementType
-| 
+| X
 | 
 |  <<String>>  
 | Defines how headers are inserted in the table.
@@ -2637,7 +2637,7 @@ The converterType is used as a discriminator to determine the specific structure
 |     
 
 | headerPlacementType
-| 
+| X
 | 
 |  <<String>>  
 | Defines how headers are inserted in the table.

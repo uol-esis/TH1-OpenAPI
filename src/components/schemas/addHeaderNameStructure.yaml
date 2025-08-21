@@ -13,6 +13,7 @@ type: object
 required:
   - converterType
   - headerNames
+  - headerPlacementType
 properties:
   converterType:
     $ref: './converterType.yaml'

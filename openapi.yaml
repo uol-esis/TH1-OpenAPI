@@ -613,6 +613,7 @@ components:
       required:
       - converterType
       - headerNames
+      - headerPlacementType
       type: object
     fillEmptyRowStructure:
       description: |
