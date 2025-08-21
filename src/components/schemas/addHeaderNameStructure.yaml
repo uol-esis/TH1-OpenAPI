@@ -28,9 +28,4 @@ properties:
       type: string
       minLength: 1
   headerPlacementType:
-    type: string
-    description: Defines how headers are inserted in the table.
-    enum:
-      - INSERT_AT_TOP
-      - REPLACE_FIRST_ROW
-    default: REPLACE_FIRST_ROW
+    $ref: './enums/header_placement_type.yaml'

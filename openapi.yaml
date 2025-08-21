@@ -604,12 +604,7 @@ components:
           minItems: 1
           type: array
         headerPlacementType:
-          default: REPLACE_FIRST_ROW
-          description: Defines how headers are inserted in the table.
-          enum:
-          - INSERT_AT_TOP
-          - REPLACE_FIRST_ROW
-          type: string
+          $ref: '#/components/schemas/header_placement_type'
       required:
       - converterType
       - headerNames
@@ -1436,6 +1431,13 @@ components:
       - removeColumns
       - removeRows
       type: object
+    header_placement_type:
+      default: REPLACE_FIRST_ROW
+      description: Defines how headers are inserted in the table.
+      enum:
+      - INSERT_AT_TOP
+      - REPLACE_FIRST_ROW
+      type: string
     removeTrailingColumnSettings:
       properties:
         enabled:
