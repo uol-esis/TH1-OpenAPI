@@ -610,6 +610,13 @@ components:
       - headerNames
       - headerPlacementType
       type: object
+    headerPlacementType:
+      default: REPLACE_FIRST_ROW
+      description: Defines how headers are inserted in the table.
+      enum:
+      - INSERT_AT_TOP
+      - REPLACE_FIRST_ROW
+      type: string
     fillEmptyRowStructure:
       description: |
         This converter fills empty cells in the specified rows.

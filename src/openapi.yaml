@@ -73,6 +73,8 @@ components:
       $ref: './components/schemas/removeGroupedHeaderStructure.yaml'
     addHeaderNameStructure:
       $ref: './components/schemas/addHeaderNameStructure.yaml'
+    headerPlacementType:
+      $ref: './components/schemas/enums/header_placement_type.yaml'
     fillEmptyRowStructure:
       $ref: './components/schemas/fillEmptyRowStructure.yaml'
     fillEmptyColumnStructure:
