@@ -988,9 +988,9 @@ The converterType MUST be ADD_HEADER_NAME.
 | headerPlacementType
 | X
 | 
-|  <<String>>  
-| Defines how headers are inserted in the table.
-|  _Enum:_ INSERT_AT_TOP, REPLACE_FIRST_ROW,  
+|  <<header_placement_type>>  
+| 
+|    INSERT_AT_TOP, REPLACE_FIRST_ROW,  
 
 |===
 
@@ -1356,6 +1356,25 @@ The reportType MUST be GROUPED_HEADER.
 
 |===
 
+
+
+[#HeaderPlacementType]
+=== _HeaderPlacementType_ 
+
+Defines how headers are inserted in the table.
+
+
+
+
+[.fields-HeaderPlacementType]
+[cols="1"]
+|===
+| Enum Values
+
+| INSERT_AT_TOP
+| REPLACE_FIRST_ROW
+
+|===
 
 
 [#MergeColumnsStructure]
@@ -2639,9 +2658,9 @@ The converterType is used as a discriminator to determine the specific structure
 | headerPlacementType
 | X
 | 
-|  <<String>>  
-| Defines how headers are inserted in the table.
-|  _Enum:_ INSERT_AT_TOP, REPLACE_FIRST_ROW,  
+|  <<header_placement_type>>  
+| 
+|    INSERT_AT_TOP, REPLACE_FIRST_ROW,  
 
 | threshold
 | 
