@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.26.0
+1.27.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -958,6 +958,10 @@ This converter replaces the first row of the table with the specified header nam
 If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
 If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
 
+Two modes are supported:
+1. REPLACE_HEADER_AT_INDEX: Replaces the row at a given index with the specified headers.
+2. SHIFT_AND_INSERT_HEADER: Shifts the table down by one row and inserts the headers as the new first row.
+
 The converterType MUST be ADD_HEADER_NAME.
 
 
@@ -980,6 +984,13 @@ The converterType MUST be ADD_HEADER_NAME.
 |   List   of <<string>>
 | The header names
 |     
+
+| headerPlacementType
+| 
+| 
+|  <<String>>  
+| Defines how headers are inserted in the table.
+|  _Enum:_ INSERT_AT_TOP, REPLACE_FIRST_ROW,  
 
 |===
 
@@ -2624,6 +2635,13 @@ The converterType is used as a discriminator to determine the specific structure
 |   List   of <<string>>
 | The header names
 |     
+
+| headerPlacementType
+| 
+| 
+|  <<String>>  
+| Defines how headers are inserted in the table.
+|  _Enum:_ INSERT_AT_TOP, REPLACE_FIRST_ROW,  
 
 | threshold
 | 

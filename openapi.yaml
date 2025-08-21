@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.26.0
+  version: 1.27.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -585,6 +585,10 @@ components:
         If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
         If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
 
+        Two modes are supported:
+        1. REPLACE_HEADER_AT_INDEX: Replaces the row at a given index with the specified headers.
+        2. SHIFT_AND_INSERT_HEADER: Shifts the table down by one row and inserts the headers as the new first row.
+
         The converterType MUST be ADD_HEADER_NAME.
       properties:
         converterType:
@@ -599,6 +603,13 @@ components:
             type: string
           minItems: 1
           type: array
+        headerPlacementType:
+          default: REPLACE_FIRST_ROW
+          description: Defines how headers are inserted in the table.
+          enum:
+          - INSERT_AT_TOP
+          - REPLACE_FIRST_ROW
+          type: string
       required:
       - converterType
       - headerNames

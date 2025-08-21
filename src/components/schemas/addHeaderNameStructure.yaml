@@ -4,6 +4,10 @@ description: |
   If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
   If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
   
+  Two modes are supported:
+  1. REPLACE_HEADER_AT_INDEX: Replaces the row at a given index with the specified headers.
+  2. SHIFT_AND_INSERT_HEADER: Shifts the table down by one row and inserts the headers as the new first row.
+  
   The converterType MUST be ADD_HEADER_NAME.
 type: object
 required:
@@ -22,3 +26,10 @@ properties:
     items:
       type: string
       minLength: 1
+  headerPlacementType:
+    type: string
+    description: Defines how headers are inserted in the table.
+    enum:
+      - INSERT_AT_TOP
+      - REPLACE_FIRST_ROW
+    default: REPLACE_FIRST_ROW
