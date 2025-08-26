@@ -83,6 +83,10 @@ components:
       $ref: './components/schemas/removeHeaderStructure.yaml'
     removeFooterStructure:
       $ref: './components/schemas/removeFooterStructure.yaml'
+    removeKeywordStructure:
+      $ref: './components/schemas/removeKeywordsStructure.yaml'
+    matcherType:
+      $ref: './components/schemas/enums/match_type.yaml'
     replaceEntriesStructure:
       $ref: './components/schemas/replaceEntriesStructure.yaml'
     splitCellStructure:

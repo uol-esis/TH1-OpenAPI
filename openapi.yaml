@@ -703,6 +703,49 @@ components:
       required:
       - converterType
       type: object
+    removeKeywordStructure:
+      description: Configuration to remove rows and/or columns that contain specified
+        keywords.
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        keywords:
+          description: |
+            A list of keywords to match against.  If a cell contains any of these keywords, the corresponding row or column will be removed.
+          example:
+          - REMOVE
+          - '*'
+          - INVALID
+          items:
+            type: string
+          type: array
+        removeRows:
+          default: true
+          description: Whether to remove rows that contain a matching keyword.
+          type: boolean
+        removeColumns:
+          default: true
+          description: Whether to remove columns that contain a matching keyword.
+          type: boolean
+        ignoreCase:
+          default: true
+          type: boolean
+        matchType:
+          $ref: '#/components/schemas/match_type'
+      required:
+      - converterType
+      - ignoreCase
+      - matchType
+      - removeColumns
+      - removeRows
+      type: object
+    matcherType:
+      default: CONTAINS
+      description: Defines how the search match the value.
+      enum:
+      - CONTAINS
+      - EQUALS
+      type: string
     replaceEntriesStructure:
       description: |
         This converter replaces entries in the table with the specified replacement value.
@@ -1426,11 +1469,7 @@ components:
           default: true
           type: boolean
         matchType:
-          default: CONTAINS
-          enum:
-          - CONTAINS
-          - EQUALS
-          type: string
+          $ref: '#/components/schemas/match_type'
       required:
       - converterType
       - ignoreCase
@@ -1444,6 +1483,13 @@ components:
       enum:
       - INSERT_AT_TOP
       - REPLACE_FIRST_ROW
+      type: string
+    match_type:
+      default: CONTAINS
+      description: Defines how the search match the value.
+      enum:
+      - CONTAINS
+      - EQUALS
       type: string
     removeTrailingColumnSettings:
       properties:

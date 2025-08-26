@@ -1377,6 +1377,44 @@ Defines how headers are inserted in the table.
 |===
 
 
+[#MatchType]
+=== _MatchType_ 
+
+Defines how the search match the value.
+
+
+
+
+[.fields-MatchType]
+[cols="1"]
+|===
+| Enum Values
+
+| CONTAINS
+| EQUALS
+
+|===
+
+
+[#MatcherType]
+=== _MatcherType_ 
+
+Defines how the search match the value.
+
+
+
+
+[.fields-MatcherType]
+[cols="1"]
+|===
+| Enum Values
+
+| CONTAINS
+| EQUALS
+
+|===
+
+
 [#MergeColumnsStructure]
 === _MergeColumnsStructure_ 
 
@@ -1942,6 +1980,63 @@ The converterType MUST be REMOVE_INVALID_ROWS.
 
 
 
+[#RemoveKeywordStructure]
+=== _RemoveKeywordStructure_ 
+
+Configuration to remove rows and/or columns that contain specified keywords.
+
+
+[.fields-RemoveKeywordStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_CELL, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, REMOVE_LEADING_COLUMN, MERGE_COLUMNS, TRANSPOSE_MATRIX, PIVOT_MATRIX, REMOVE_KEYWORD,  
+
+| keywords
+| 
+| 
+|   List   of <<string>>
+| A list of keywords to match against.  If a cell contains any of these keywords, the corresponding row or column will be removed. 
+|     
+
+| removeRows
+| X
+| 
+|   Boolean  
+| Whether to remove rows that contain a matching keyword.
+|     
+
+| removeColumns
+| X
+| 
+|   Boolean  
+| Whether to remove columns that contain a matching keyword.
+|     
+
+| ignoreCase
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| matchType
+| X
+| 
+|  <<match_type>>  
+| 
+|    CONTAINS, EQUALS,  
+
+|===
+
+
+
 [#RemoveKeywordsSettings]
 === _RemoveKeywordsSettings_ 
 
@@ -2048,9 +2143,9 @@ Configuration to remove rows and/or columns that contain specified keywords.
 | matchType
 | X
 | 
-|  <<String>>  
+|  <<match_type>>  
 | 
-|  _Enum:_ CONTAINS, EQUALS,  
+|    CONTAINS, EQUALS,  
 
 |===
 
@@ -2784,9 +2879,9 @@ The converterType is used as a discriminator to determine the specific structure
 | matchType
 | X
 | 
-|  <<String>>  
+|  <<match_type>>  
 | 
-|  _Enum:_ CONTAINS, EQUALS,  
+|    CONTAINS, EQUALS,  
 
 |===
 

@@ -2,6 +2,6 @@
   type: string
   description: Defines how headers are inserted in the table.
   enum:
-    - INSERT_AT_TOP
-    - REPLACE_FIRST_ROW
+      - INSERT_AT_TOP
+      - REPLACE_FIRST_ROW
   default: REPLACE_FIRST_ROW

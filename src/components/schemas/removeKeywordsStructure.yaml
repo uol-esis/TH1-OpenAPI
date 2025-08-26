@@ -30,6 +30,4 @@ properties:
     type: boolean
     default: true
   matchType:
-    type: string
-    enum: [ CONTAINS, EQUALS ]
-    default: "CONTAINS"
+    $ref: './enums/match_type.yaml'

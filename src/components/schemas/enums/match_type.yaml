@@ -1,0 +1,7 @@
+#matchType:
+type: string
+description: Defines how the search match the value.
+enum:
+  - CONTAINS
+  - EQUALS
+default: CONTAINS
