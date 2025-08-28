@@ -76,7 +76,7 @@ by-id:
     operationId: updateTableStructure
     security:
       - oAuth2Auth:
-          - update:tablestructure
+          - write:tablestructure
     parameters:
       - name: id
         in: path

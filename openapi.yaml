@@ -135,7 +135,7 @@ paths:
           description: Not found
       security:
       - oAuth2Auth:
-        - update:tablestructure
+        - write:tablestructure
       summary: Update table structure by id
   /table-structures/generate:
     post:
