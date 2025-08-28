@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.26.1
+  version: 1.27.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -585,6 +585,9 @@ components:
         If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
         If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
 
+        Two modes are supported:
+        1. REPLACE_FIRST_ROW: Replaces the row at a given index with the specified headers.
+        2. INSERT_AT_TOP: Shifts the table down by one row and inserts the headers as the new first row.
         The converterType MUST be ADD_HEADER_NAME.
       properties:
         converterType:
@@ -599,10 +602,20 @@ components:
             type: string
           minItems: 1
           type: array
+        headerPlacementType:
+          $ref: '#/components/schemas/header_placement_type'
       required:
       - converterType
       - headerNames
+      - headerPlacementType
       type: object
+    headerPlacementType:
+      default: REPLACE_FIRST_ROW
+      description: Defines how headers are inserted in the table.
+      enum:
+      - INSERT_AT_TOP
+      - REPLACE_FIRST_ROW
+      type: string
     fillEmptyRowStructure:
       description: |
         This converter fills empty cells in the specified rows.
@@ -689,6 +702,49 @@ components:
       required:
       - converterType
       type: object
+    removeKeywordStructure:
+      description: Configuration to remove rows and/or columns that contain specified
+        keywords.
+      properties:
+        converterType:
+          $ref: '#/components/schemas/converterType'
+        keywords:
+          description: |
+            A list of keywords to match against.  If a cell contains any of these keywords, the corresponding row or column will be removed.
+          example:
+          - REMOVE
+          - '*'
+          - INVALID
+          items:
+            type: string
+          type: array
+        removeRows:
+          default: true
+          description: Whether to remove rows that contain a matching keyword.
+          type: boolean
+        removeColumns:
+          default: true
+          description: Whether to remove columns that contain a matching keyword.
+          type: boolean
+        ignoreCase:
+          default: true
+          type: boolean
+        matchType:
+          $ref: '#/components/schemas/match_type'
+      required:
+      - converterType
+      - ignoreCase
+      - matchType
+      - removeColumns
+      - removeRows
+      type: object
+    matcherType:
+      default: CONTAINS
+      description: Defines how the search match the value.
+      enum:
+      - CONTAINS
+      - EQUALS
+      type: string
     replaceEntriesStructure:
       description: |
         This converter replaces entries in the table with the specified replacement value.
@@ -1412,11 +1468,7 @@ components:
           default: true
           type: boolean
         matchType:
-          default: EQUALS
-          enum:
-          - CONTAINS
-          - EQUALS
-          type: string
+          $ref: '#/components/schemas/match_type'
       required:
       - converterType
       - ignoreCase
@@ -1424,6 +1476,20 @@ components:
       - removeColumns
       - removeRows
       type: object
+    header_placement_type:
+      default: REPLACE_FIRST_ROW
+      description: Defines how headers are inserted in the table.
+      enum:
+      - INSERT_AT_TOP
+      - REPLACE_FIRST_ROW
+      type: string
+    match_type:
+      default: CONTAINS
+      description: Defines how the search match the value.
+      enum:
+      - CONTAINS
+      - EQUALS
+      type: string
     removeTrailingColumnSettings:
       properties:
         enabled:

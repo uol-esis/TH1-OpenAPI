@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TH1
   description: TH1
-  version: 1.26.1
+  version: 1.27.0
 
 servers:
   - url: 'http://localhost:{port}/api/v1'
@@ -73,6 +73,8 @@ components:
       $ref: './components/schemas/removeGroupedHeaderStructure.yaml'
     addHeaderNameStructure:
       $ref: './components/schemas/addHeaderNameStructure.yaml'
+    headerPlacementType:
+      $ref: './components/schemas/enums/header_placement_type.yaml'
     fillEmptyRowStructure:
       $ref: './components/schemas/fillEmptyRowStructure.yaml'
     fillEmptyColumnStructure:
@@ -81,6 +83,10 @@ components:
       $ref: './components/schemas/removeHeaderStructure.yaml'
     removeFooterStructure:
       $ref: './components/schemas/removeFooterStructure.yaml'
+    removeKeywordStructure:
+      $ref: './components/schemas/removeKeywordsStructure.yaml'
+    matcherType:
+      $ref: './components/schemas/enums/match_type.yaml'
     replaceEntriesStructure:
       $ref: './components/schemas/replaceEntriesStructure.yaml'
     splitCellStructure:

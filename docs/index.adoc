@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.26.1
+1.27.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -958,6 +958,9 @@ This converter replaces the first row of the table with the specified header nam
 If the number of provided header names is less than the number of columns in the table, the remaining columns will not be changed.
 If the number of provided header names is greater than the number of columns in the table, an error will be thrown.
 
+Two modes are supported:
+1. REPLACE_FIRST_ROW: Replaces the row at a given index with the specified headers.
+2. INSERT_AT_TOP: Shifts the table down by one row and inserts the headers as the new first row.
 The converterType MUST be ADD_HEADER_NAME.
 
 
@@ -980,6 +983,13 @@ The converterType MUST be ADD_HEADER_NAME.
 |   List   of <<string>>
 | The header names
 |     
+
+| headerPlacementType
+| X
+| 
+|  <<header_placement_type>>  
+| 
+|    INSERT_AT_TOP, REPLACE_FIRST_ROW,  
 
 |===
 
@@ -1345,6 +1355,63 @@ The reportType MUST be GROUPED_HEADER.
 
 |===
 
+
+
+[#HeaderPlacementType]
+=== _HeaderPlacementType_ 
+
+Defines how headers are inserted in the table.
+
+
+
+
+[.fields-HeaderPlacementType]
+[cols="1"]
+|===
+| Enum Values
+
+| INSERT_AT_TOP
+| REPLACE_FIRST_ROW
+
+|===
+
+
+[#MatchType]
+=== _MatchType_ 
+
+Defines how the search match the value.
+
+
+
+
+[.fields-MatchType]
+[cols="1"]
+|===
+| Enum Values
+
+| CONTAINS
+| EQUALS
+
+|===
+
+
+[#MatcherType]
+=== _MatcherType_ 
+
+Defines how the search match the value.
+
+
+
+
+[.fields-MatcherType]
+[cols="1"]
+|===
+| Enum Values
+
+| CONTAINS
+| EQUALS
+
+|===
 
 
 [#MergeColumnsStructure]
@@ -1912,6 +1979,63 @@ The converterType MUST be REMOVE_INVALID_ROWS.
 
 
 
+[#RemoveKeywordStructure]
+=== _RemoveKeywordStructure_ 
+
+Configuration to remove rows and/or columns that contain specified keywords.
+
+
+[.fields-RemoveKeywordStructure]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| converterType
+| X
+| 
+|  <<converterType>>  
+| 
+|    REMOVE_GROUPED_HEADER, FILL_EMPTY_ROW, FILL_EMPTY_COLUMN, REMOVE_COLUMN_BY_INDEX, REMOVE_ROW_BY_INDEX, ADD_HEADER_NAME, REMOVE_FOOTER, REMOVE_HEADER, REPLACE_ENTRIES, SPLIT_CELL, REMOVE_INVALID_ROWS, REMOVE_TRAILING_COLUMN, REMOVE_LEADING_COLUMN, MERGE_COLUMNS, TRANSPOSE_MATRIX, PIVOT_MATRIX, REMOVE_KEYWORD,  
+
+| keywords
+| 
+| 
+|   List   of <<string>>
+| A list of keywords to match against.  If a cell contains any of these keywords, the corresponding row or column will be removed. 
+|     
+
+| removeRows
+| X
+| 
+|   Boolean  
+| Whether to remove rows that contain a matching keyword.
+|     
+
+| removeColumns
+| X
+| 
+|   Boolean  
+| Whether to remove columns that contain a matching keyword.
+|     
+
+| ignoreCase
+| X
+| 
+|   Boolean  
+| 
+|     
+
+| matchType
+| X
+| 
+|  <<match_type>>  
+| 
+|    CONTAINS, EQUALS,  
+
+|===
+
+
+
 [#RemoveKeywordsSettings]
 === _RemoveKeywordsSettings_ 
 
@@ -2018,9 +2142,9 @@ Configuration to remove rows and/or columns that contain specified keywords.
 | matchType
 | X
 | 
-|  <<String>>  
+|  <<match_type>>  
 | 
-|  _Enum:_ CONTAINS, EQUALS,  
+|    CONTAINS, EQUALS,  
 
 |===
 
@@ -2625,6 +2749,13 @@ The converterType is used as a discriminator to determine the specific structure
 | The header names
 |     
 
+| headerPlacementType
+| X
+| 
+|  <<header_placement_type>>  
+| 
+|    INSERT_AT_TOP, REPLACE_FIRST_ROW,  
+
 | threshold
 | 
 | 
@@ -2747,9 +2878,9 @@ The converterType is used as a discriminator to determine the specific structure
 | matchType
 | X
 | 
-|  <<String>>  
+|  <<match_type>>  
 | 
-|  _Enum:_ CONTAINS, EQUALS,  
+|    CONTAINS, EQUALS,  
 
 |===
 
