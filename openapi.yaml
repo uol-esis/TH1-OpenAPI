@@ -1552,7 +1552,7 @@ components:
           default: true
           type: boolean
         matchType:
-          default: CONTAINS
+          default: EQUALS
           enum:
           - CONTAINS
           - EQUALS
