@@ -124,6 +124,12 @@ paths:
           format: int64
           minimum: 1
           type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tableStructure'
+        required: true
       responses:
         "200":
           description: OK

@@ -85,6 +85,12 @@ by-id:
           type: integer
           format: int64
           minimum: 1
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/tableStructure.yaml'
     responses:
       '200':
         description: OK
