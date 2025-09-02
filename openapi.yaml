@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: TH1
   title: TH1
-  version: 1.27.0
+  version: 1.28.0
 servers:
 - description: Local server
   url: "http://localhost:{port}/api/v1"
@@ -114,6 +114,35 @@ paths:
       - oAuth2Auth:
         - read:tablestructure
       summary: Get a table structure by id
+    put:
+      operationId: updateTableStructure
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tableStructure'
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not found
+      security:
+      - oAuth2Auth:
+        - write:tablestructure
+      summary: Update table structure by id
   /table-structures/generate:
     post:
       operationId: generateTableStructure

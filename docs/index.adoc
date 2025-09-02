@@ -1,6 +1,6 @@
 = TH1
 team@openapitools.org
-1.27.0
+1.28.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -942,6 +942,114 @@ ifdef::internal-generation[]
 ===== Implementation
 
 // markup not found, no include::{specDir}feedback/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.updateTableStructure]
+==== updateTableStructure
+
+`PUT /table-structures/{id}`
+
+Update table structure by id
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}table-structures/\{id\}/PUT/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| id
+|  
+| X
+| null
+| 
+
+|===
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| TableStructure
+|  <<TableStructure>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+
+
+-
+
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<>>
+
+
+| 400
+| Bad request
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<>>
+
+
+| 404
+| Not found
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}table-structures/\{id\}/PUT/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}table-structures/\{id\}/PUT/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :table-structures/{id}/PUT/PUT.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}table-structures/\{id\}/PUT/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]
