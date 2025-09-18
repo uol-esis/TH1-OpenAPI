@@ -20,7 +20,10 @@ properties:
   columnIndex:
     description: The indices of the rows to fill
     type: array
-    minimum: 1
+    minItems: 0
+    items:
+      type: integer
+      minimum: 0
   columnName:
     description: Target dimension
     type: string

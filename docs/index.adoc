@@ -1671,7 +1671,7 @@ The &#x60;converterType&#x60; MUST be &#x60;PIVOT_LONGER&#x60;.
 | columnIndex
 | X
 | 
-|   List   of <<string>>
+|   List   of <<integer>>
 | The indices of the rows to fill
 |     
 
@@ -2831,7 +2831,7 @@ The converterType is used as a discriminator to determine the specific structure
 | columnIndex
 | X
 | 
-|   List   of <<string>>
+|   List   of <<integer>>
 | The indices of the rows to fill
 |     
 
