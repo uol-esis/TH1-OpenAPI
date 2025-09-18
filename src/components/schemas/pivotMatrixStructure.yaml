@@ -29,9 +29,7 @@ properties:
     type: string
   valueName:
     description: Target column where the numeric values are stored
-    type: array
-    items:
-      type: string
+    type: string
   merge:
     description: |
       If multiple converters use the same `columnName`:

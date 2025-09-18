@@ -1451,9 +1451,7 @@ components:
           type: string
         valueName:
           description: Target column where the numeric values are stored
-          items:
-            type: string
-          type: array
+          type: string
         merge:
           default: true
           description: |
