@@ -1676,14 +1676,14 @@ The &#x60;converterType&#x60; MUST be &#x60;PIVOT_LONGER&#x60;.
 |     
 
 | columnName
-| 
+| X
 | 
 |   String  
 | Target dimension
 |     
 
 | valueName
-| 
+| X
 | 
 |   List   of <<string>>
 | Target column where the numeric values are stored
@@ -2934,14 +2934,14 @@ The converterType is used as a discriminator to determine the specific structure
 |     
 
 | columnName
-| 
+| X
 | 
 |   String  
 | Target dimension
 |     
 
 | valueName
-| 
+| X
 | 
 |   List   of <<string>>
 | Target column where the numeric values are stored

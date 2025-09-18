@@ -1463,7 +1463,9 @@ components:
           type: boolean
       required:
       - columnIndex
+      - columnName
       - converterType
+      - valueName
       type: object
     removeKeywordsStructure:
       description: Configuration to remove rows and/or columns that contain specified

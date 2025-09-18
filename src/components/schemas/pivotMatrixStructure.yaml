@@ -12,6 +12,8 @@ type: object
 required:
   - converterType
   - columnIndex
+  - columnName
+  - valueName
 properties:
   converterType:
     $ref: './converterType.yaml'
